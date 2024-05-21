@@ -17,7 +17,7 @@
         Dim nickname As String = cbxName.Text
 
         If nickname.Length <= 0 Then
-            MsgBox("No nickname selected", vbOK Or vbInformation)
+            MsgBox("No nickname selected", vbInformation)
         End If
 
         cbxName.Items.Add(nickname)
