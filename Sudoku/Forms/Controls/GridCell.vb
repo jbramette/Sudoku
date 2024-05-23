@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms.VisualStyles
+﻿Imports System.Text.RegularExpressions
+Imports System.Windows.Forms.VisualStyles
 
 Partial Public Class GridCell
     Inherits TextBox
@@ -6,6 +7,19 @@ Partial Public Class GridCell
     ' Zero based indices
     Private _row As Integer
     Private _col As Integer
+
+    ' Enable input filtering, accepting only numeric or Backspace
+    Private Sub input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    ' Enable text pasting filtering, so that only numerics can be pasted
+    Private Sub paste(sender As Object, e As System.EventArgs) Handles Me.TextChanged
+        Dim digitsOnly As Regex = New Regex("[^\d]")
+        Me.Text = digitsOnly.Replace(Me.Text, "")
+    End Sub
 
     Sub New(col As Integer, row As Integer, size As Size)
         _col = col
