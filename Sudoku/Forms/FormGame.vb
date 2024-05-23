@@ -29,8 +29,7 @@
         gameTimer.Stop()
         gameTimer.Enabled = False
         gameTimer.Dispose()
-        Me.Close()
-        Application.Exit()
+        FormHome.Close()
     End Sub
 
     Private Sub btnGiveup_Click(sender As Object, e As EventArgs) Handles btnGiveup.Click
@@ -59,5 +58,9 @@
         Dim seconds As Integer = remainingSeconds Mod 60
 
         lblRemainingTime.Text = minutes & ":" & seconds
+    End Sub
+
+    Private Sub FormGame_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        die()
     End Sub
 End Class
