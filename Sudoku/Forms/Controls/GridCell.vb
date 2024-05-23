@@ -17,14 +17,14 @@ Partial Public Class GridCell
     Private GridBackColorFocused As Color = Color.Black
 
     ' Enable input filtering, accepting only numeric or Backspace
-    Private Sub input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Shared Sub Input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
 
     ' Enable text pasting filtering, so that only numerics can be pasted
-    Private Sub paste(sender As Object, e As System.EventArgs) Handles Me.TextChanged
+    Private Sub Paste(sender As Object, e As System.EventArgs) Handles Me.TextChanged
         Dim digitsOnly As Regex = New Regex("[^\d]")
         Me.Text = digitsOnly.Replace(Me.Text, "")
     End Sub
