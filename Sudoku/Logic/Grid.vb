@@ -17,7 +17,7 @@
         Return _grid(index)
     End Function
 
-    Public Sub setValue(row As Integer, col As Integer, value As Integer)
+    Public Sub setValue(col As Integer, row As Integer, value As Integer)
         Dim index As Integer
         index = row * COLS + col
         _grid(index) = value

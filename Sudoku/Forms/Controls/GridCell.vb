@@ -24,6 +24,7 @@ Partial Public Class GridCell
         Else
             Dim input As Integer
             If Integer.TryParse(e.KeyChar.ToString(), input) Then
+
                 If Not FormGame.isInputCorrect(input, Me._col, Me._row) Then
                     Me.ForeColor = Color.Red
                 End If

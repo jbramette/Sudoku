@@ -5,9 +5,10 @@
     Private Shared grid As Grid
 
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        grid = New Grid()
         lblNickname.Text = FormHome.GetNickname()
         LoadGridView()
-        grid = New Grid()
+
         UpdateTimerText()
         gameTimer.Start()
     End Sub
@@ -20,6 +21,9 @@
         For row = 0 To Grid.ROWS - 1
             For col = 0 To Grid.COLS - 1
                 Dim tbCell As GridCell = New GridCell(row, col, cellSize)
+                If grid.getValue(row, col) <> 0 Then
+                    tbCell.Text = grid.getValue(row, col)
+                End If
                 pnlGrid.Controls.Add(tbCell)
             Next
         Next
@@ -47,18 +51,33 @@
 
     Public Shared Function isInputCorrect(input As Integer, col As Integer, row As Integer) As Boolean
         Dim currcell As Integer
+
+        ' check columns
         For rows = 0 To Grid.ROWS - 1
-            currcell = grid.getValue(rows, col)
+            currcell = grid.getValue(col, rows)
             If currcell = input Then
                 Return False
             End If
         Next
 
+        'check lines
         For cols = 0 To Grid.COLS - 1
-            currcell = grid.getValue(row, cols)
+            currcell = grid.getValue(cols, row)
             If currcell = input Then
                 Return False
             End If
+        Next
+
+        'check squares 3x3
+        Dim squareFirstRow As Integer = (row \ 3) * 3
+        Dim squareFirstCol As Integer = (col \ 3) * 3
+
+        For r As Integer = squareFirstRow To squareFirstRow + 2
+            For c As Integer = squareFirstCol To squareFirstCol + 2
+                If grid.getValue(c, r) = input AndAlso (r <> row OrElse c <> col) Then
+                    Return False
+                End If
+            Next
         Next
 
         Return True
