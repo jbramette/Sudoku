@@ -45,18 +45,18 @@ Partial Class FormGame
         lblNickname.AutoSize = True
         lblNickname.Location = New Point(649, 16)
         lblNickname.Name = "lblNickname"
-        lblNickname.Size = New Size(53, 20)
+        lblNickname.Size = New Size(75, 20)
         lblNickname.TabIndex = 1
-        lblNickname.Text = "Label1"
+        lblNickname.Text = "Nickname"
         ' 
         ' lblRemainingTime
         ' 
         lblRemainingTime.AutoSize = True
         lblRemainingTime.Location = New Point(649, 60)
         lblRemainingTime.Name = "lblRemainingTime"
-        lblRemainingTime.Size = New Size(53, 20)
+        lblRemainingTime.Size = New Size(47, 20)
         lblRemainingTime.TabIndex = 2
-        lblRemainingTime.Text = "Label1"
+        lblRemainingTime.Text = "Timer"
         ' 
         ' pnlGrid
         ' 
