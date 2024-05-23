@@ -8,6 +8,14 @@ Partial Public Class GridCell
     Private _row As Integer
     Private _col As Integer
 
+    ' Default state of the cell
+    Private GridForeColorUnfocused As Color = Color.Black
+    Private GridBackColorUnfocused As Color = Color.LightGray
+
+    ' State of the cell when we interact with it
+    Private GridForeColorFocused As Color = Color.Yellow
+    Private GridBackColorFocused As Color = Color.Black
+
     ' Enable input filtering, accepting only numeric or Backspace
     Private Sub input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
@@ -22,13 +30,13 @@ Partial Public Class GridCell
     End Sub
 
     Private Sub focus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
-        Me.BackColor = Color.Black
-        Me.ForeColor = Color.Yellow
+        Me.BackColor = GridBackColorFocused
+        Me.ForeColor = GridForeColorFocused
     End Sub
 
     Private Sub unfocus(sender As GridCell, e As EventArgs) Handles Me.LostFocus
-        Me.BackColor = Color.LightGray
-        Me.ForeColor = Color.Black
+        Me.BackColor = GridBackColorUnfocused
+        Me.ForeColor = GridForeColorUnfocused
     End Sub
 
     Sub New(col As Integer, row As Integer, size As Size)
@@ -39,7 +47,7 @@ Partial Public Class GridCell
 
         ' Only groups with a pair index should be white
         If groupIndex Mod 2 <> 0 Then
-            Me.BackColor = Color.LightGray
+            Me.BackColor = GridBackColorUnfocused
         End If
 
         ' Allow height resize
