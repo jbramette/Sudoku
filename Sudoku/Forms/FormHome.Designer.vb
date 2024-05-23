@@ -89,6 +89,7 @@ Partial Class FormHome
         Controls.Add(lblNickname)
         Margin = New Padding(3, 4, 3, 4)
         Name = "FormHome"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Sudoku"
         ResumeLayout(False)
         PerformLayout()

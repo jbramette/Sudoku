@@ -81,6 +81,7 @@ Partial Class FormGame
         Controls.Add(btnGiveup)
         Margin = New Padding(3, 4, 3, 4)
         Name = "FormGame"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Sudoku"
         ResumeLayout(False)
         PerformLayout()
