@@ -1,7 +1,7 @@
 ﻿Public Class FormGame
 
-    Private Const TOTAL_TIME_SECONDS As Integer = 7 * 60
-    Private remainingSeconds As Integer = TOTAL_TIME_SECONDS
+    Private Const GAME_DURATION As Integer = 7 * 60
+    Private remainingSeconds As Integer = GAME_DURATION
 
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblNickname.Text = FormHome.GetNickname()
