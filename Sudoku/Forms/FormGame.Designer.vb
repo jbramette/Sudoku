@@ -32,7 +32,7 @@ Partial Class FormGame
         ' 
         ' btnGiveup
         ' 
-        btnGiveup.Location = New Point(649, 687)
+        btnGiveup.Location = New Point(734, 685)
         btnGiveup.Margin = New Padding(3, 4, 3, 4)
         btnGiveup.Name = "btnGiveup"
         btnGiveup.Size = New Size(86, 31)
@@ -43,7 +43,7 @@ Partial Class FormGame
         ' lblNickname
         ' 
         lblNickname.AutoSize = True
-        lblNickname.Location = New Point(649, 16)
+        lblNickname.Location = New Point(734, 14)
         lblNickname.Name = "lblNickname"
         lblNickname.Size = New Size(75, 20)
         lblNickname.TabIndex = 1
@@ -52,7 +52,7 @@ Partial Class FormGame
         ' lblRemainingTime
         ' 
         lblRemainingTime.AutoSize = True
-        lblRemainingTime.Location = New Point(649, 60)
+        lblRemainingTime.Location = New Point(734, 58)
         lblRemainingTime.Name = "lblRemainingTime"
         lblRemainingTime.Size = New Size(47, 20)
         lblRemainingTime.TabIndex = 2
@@ -63,7 +63,7 @@ Partial Class FormGame
         pnlGrid.Location = New Point(14, 16)
         pnlGrid.Margin = New Padding(3, 4, 3, 4)
         pnlGrid.Name = "pnlGrid"
-        pnlGrid.Size = New Size(598, 700)
+        pnlGrid.Size = New Size(700, 700)
         pnlGrid.TabIndex = 3
         ' 
         ' gameTimer
@@ -74,7 +74,7 @@ Partial Class FormGame
         ' 
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(751, 733)
+        ClientSize = New Size(832, 733)
         Controls.Add(pnlGrid)
         Controls.Add(lblRemainingTime)
         Controls.Add(lblNickname)
