@@ -25,11 +25,23 @@
         Next
     End Sub
 
+    Private Sub die()
+        gameTimer.Stop()
+        gameTimer.Enabled = False
+        gameTimer.Dispose()
+        Me.Close()
+        Application.Exit()
+    End Sub
+
     Private Sub btnGiveup_Click(sender As Object, e As EventArgs) Handles btnGiveup.Click
         Dim r As MsgBoxResult = MsgBox("Do you really want to give up ?", vbOKCancel Or vbQuestion, "Confirmation")
 
         If r = MsgBoxResult.Cancel Then
             Exit Sub
+        End If
+
+        If r = MsgBoxResult.Ok Then
+            die()
         End If
     End Sub
 
