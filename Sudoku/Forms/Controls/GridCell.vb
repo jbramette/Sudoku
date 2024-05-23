@@ -1,5 +1,4 @@
-﻿Imports System.Text.RegularExpressions
-Imports System.Windows.Forms.VisualStyles
+﻿Imports System.Windows.Forms.VisualStyles
 
 Partial Public Class GridCell
     Inherits TextBox
@@ -9,46 +8,23 @@ Partial Public Class GridCell
     Private _col As Integer
 
     ' Default state of the cell
-    Private GridForeColorUnfocused As Color = Color.Black
-    Private GridBackColorUnfocused As Color = Color.LightGray
+    Private CellForeColorUnfocused As Color = Color.Black
 
     ' State of the cell when we interact with it
-    Private GridForeColorFocused As Color = Color.Yellow
-    Private GridBackColorFocused As Color = Color.Black
+    Private CellForeColorFocused As Color = Color.Yellow
+    Private CellBackColorFocused As Color = Color.Black
 
-    ' Enable input filtering, accepting only numeric or Backspace
-    Private Shared Sub Input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
-        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
-    End Sub
+    ' The cells are either white or grey to differentiate their group
+    Private CellBackColorGroup1 As Color = Color.White
+    Private CellBackColorGroup2 As Color = Color.LightGray
 
-    ' Enable text pasting filtering, so that only numerics can be pasted
-    Private Sub Paste(sender As Object, e As System.EventArgs) Handles Me.TextChanged
-        Dim digitsOnly As Regex = New Regex("[^\d]")
-        Me.Text = digitsOnly.Replace(Me.Text, "")
-    End Sub
 
-    Private Sub focus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
-        Me.BackColor = GridBackColorFocused
-        Me.ForeColor = GridForeColorFocused
-    End Sub
-
-    Private Sub unfocus(sender As GridCell, e As EventArgs) Handles Me.LostFocus
-        Me.BackColor = GridBackColorUnfocused
-        Me.ForeColor = GridForeColorUnfocused
-    End Sub
-
-    Sub New(col As Integer, row As Integer, size As Size)
+    Public Sub New(col As Integer, row As Integer, size As Size)
         _col = col
         _row = row
 
-        Dim groupIndex = _col \ 3 + _row \ 3
-
         ' Only groups with a pair index should be white
-        If groupIndex Mod 2 <> 0 Then
-            Me.BackColor = GridBackColorUnfocused
-        End If
+        Me.BackColor = GetGroupColor()
 
         ' Allow height resize
         Me.MinimumSize = size
@@ -74,6 +50,43 @@ Partial Public Class GridCell
 
     Public Function Col()
         Return _col
+    End Function
+
+
+    ' Enable input filtering, accepting only numeric or Backspace
+    Private Shared Sub OnInput(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    ' Enable text pasting filtering, so that only numerics can be pasted
+    Private Sub OnPaste(sender As Object, e As EventArgs) Handles Me.TextChanged
+        If Not IsNumeric(Me.Text) Then
+            Me.Text = ""
+        End If
+    End Sub
+
+    Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
+        Me.BackColor = CellBackColorFocused
+        Me.ForeColor = CellForeColorFocused
+    End Sub
+
+    Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
+        Me.BackColor = GetGroupColor()
+        Me.ForeColor = CellForeColorUnfocused
+    End Sub
+
+    Private Function GetGroupIndex()
+        Return _col \ 3 + _row \ 3
+    End Function
+
+    Private Function GetGroupColor()
+        If GetGroupIndex() Mod 2 = 0 Then
+            Return CellBackColorGroup1
+        Else
+            Return CellBackColorGroup2
+        End If
     End Function
 
 End Class

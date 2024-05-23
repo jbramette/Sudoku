@@ -1,7 +1,7 @@
 ﻿Public Class FormGame
 
-    Private Const GAME_DURATION As Integer = 7 * 60
-    Private remainingSeconds As Integer = GAME_DURATION
+    Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
+    Private remainingSeconds As Integer = GAME_DURATION_SECONDS
 
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblNickname.Text = FormHome.GetNickname()
@@ -12,39 +12,33 @@
     End Sub
 
     Private Sub LoadGridView()
-
-        ' Pass-in size
         Dim cellSize As Size = New Size(pnlGrid.Width \ Grid.COLS,
                                         pnlGrid.Height \ Grid.ROWS)
 
         For row = 0 To Grid.ROWS - 1
             For col = 0 To Grid.COLS - 1
-                Dim tbCell As GridCell = New GridCell(row, col, cellSize)
-                pnlGrid.Controls.Add(tbCell)
+                Dim cell As GridCell = New GridCell(row, col, cellSize)
+                pnlGrid.Controls.Add(cell)
             Next
         Next
     End Sub
 
-    Private Sub die()
+    Private Sub Die()
         gameTimer.Stop()
         gameTimer.Enabled = False
         gameTimer.Dispose()
         FormHome.Close()
     End Sub
 
-    Private Sub btnGiveup_Click(sender As Object, e As EventArgs) Handles btnGiveup.Click
+    Private Sub OnButtonGiveupClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
         Dim r As MsgBoxResult = MsgBox("Do you really want to give up ?", vbOKCancel Or vbQuestion, "Confirmation")
 
-        If r = MsgBoxResult.Cancel Then
-            Exit Sub
-        End If
-
         If r = MsgBoxResult.Ok Then
-            die()
+            Die()
         End If
     End Sub
 
-    Private Sub gameTimer_Tick(sender As Object, e As EventArgs) Handles gameTimer.Tick
+    Private Sub OnGameTimerTick(sender As Object, e As EventArgs) Handles gameTimer.Tick
         remainingSeconds -= 1
         UpdateTimerText()
 
@@ -60,7 +54,7 @@
         lblRemainingTime.Text = minutes & ":" & seconds
     End Sub
 
-    Private Sub FormGame_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        die()
+    Private Sub OnFormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        Die()
     End Sub
 End Class
