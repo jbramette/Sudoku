@@ -2,21 +2,21 @@
 
     Private Const GAME_DURATION As Integer = 7 * 60
     Private remainingSeconds As Integer = GAME_DURATION
+    Private Shared grid As Grid
 
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblNickname.Text = FormHome.GetNickname()
-
         LoadGridView()
+        grid = New Grid()
         UpdateTimerText()
         gameTimer.Start()
     End Sub
 
-    Private Sub LoadGridView()
 
+    Private Sub LoadGridView()
         ' Pass-in size
         Dim cellSize As Size = New Size(pnlGrid.Width \ Grid.COLS,
                                         pnlGrid.Height \ Grid.ROWS)
-
         For row = 0 To Grid.ROWS - 1
             For col = 0 To Grid.COLS - 1
                 Dim tbCell As GridCell = New GridCell(row, col, cellSize)
@@ -29,7 +29,8 @@
         gameTimer.Stop()
         gameTimer.Enabled = False
         gameTimer.Dispose()
-        FormHome.Close()
+        Me.Hide()
+        FormHome.Show()
     End Sub
 
     Private Sub btnGiveup_Click(sender As Object, e As EventArgs) Handles btnGiveup.Click
@@ -43,6 +44,25 @@
             die()
         End If
     End Sub
+
+    Public Shared Function isInputCorrect(input As Integer, col As Integer, row As Integer) As Boolean
+        Dim currcell As Integer
+        For rows = 0 To Grid.ROWS - 1
+            currcell = grid.getValue(rows, col)
+            If currcell = input Then
+                Return False
+            End If
+        Next
+
+        For cols = 0 To Grid.COLS - 1
+            currcell = grid.getValue(row, cols)
+            If currcell = input Then
+                Return False
+            End If
+        Next
+
+        Return True
+    End Function
 
     Private Sub gameTimer_Tick(sender As Object, e As EventArgs) Handles gameTimer.Tick
         remainingSeconds -= 1

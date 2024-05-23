@@ -1,4 +1,5 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.Diagnostics.Eventing.Reader
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms.VisualStyles
 
 Partial Public Class GridCell
@@ -16,10 +17,17 @@ Partial Public Class GridCell
     Private GridForeColorFocused As Color = Color.Yellow
     Private GridBackColorFocused As Color = Color.Black
 
-    ' Enable input filtering, accepting only numeric or Backspace
-    Private Shared Sub Input(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
+
+    Private Sub Input(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
+        Else
+            Dim input As Integer
+            If Integer.TryParse(e.KeyChar.ToString(), input) Then
+                If Not FormGame.isInputCorrect(input, Me._col, Me._row) Then
+                    Me.ForeColor = Color.Red
+                End If
+            End If
         End If
     End Sub
 
@@ -35,7 +43,7 @@ Partial Public Class GridCell
     End Sub
 
     Private Sub unfocus(sender As GridCell, e As EventArgs) Handles Me.LostFocus
-        Me.BackColor = GridBackColorUnfocused
+        Me.BackColor = WhichColor()
         Me.ForeColor = GridForeColorUnfocused
     End Sub
 
@@ -43,12 +51,7 @@ Partial Public Class GridCell
         _col = col
         _row = row
 
-        Dim groupIndex = _col \ 3 + _row \ 3
-
-        ' Only groups with a pair index should be white
-        If groupIndex Mod 2 <> 0 Then
-            Me.BackColor = GridBackColorUnfocused
-        End If
+        Me.BackColor = WhichColor()
 
         ' Allow height resize
         Me.MinimumSize = size
@@ -67,6 +70,16 @@ Partial Public Class GridCell
         Me.TextAlign = HorizontalAlignment.Center
         Me.Font = New Font("Segoe UI", 24, FontStyle.Regular)
     End Sub
+
+    Private Function WhichColor()
+        Dim groupIndex = _col \ 3 + _row \ 3
+        ' Only groups with a pair index should be white
+        If groupIndex Mod 2 <> 0 Then
+            Return GridBackColorUnfocused
+        Else
+            Return Color.White
+        End If
+    End Function
 
     Public Function Row()
         Return _row
