@@ -6,6 +6,7 @@ Partial Public Class GridCell
     ' Zero based indices
     Private _row As Integer
     Private _col As Integer
+    Private _value As Integer
 
     ' Default state of the cell
     Private CellForeColorUnfocused As Color = Color.Black
@@ -21,6 +22,7 @@ Partial Public Class GridCell
     Public Sub New(col As Integer, row As Integer, size As Size)
         _col = col
         _row = row
+        _value = 0
 
         ' Only groups with a pair index should be white
         Me.BackColor = GetGroupColor()
@@ -51,11 +53,19 @@ Partial Public Class GridCell
         Return _col
     End Function
 
+    Public Function Value()
+        Return _value
+    End Function
 
     ' Enable input filtering, accepting only numeric or Backspace
-    Private Shared Sub OnInput(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
-        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+    Private Sub OnInput(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
+        If Char.IsControl(e.KeyChar) Then
+            _value = 0
+        ElseIf Not Char.IsNumber(e.KeyChar) Then
             e.Handled = True
+            Exit Sub
+        Else
+            _value = Asc(e.KeyChar) - Asc("0"c)
         End If
     End Sub
 
@@ -63,6 +73,7 @@ Partial Public Class GridCell
     Private Sub OnPaste(sender As Object, e As EventArgs) Handles Me.TextChanged
         If Not IsNumeric(Me.Text) Then
             Me.Text = ""
+            _value = 0
         End If
     End Sub
 
