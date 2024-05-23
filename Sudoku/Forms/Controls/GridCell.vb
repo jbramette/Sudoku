@@ -21,6 +21,16 @@ Partial Public Class GridCell
         Me.Text = digitsOnly.Replace(Me.Text, "")
     End Sub
 
+    Private Sub focus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
+        Me.BackColor = Color.Black
+        Me.ForeColor = Color.Yellow
+    End Sub
+
+    Private Sub unfocus(sender As GridCell, e As EventArgs) Handles Me.LostFocus
+        Me.BackColor = Color.LightGray
+        Me.ForeColor = Color.Black
+    End Sub
+
     Sub New(col As Integer, row As Integer, size As Size)
         _col = col
         _row = row
