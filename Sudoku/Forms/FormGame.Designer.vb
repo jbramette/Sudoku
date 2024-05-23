@@ -72,8 +72,10 @@ Partial Class FormGame
         ' 
         ' FormGame
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
         ClientSize = New Size(832, 733)
         Controls.Add(pnlGrid)
         Controls.Add(lblRemainingTime)
