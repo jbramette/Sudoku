@@ -15,9 +15,8 @@ Partial Public Class GridCell
     Private CellBackColorFocused As Color = Color.Black
 
     ' The cells are either white or grey to differentiate their group
-    Private CellBackColorGroup1 As Color = Color.White
-    Private CellBackColorGroup2 As Color = Color.LightGray
-
+    Private CellBackColorGroupLight As Color = Color.White
+    Private CellBackColorGroupDark As Color = Color.LightGray
 
     Public Sub New(col As Integer, row As Integer, size As Size)
         _col = col
@@ -83,9 +82,9 @@ Partial Public Class GridCell
 
     Private Function GetGroupColor()
         If GetGroupIndex() Mod 2 = 0 Then
-            Return CellBackColorGroup1
+            Return CellBackColorGroupLight
         Else
-            Return CellBackColorGroup2
+            Return CellBackColorGroupDark
         End If
     End Function
 
