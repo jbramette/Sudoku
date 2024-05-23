@@ -9,6 +9,7 @@
         For i As Integer = 0 To _grid.Length - 1
             _grid(i) = 0
         Next
+        _grid(45) = 4
     End Sub
 
     Public Function getValue(row As Integer, col As Integer) As Integer

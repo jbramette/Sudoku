@@ -44,8 +44,10 @@ Partial Public Class GridCell
     End Sub
 
     Private Sub unfocus(sender As GridCell, e As EventArgs) Handles Me.LostFocus
+        If Me.ForeColor <> Color.Red Then
+            Me.ForeColor = GridForeColorUnfocused
+        End If
         Me.BackColor = WhichColor()
-        Me.ForeColor = GridForeColorUnfocused
     End Sub
 
     Sub New(col As Integer, row As Integer, size As Size)
