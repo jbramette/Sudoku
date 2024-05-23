@@ -6,21 +6,9 @@
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblNickname.Text = FormHome.GetNickname()
 
-        LoadGridView()
+        Grid.Load()
         UpdateTimerText()
         gameTimer.Start()
-    End Sub
-
-    Private Sub LoadGridView()
-        Dim cellSize As Size = New Size(pnlGrid.Width \ Grid.COLS,
-                                        pnlGrid.Height \ Grid.ROWS)
-
-        For row = 0 To Grid.ROWS - 1
-            For col = 0 To Grid.COLS - 1
-                Dim cell As GridCell = New GridCell(row, col, cellSize)
-                pnlGrid.Controls.Add(cell)
-            Next
-        Next
     End Sub
 
     Private Sub Die()
