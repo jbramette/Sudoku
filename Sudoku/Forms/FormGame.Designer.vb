@@ -22,65 +22,68 @@ Partial Class FormGame
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.btnGiveup = New System.Windows.Forms.Button()
-        Me.lblNickname = New System.Windows.Forms.Label()
-        Me.lblRemainingTime = New System.Windows.Forms.Label()
-        Me.pnlGrid = New System.Windows.Forms.Panel()
-        Me.gameTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.SuspendLayout()
-        '
-        'btnGiveup
-        '
-        Me.btnGiveup.Location = New System.Drawing.Point(568, 515)
-        Me.btnGiveup.Name = "btnGiveup"
-        Me.btnGiveup.Size = New System.Drawing.Size(75, 23)
-        Me.btnGiveup.TabIndex = 0
-        Me.btnGiveup.Text = "Give up"
-        Me.btnGiveup.UseVisualStyleBackColor = True
-        '
-        'lblNickname
-        '
-        Me.lblNickname.AutoSize = True
-        Me.lblNickname.Location = New System.Drawing.Point(568, 12)
-        Me.lblNickname.Name = "lblNickname"
-        Me.lblNickname.Size = New System.Drawing.Size(41, 15)
-        Me.lblNickname.TabIndex = 1
-        Me.lblNickname.Text = "Label1"
-        '
-        'lblRemainingTime
-        '
-        Me.lblRemainingTime.AutoSize = True
-        Me.lblRemainingTime.Location = New System.Drawing.Point(568, 45)
-        Me.lblRemainingTime.Name = "lblRemainingTime"
-        Me.lblRemainingTime.Size = New System.Drawing.Size(41, 15)
-        Me.lblRemainingTime.TabIndex = 2
-        Me.lblRemainingTime.Text = "Label1"
-        '
-        'pnlGrid
-        '
-        Me.pnlGrid.Location = New System.Drawing.Point(12, 12)
-        Me.pnlGrid.Name = "pnlGrid"
-        Me.pnlGrid.Size = New System.Drawing.Size(523, 525)
-        Me.pnlGrid.TabIndex = 3
-        '
-        'gameTimer
-        '
-        Me.gameTimer.Interval = 1000
-        '
-        'FormGame
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(657, 550)
-        Me.Controls.Add(Me.pnlGrid)
-        Me.Controls.Add(Me.lblRemainingTime)
-        Me.Controls.Add(Me.lblNickname)
-        Me.Controls.Add(Me.btnGiveup)
-        Me.Name = "FormGame"
-        Me.Text = "Sudoku"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        components = New ComponentModel.Container()
+        btnGiveup = New Button()
+        lblNickname = New Label()
+        lblRemainingTime = New Label()
+        pnlGrid = New Panel()
+        gameTimer = New Timer(components)
+        SuspendLayout()
+        ' 
+        ' btnGiveup
+        ' 
+        btnGiveup.Location = New Point(649, 687)
+        btnGiveup.Margin = New Padding(3, 4, 3, 4)
+        btnGiveup.Name = "btnGiveup"
+        btnGiveup.Size = New Size(86, 31)
+        btnGiveup.TabIndex = 0
+        btnGiveup.Text = "Give up"
+        btnGiveup.UseVisualStyleBackColor = True
+        ' 
+        ' lblNickname
+        ' 
+        lblNickname.AutoSize = True
+        lblNickname.Location = New Point(649, 16)
+        lblNickname.Name = "lblNickname"
+        lblNickname.Size = New Size(53, 20)
+        lblNickname.TabIndex = 1
+        lblNickname.Text = "Label1"
+        ' 
+        ' lblRemainingTime
+        ' 
+        lblRemainingTime.AutoSize = True
+        lblRemainingTime.Location = New Point(649, 60)
+        lblRemainingTime.Name = "lblRemainingTime"
+        lblRemainingTime.Size = New Size(53, 20)
+        lblRemainingTime.TabIndex = 2
+        lblRemainingTime.Text = "Label1"
+        ' 
+        ' pnlGrid
+        ' 
+        pnlGrid.Location = New Point(14, 16)
+        pnlGrid.Margin = New Padding(3, 4, 3, 4)
+        pnlGrid.Name = "pnlGrid"
+        pnlGrid.Size = New Size(598, 700)
+        pnlGrid.TabIndex = 3
+        ' 
+        ' gameTimer
+        ' 
+        gameTimer.Interval = 1000
+        ' 
+        ' FormGame
+        ' 
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(751, 733)
+        Controls.Add(pnlGrid)
+        Controls.Add(lblRemainingTime)
+        Controls.Add(lblNickname)
+        Controls.Add(btnGiveup)
+        Margin = New Padding(3, 4, 3, 4)
+        Name = "FormGame"
+        Text = "Sudoku"
+        ResumeLayout(False)
+        PerformLayout()
 
     End Sub
 
