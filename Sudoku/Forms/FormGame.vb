@@ -22,15 +22,31 @@
         pnlGrid.Controls.Add(cell)
     End Sub
 
+    Public Sub LightUpInTheGroup(col As Integer, row As Integer)
+        For Each c As GridCell In pnlGrid.Controls
+            If Grid.IsInGroupOrIntersects(c.Col, c.Row, col, row) Then
+                c.LightUp()
+            End If
+        Next
+    End Sub
+
+    Public Sub LightDownInTheGroup(col As Integer, row As Integer)
+        For Each c As GridCell In pnlGrid.Controls
+            If Grid.IsInGroupOrIntersects(c.Col, c.Row, col, row) Then
+                c.LightDown()
+            End If
+        Next
+    End Sub
+
+    Public Sub NotifyInputError()
+        MsgBox("Entrée Invalide")
+    End Sub
+
     Private Sub Die()
         gameTimer.Stop()
         gameTimer.Enabled = False
         gameTimer.Dispose()
         FormHome.Close()
-    End Sub
-
-    Public Sub NotifyInputError()
-        MsgBox("Entrée Invalide")
     End Sub
 
     Private Sub OnButtonGiveupClick(sender As Object, e As EventArgs) Handles btnGiveup.Click

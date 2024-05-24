@@ -13,11 +13,11 @@
 
     ' State of the cell when we interact with it
     Private CellForeColorFocused As Color = Color.Yellow
-    Private CellBackColorFocused As Color = Color.Black
+    Private CellBackColorFocused As Color = Color.LightBlue
 
     ' The cells are either white or grey to differentiate their group
-    Private CellBackColorGroup1 As Color = Color.White
-    Private CellBackColorGroup2 As Color = Color.LightGray
+    Private CellBackColorGroupLight As Color = Color.White
+    Private CellBackColorGroupDark As Color = Color.LightGray
 
 
     Public Sub New(controller As GameController, col As Integer, row As Integer, num As Integer, size As Size)
@@ -66,6 +66,16 @@
         Return _num
     End Function
 
+    Public Sub LightUp()
+        Me.BackColor = CellBackColorFocused
+        Me.ForeColor = CellForeColorFocused
+    End Sub
+
+    Public Sub LightDown()
+        Me.BackColor = GetGroupColor()
+        Me.ForeColor = CellForeColorUnfocused
+    End Sub
+
     ' Enable text pasting filtering, so that only numerics can be pasted
     Private Sub OnInput(sender As Object, e As EventArgs) Handles Me.TextChanged
         If Not IsNumeric(Me.Text) Then
@@ -79,22 +89,22 @@
     Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
         Me.BackColor = CellBackColorFocused
         Me.ForeColor = CellForeColorFocused
+
+        _controller.LightUpInTheGroup(_col, Row)
     End Sub
 
     Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
         Me.BackColor = GetGroupColor()
         Me.ForeColor = CellForeColorUnfocused
+
+        _controller.LightDownInTheGroup(_col, _row)
     End Sub
 
-    Private Function GetGroupIndex()
-        Return _col \ 3 + _row \ 3
-    End Function
-
     Private Function GetGroupColor()
-        If GetGroupIndex() Mod 2 = 0 Then
-            Return CellBackColorGroup1
+        If Grid.GroupIndexFor(_col, _row) Mod 2 = 0 Then
+            Return CellBackColorGroupLight
         Else
-            Return CellBackColorGroup2
+            Return CellBackColorGroupDark
         End If
     End Function
 

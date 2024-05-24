@@ -22,10 +22,20 @@
 
     End Sub
 
+    Public Sub LightUpInTheGroup(col As Integer, row As Integer)
+        _view.LightUpInTheGroup(col, row)
+    End Sub
+
+    Public Sub LightDownInTheGroup(col As Integer, row As Integer)
+        _view.LightDownInTheGroup(col, row)
+    End Sub
+
     Public Sub UpdateCell(sender As GridCell)
         If Not _model.SetCell(sender.Col(), sender.Row(), sender.Num()) Then
             _view.NotifyInputError()
         End If
     End Sub
+
+
 
 End Class
