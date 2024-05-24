@@ -1,26 +1,25 @@
 ﻿Public Class FormGame
 
     Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
-    Private remainingSeconds As Integer = GAME_DURATION_SECONDS
 
-    Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
+    Private _controller As GameController
+
+    Private Sub OnLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+        _controller = New GameController(Me)
+        _controller.LoadGrid()
+
         lblNickname.Text = FormHome.GetNickname()
-
-        LoadGridView()
         UpdateTimerText()
         gameTimer.Start()
     End Sub
 
-    Private Sub LoadGridView()
+    Public Sub AddCell(col As Integer, row As Integer, num As Integer)
         Dim cellSize As Size = New Size(pnlGrid.Width \ Grid.COLS,
                                         pnlGrid.Height \ Grid.ROWS)
 
-        For row = 0 To Grid.ROWS - 1
-            For col = 0 To Grid.COLS - 1
-                Dim cell As GridCell = New GridCell(row, col, cellSize)
-                pnlGrid.Controls.Add(cell)
-            Next
-        Next
+        Dim cell As GridCell = New GridCell(_controller, col, row, num, cellSize)
+        pnlGrid.Controls.Add(cell)
     End Sub
 
     Private Sub Die()
@@ -28,6 +27,10 @@
         gameTimer.Enabled = False
         gameTimer.Dispose()
         FormHome.Close()
+    End Sub
+
+    Public Sub NotifyInputError()
+        MsgBox("Entrée Invalide")
     End Sub
 
     Private Sub OnButtonGiveupClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
@@ -39,17 +42,17 @@
     End Sub
 
     Private Sub OnGameTimerTick(sender As Object, e As EventArgs) Handles gameTimer.Tick
-        remainingSeconds -= 1
+        _remainingSeconds -= 1
         UpdateTimerText()
 
-        If remainingSeconds <= 0 Then
+        If _remainingSeconds <= 0 Then
             gameTimer.Stop()
         End If
     End Sub
 
     Private Sub UpdateTimerText()
-        Dim minutes As Integer = remainingSeconds \ 60
-        Dim seconds As Integer = remainingSeconds Mod 60
+        Dim minutes As Integer = _remainingSeconds \ 60
+        Dim seconds As Integer = _remainingSeconds Mod 60
 
         lblRemainingTime.Text = minutes & ":" & seconds
     End Sub
