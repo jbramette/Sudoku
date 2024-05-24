@@ -82,4 +82,9 @@
         Return theSquare
     End Function
 
+    ' Returns the coordinates of all the cells that are in the same group as the cell, whose coord we pass
+    ' Group means the combination of: row, column and square
+    Friend Shared Function GetGroup(row As Integer, col As Integer) As List(Of (Integer, Integer))
+        Return GetTheRow(row, col).Concat(GetTheCol(row, col)).Concat(GetTheSquare(row, col))
+    End Function
 End Class
