@@ -32,8 +32,8 @@
             theRow.Add((cell.Row(), cell.Col()))
         Next
 
-        'Going to the left
-        For r = row - 1 To 0
+        ' Going to the left
+        For r = 0 To row - 1
             Dim cell = GetCell(r, col)
             theRow.Add((cell.Row(), cell.Col()))
         Next
@@ -46,7 +46,7 @@
         Dim theCol As New List(Of (Integer, Integer))
 
         ' Going up
-        For c = col - 1 To 0
+        For c = 0 To col - 1
             Dim cell = GetCell(row, c)
             theCol.Add((cell.Row(), cell.Col()))
         Next
