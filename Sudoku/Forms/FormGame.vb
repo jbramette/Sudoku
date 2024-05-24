@@ -1,8 +1,5 @@
 ﻿Public Class FormGame
 
-    Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
-
-    Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
     Private _controller As GameController
 
     Private Sub OnLoad(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -10,8 +7,6 @@
         _controller.LoadGrid()
 
         lblNickname.Text = FormHome.GetNickname()
-        UpdateTimerText()
-        gameTimer.Start()
     End Sub
 
     Public Sub AddCell(col As Integer, row As Integer, num As Integer)
@@ -37,15 +32,19 @@
             End If
         Next
     End Sub
+    Public Sub UpdateTimerText(minutes As Integer, seconds As Integer)
+        If minutes = 0 And seconds < 30 Then
+            lblRemainingTime.ForeColor = Color.Red
+        End If
+
+        lblRemainingTime.Text = minutes & ":" & seconds
+    End Sub
 
     Public Sub NotifyInputError()
         MsgBox("Entrée Invalide")
     End Sub
 
     Private Sub Die()
-        gameTimer.Stop()
-        gameTimer.Enabled = False
-        gameTimer.Dispose()
         FormHome.Close()
     End Sub
 
@@ -55,22 +54,6 @@
         If r = MsgBoxResult.Ok Then
             Die()
         End If
-    End Sub
-
-    Private Sub OnGameTimerTick(sender As Object, e As EventArgs) Handles gameTimer.Tick
-        _remainingSeconds -= 1
-        UpdateTimerText()
-
-        If _remainingSeconds <= 0 Then
-            gameTimer.Stop()
-        End If
-    End Sub
-
-    Private Sub UpdateTimerText()
-        Dim minutes As Integer = _remainingSeconds \ 60
-        Dim seconds As Integer = _remainingSeconds Mod 60
-
-        lblRemainingTime.Text = minutes & ":" & seconds
     End Sub
 
     Private Sub OnFormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
