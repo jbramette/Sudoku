@@ -89,10 +89,12 @@ Partial Public Class GridCell
 
     Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
         LightUp()
+        Grid.LightUpInTheGroup(_row, _col)
     End Sub
 
     Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
         LightDown()
+        Grid.LightDownInTheGroup(_row, _col)
     End Sub
 
     Private Function GetGroupIndex()
