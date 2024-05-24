@@ -1,27 +1,37 @@
-﻿Imports System.Windows.Forms.VisualStyles
-
-Partial Public Class GridCell
+﻿Partial Public Class GridCell
     Inherits TextBox
+
+    Private _controller As GameController
 
     ' Zero based indices
     Private _row As Integer
     Private _col As Integer
+    Private _num As Integer
 
     ' Default state of the cell
     Private CellForeColorUnfocused As Color = Color.Black
 
     ' State of the cell when we interact with it
     Private CellForeColorFocused As Color = Color.Yellow
-    Private CellBackColorFocused As Color = Color.Black
+    Private CellBackColorFocused As Color = Color.LightBlue
 
     ' The cells are either white or grey to differentiate their group
-    Private CellBackColorGroup1 As Color = Color.White
-    Private CellBackColorGroup2 As Color = Color.LightGray
+    Private CellBackColorGroupLight As Color = Color.White
+    Private CellBackColorGroupDark As Color = Color.LightGray
 
 
-    Public Sub New(col As Integer, row As Integer, size As Size)
+    Public Sub New(controller As GameController, col As Integer, row As Integer, num As Integer, size As Size)
+        _controller = controller
+
         _col = col
         _row = row
+        _num = num
+
+        If _num = 0 Then
+            Me.Text = ""
+        Else
+            Me.Text = _num.ToString()
+        End If
 
         ' Only groups with a pair index should be white
         Me.BackColor = GetGroupColor()
@@ -31,8 +41,8 @@ Partial Public Class GridCell
         Me.Size = size
 
         ' Position the cell inside the parent control
-        Dim posX = col * Me.Size.Width
-        Dim posY = row * Me.Size.Height
+        Dim posX = _col * Me.Size.Width
+        Dim posY = _row * Me.Size.Height
 
         Me.Location = New Point(posX, posY)
 
@@ -44,48 +54,57 @@ Partial Public Class GridCell
         Me.Font = New Font("Segoe UI", 24, FontStyle.Regular)
     End Sub
 
-    Public Function Row()
-        Return _row
-    End Function
-
     Public Function Col()
         Return _col
     End Function
 
+    Public Function Row()
+        Return _row
+    End Function
 
-    ' Enable input filtering, accepting only numeric or Backspace
-    Private Shared Sub OnInput(sender As GridCell, e As KeyPressEventArgs) Handles Me.KeyPress
-        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
+    Public Function Num()
+        Return _num
+    End Function
+
+    Public Sub LightUp()
+        Me.BackColor = CellBackColorFocused
+        Me.ForeColor = CellForeColorFocused
+    End Sub
+
+    Public Sub LightDown()
+        Me.BackColor = GetGroupColor()
+        Me.ForeColor = CellForeColorUnfocused
     End Sub
 
     ' Enable text pasting filtering, so that only numerics can be pasted
-    Private Sub OnPaste(sender As Object, e As EventArgs) Handles Me.TextChanged
+    Private Sub OnInput(sender As Object, e As EventArgs) Handles Me.TextChanged
         If Not IsNumeric(Me.Text) Then
             Me.Text = ""
+        Else
+            _num = Convert.ToInt32(Me.Text)
+            _controller.UpdateCell(Me)
         End If
     End Sub
 
     Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
         Me.BackColor = CellBackColorFocused
         Me.ForeColor = CellForeColorFocused
+
+        _controller.LightUpInTheGroup(_col, Row)
     End Sub
 
     Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
         Me.BackColor = GetGroupColor()
         Me.ForeColor = CellForeColorUnfocused
+
+        _controller.LightDownInTheGroup(_col, _row)
     End Sub
 
-    Private Function GetGroupIndex()
-        Return _col \ 3 + _row \ 3
-    End Function
-
     Private Function GetGroupColor()
-        If GetGroupIndex() Mod 2 = 0 Then
-            Return CellBackColorGroup1
+        If Grid.GroupIndexFor(_col, _row) Mod 2 = 0 Then
+            Return CellBackColorGroupLight
         Else
-            Return CellBackColorGroup2
+            Return CellBackColorGroupDark
         End If
     End Function
 
