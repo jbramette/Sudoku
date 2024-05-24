@@ -77,14 +77,22 @@ Partial Public Class GridCell
         End If
     End Sub
 
-    Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
+    Friend Sub LightUp()
         Me.BackColor = CellBackColorFocused
         Me.ForeColor = CellForeColorFocused
     End Sub
 
-    Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
+    Friend Sub LightDown()
         Me.BackColor = GetGroupColor()
         Me.ForeColor = CellForeColorUnfocused
+    End Sub
+
+    Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
+        LightUp()
+    End Sub
+
+    Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
+        LightDown()
     End Sub
 
     Private Function GetGroupIndex()
