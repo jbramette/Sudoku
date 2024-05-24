@@ -18,4 +18,8 @@
         Next
     End Sub
 
+    Friend Shared Function GetCell(row As Integer, col As Integer) As GridCell
+        Return _grid(row, col)
+    End Function
+
 End Class
