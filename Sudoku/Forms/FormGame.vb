@@ -45,7 +45,7 @@
         If ConfirmQuit() = True Then
             Die()
         Else
-            e.Cancel = True
+            e.Cancel = True ' Prevent the window from closing
         End If
     End Sub
 
@@ -57,7 +57,6 @@
 
     Private Function ConfirmQuit()
         Dim r As MsgBoxResult = MsgBox("Do you really want to give up ?", vbOKCancel Or vbQuestion, "Confirmation")
-
         Return r = MsgBoxResult.Ok
     End Function
 
@@ -80,12 +79,15 @@
         SwitchLightInTheGroup(cell.Col, cell.Row, cell.Focused)
     End Sub
 
+    ' Lights up or down the cells that are in the same square,
+    ' column or row of the focused cell
     Private Sub SwitchLightInTheGroup(col As Integer, row As Integer, lightUp As Boolean)
         Dim squareIndex As Integer = Grid.SquareIndexFor(col, row)
 
         Dim startRow As Integer = (squareIndex \ 3) * 3
         Dim startCol As Integer = (squareIndex Mod 3) * 3
 
+        ' Square
         For r = startRow To startRow + 3 - 1
             For c = startCol To startCol + 3 - 1
                 Dim cell As GridCell = pnlGrid.Controls(c + r * Grid.COLS)
@@ -93,11 +95,13 @@
             Next
         Next
 
+        ' Columns
         For i = 0 To Grid.COLS - 1
             Dim cell As GridCell = pnlGrid.Controls(i + row * Grid.COLS)
             If lightUp Then cell.LightUp() Else cell.LightDown()
         Next
 
+        ' Rows
         For i = 0 To Grid.ROWS - 1
             Dim cell As GridCell = pnlGrid.Controls(col + i * Grid.COLS)
             If lightUp Then cell.LightUp() Else cell.LightDown()

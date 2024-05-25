@@ -24,13 +24,6 @@
         Return col \ 3 + (row \ 3) * 3
     End Function
 
-
-    ' Checks whether two coordinates are in the same square, row, or column
-    Public Shared Function IsInSameSquareRowOrColumn(c1 As Integer, r1 As Integer, c2 As Integer, r2 As Integer)
-        Return SquareIndexFor(c1, r1) = SquareIndexFor(c2, r2) Or c1 = c2 Or r1 = r2
-    End Function
-
-
     ' Sets the number at given coordinates
     Public Function SetCell(col As Integer, row As Integer, num As Integer)
         ' Assert the value and coordinates are correct
