@@ -3,27 +3,18 @@
     Public Const COLS As Integer = 9
     Public Const ROWS As Integer = 9
 
-    Private Shared _grid(COLS - 1, ROWS - 1) As GridCell
+    Private _grid(COLS - 1, ROWS - 1) As GridCell
 
-    Friend Shared Sub Load()
-        Dim cellSize As Size = New Size(FormGame.pnlGrid.Width \ Grid.COLS,
-                                        FormGame.pnlGrid.Height \ Grid.ROWS)
-
-        For row = 0 To Grid.ROWS - 1
-            For col = 0 To Grid.COLS - 1
-                Dim cell As New GridCell(row, col, cellSize)
-                _grid(col, row) = cell
-                FormGame.pnlGrid.Controls.Add(cell)
-            Next
-        Next
-    End Sub
-
-    Friend Shared Function GetCell(row As Integer, col As Integer) As GridCell
+    Friend Function GetCell(row As Integer, col As Integer) As GridCell
         Return _grid(row, col)
     End Function
 
+    Friend Sub PutCell(cell As GridCell)
+        _grid(cell.Row(), cell.Col()) = cell
+    End Sub
+
     ' Returns coordinates of all the cells that are in the same row as the cell, whose the coord we pass
-    Friend Shared Function GetTheRow(row As Integer, col As Integer) As List(Of (Integer, Integer))
+    Friend Function GetTheRow(row As Integer, col As Integer) As List(Of (Integer, Integer))
         Dim theRow As New List(Of (Integer, Integer))
 
         ' Going to the right
@@ -42,7 +33,7 @@
     End Function
 
     ' Returns coordinates of all the cells that are in the same column as the cell, whose the coord we pass
-    Friend Shared Function GetTheCol(row As Integer, col As Integer) As List(Of (Integer, Integer))
+    Friend Function GetTheCol(row As Integer, col As Integer) As List(Of (Integer, Integer))
         Dim theCol As New List(Of (Integer, Integer))
 
         ' Going up
@@ -61,12 +52,12 @@
     End Function
 
     ' The grid is composed of 9 squares, function gets the index of the square where the cell, whose the coords we pass in parameters, is
-    Private Shared Function GetSquareIndex(row As Integer, col As Integer) As Integer
+    Private Function GetSquareIndex(row As Integer, col As Integer) As Integer
         Return (row \ 3) * 3 + (col \ 3)
     End Function
 
     ' Using index of the square in which the cell, whose the coord we pass, is located, gets coords of the cell in the square
-    Friend Shared Function GetTheSquare(row As Integer, col As Integer) As List(Of (Integer, Integer))
+    Friend Function GetTheSquare(row As Integer, col As Integer) As List(Of (Integer, Integer))
         Dim theSquare As New List(Of (Integer, Integer))
         Dim squareIndex As Integer = GetSquareIndex(row, col)
 
@@ -84,7 +75,7 @@
 
     ' Returns the coordinates of all the cells that are in the same group as the cell, whose coord we pass
     ' Group means the combination of: row, column and square
-    Friend Shared Function GetGroup(row As Integer, col As Integer) As List(Of (Integer, Integer))
+    Friend Function GetGroup(row As Integer, col As Integer) As List(Of (Integer, Integer))
         Dim theSquare As New List(Of (Integer, Integer))
 
         theSquare.AddRange(GetTheRow(row, col))
@@ -94,15 +85,4 @@
         Return theSquare
     End Function
 
-    Friend Shared Sub LightUpInTheGroup(row As Integer, col As Integer)
-        For Each coord As (Integer, Integer) In GetGroup(row, col)
-            GetCell(coord.Item1, coord.Item2).LightUp()
-        Next
-    End Sub
-
-    Friend Shared Sub LightDownInTheGroup(row As Integer, col As Integer)
-        For Each coord As (Integer, Integer) In GetGroup(row, col)
-            GetCell(coord.Item1, coord.Item2).LightDown()
-        Next
-    End Sub
 End Class

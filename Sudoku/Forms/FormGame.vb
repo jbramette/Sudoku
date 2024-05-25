@@ -1,13 +1,10 @@
 ﻿Public Class FormGame
 
-    Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
-    Private remainingSeconds As Integer = GAME_DURATION_SECONDS
-
     Private Sub FormGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblNickname.Text = FormHome.GetNickname()
+        Dim _controller As New GameController(7 * 60)
 
-        Grid.Load()
-        UpdateTimerText()
+        lblNickname.Text = FormHome.GetNickname()
+        UpdateTimerText(_controller.GetRemainingSeconds())
         gameTimer.Start()
     End Sub
 
@@ -26,23 +23,15 @@
         End If
     End Sub
 
-    Private Sub OnGameTimerTick(sender As Object, e As EventArgs) Handles gameTimer.Tick
-        remainingSeconds -= 1
-        UpdateTimerText()
+    Friend Sub UpdateTimerText(seconds As Integer)
+        Dim minutes As Integer = seconds \ 60
+        Dim remaining_seconds As Integer = seconds Mod 60
 
-        If remainingSeconds <= 0 Then
-            gameTimer.Stop()
-        End If
-    End Sub
-
-    Private Sub UpdateTimerText()
-        Dim minutes As Integer = remainingSeconds \ 60
-        Dim seconds As Integer = remainingSeconds Mod 60
-
-        lblRemainingTime.Text = minutes & ":" & seconds
+        lblRemainingTime.Text = minutes & ":" & remaining_seconds
     End Sub
 
     Private Sub OnFormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         Die()
     End Sub
+
 End Class
