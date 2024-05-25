@@ -12,8 +12,8 @@ Partial Public Class GridCell
     Private CellForeColorUnfocused As Color = Color.Black
 
     ' State of the cell when we interact with it
-    Private CellForeColorFocused As Color = Color.Yellow
-    Private CellBackColorFocused As Color = Color.Black
+    Private CellForeColorFocused As Color = Color.Black
+    Private CellBackColorFocused As Color = Color.LightBlue
 
     ' The cells are either white or grey to differentiate their group
     Private CellBackColorGroupLight As Color = Color.White
