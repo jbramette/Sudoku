@@ -19,14 +19,12 @@
 
         ' Going to the right
         For r = row + 1 To Grid.COLS - 1
-            Dim cell = GetCell(r, col)
-            theRow.Add((cell.Row(), cell.Col()))
+            theRow.Add((r, col))
         Next
 
         ' Going to the left
         For r = 0 To row - 1
-            Dim cell = GetCell(r, col)
-            theRow.Add((cell.Row(), cell.Col()))
+            theRow.Add((r, col))
         Next
 
         Return theRow
@@ -38,14 +36,12 @@
 
         ' Going up
         For c = 0 To col - 1
-            Dim cell = GetCell(row, c)
-            theCol.Add((cell.Row(), cell.Col()))
+            theCol.Add((row, c))
         Next
 
         ' Going down
         For c = col + 1 To ROWS - 1
-            Dim cell = GetCell(row, c)
-            theCol.Add((cell.Row(), cell.Col()))
+            theCol.Add((row, c))
         Next
 
         Return theCol
