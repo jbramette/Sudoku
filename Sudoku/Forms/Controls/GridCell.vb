@@ -1,8 +1,6 @@
 ﻿Partial Public Class GridCell
     Inherits TextBox
 
-    Private _controller As GameController
-
     ' Zero based indices
     Private _row As Integer
     Private _col As Integer
@@ -20,12 +18,11 @@
     Private CellBackColorGroupDark As Color = Color.LightGray
 
 
-    Public Sub New(controller As GameController, col As Integer, row As Integer, num As Integer, size As Size)
-        _controller = controller
-
+    Public Sub New(col As Integer, row As Integer, num As Integer, size As Size)
         _col = col
         _row = row
-        _num = num
+
+        SetNum(num)
 
         If _num = 0 Then
             Me.Text = ""
@@ -34,7 +31,7 @@
         End If
 
         ' Only groups with a pair index should be white
-        Me.BackColor = GetGroupColor()
+        Me.BackColor = GetSquareColor()
 
         ' Allow height resize
         Me.MinimumSize = size
@@ -66,42 +63,26 @@
         Return _num
     End Function
 
+    Public Function SetNum(num As Integer)
+        _num = num
+    End Function
+
+    ' Lights up the cell when it is focused
     Public Sub LightUp()
         Me.BackColor = CellBackColorFocused
         Me.ForeColor = CellForeColorFocused
     End Sub
 
+    ' Lights down the cell when it is unfocused
     Public Sub LightDown()
-        Me.BackColor = GetGroupColor()
+        Me.BackColor = GetSquareColor()
         Me.ForeColor = CellForeColorUnfocused
     End Sub
 
-    ' Enable text pasting filtering, so that only numerics can be pasted
-    Private Sub OnInput(sender As Object, e As EventArgs) Handles Me.TextChanged
-        If Not IsNumeric(Me.Text) Then
-            Me.Text = ""
-        Else
-            _num = Convert.ToInt32(Me.Text)
-            _controller.UpdateCell(Me)
-        End If
-    End Sub
-
-    Private Sub OnFocus(sender As GridCell, e As EventArgs) Handles Me.GotFocus
-        Me.BackColor = CellBackColorFocused
-        Me.ForeColor = CellForeColorFocused
-
-        _controller.LightUpInTheGroup(_col, Row)
-    End Sub
-
-    Private Sub OnFocusLost(sender As GridCell, e As EventArgs) Handles Me.LostFocus
-        Me.BackColor = GetGroupColor()
-        Me.ForeColor = CellForeColorUnfocused
-
-        _controller.LightDownInTheGroup(_col, _row)
-    End Sub
-
-    Private Function GetGroupColor()
-        If Grid.GroupIndexFor(_col, _row) Mod 2 = 0 Then
+    ' Return the color of the square in which the cell is part of
+    Private Function GetSquareColor()
+        ' One square out of two is light
+        If Grid.SquareIndexFor(_col, _row) Mod 2 = 0 Then
             Return CellBackColorGroupLight
         Else
             Return CellBackColorGroupDark

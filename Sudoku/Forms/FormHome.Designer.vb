@@ -22,79 +22,74 @@ Partial Class FormHome
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lblNickname = New Label()
-        cbxName = New ComboBox()
-        btnQuit = New Button()
-        btnPlayGame = New Button()
-        btnShowScores = New Button()
-        SuspendLayout()
-        ' 
-        ' lblNickname
-        ' 
-        lblNickname.AutoSize = True
-        lblNickname.Location = New Point(14, 28)
-        lblNickname.Name = "lblNickname"
-        lblNickname.Size = New Size(78, 20)
-        lblNickname.TabIndex = 0
-        lblNickname.Text = "Nickname:"
-        ' 
-        ' cbxName
-        ' 
-        cbxName.FormattingEnabled = True
-        cbxName.Location = New Point(94, 24)
-        cbxName.Margin = New Padding(3, 4, 3, 4)
-        cbxName.Name = "cbxName"
-        cbxName.Size = New Size(222, 28)
-        cbxName.TabIndex = 1
-        ' 
-        ' btnQuit
-        ' 
-        btnQuit.Location = New Point(14, 144)
-        btnQuit.Margin = New Padding(3, 4, 3, 4)
-        btnQuit.Name = "btnQuit"
-        btnQuit.Size = New Size(86, 31)
-        btnQuit.TabIndex = 2
-        btnQuit.Text = "Quit"
-        btnQuit.UseVisualStyleBackColor = True
-        ' 
-        ' btnPlayGame
-        ' 
-        btnPlayGame.Location = New Point(353, 23)
-        btnPlayGame.Margin = New Padding(3, 4, 3, 4)
-        btnPlayGame.Name = "btnPlayGame"
-        btnPlayGame.Size = New Size(86, 31)
-        btnPlayGame.TabIndex = 3
-        btnPlayGame.Text = "Play"
-        btnPlayGame.UseVisualStyleBackColor = True
-        ' 
-        ' btnShowScores
-        ' 
-        btnShowScores.Location = New Point(353, 61)
-        btnShowScores.Margin = New Padding(3, 4, 3, 4)
-        btnShowScores.Name = "btnShowScores"
-        btnShowScores.Size = New Size(86, 31)
-        btnShowScores.TabIndex = 4
-        btnShowScores.Text = "Scores"
-        btnShowScores.UseVisualStyleBackColor = True
-        ' 
-        ' FormHome
-        ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
-        AutoScaleMode = AutoScaleMode.Font
-        AutoSize = True
-        AutoSizeMode = AutoSizeMode.GrowAndShrink
-        ClientSize = New Size(462, 191)
-        Controls.Add(btnShowScores)
-        Controls.Add(btnPlayGame)
-        Controls.Add(btnQuit)
-        Controls.Add(cbxName)
-        Controls.Add(lblNickname)
-        Margin = New Padding(3, 4, 3, 4)
-        Name = "FormHome"
-        StartPosition = FormStartPosition.CenterScreen
-        Text = "Sudoku"
-        ResumeLayout(False)
-        PerformLayout()
+        Me.lblNickname = New System.Windows.Forms.Label()
+        Me.cbxName = New System.Windows.Forms.ComboBox()
+        Me.btnQuit = New System.Windows.Forms.Button()
+        Me.btnPlayGame = New System.Windows.Forms.Button()
+        Me.btnShowScores = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'lblNickname
+        '
+        Me.lblNickname.AutoSize = True
+        Me.lblNickname.Location = New System.Drawing.Point(12, 21)
+        Me.lblNickname.Name = "lblNickname"
+        Me.lblNickname.Size = New System.Drawing.Size(64, 15)
+        Me.lblNickname.TabIndex = 0
+        Me.lblNickname.Text = "Nickname:"
+        '
+        'cbxName
+        '
+        Me.cbxName.FormattingEnabled = True
+        Me.cbxName.Location = New System.Drawing.Point(82, 18)
+        Me.cbxName.Name = "cbxName"
+        Me.cbxName.Size = New System.Drawing.Size(195, 23)
+        Me.cbxName.TabIndex = 1
+        '
+        'btnQuit
+        '
+        Me.btnQuit.Location = New System.Drawing.Point(12, 108)
+        Me.btnQuit.Name = "btnQuit"
+        Me.btnQuit.Size = New System.Drawing.Size(75, 23)
+        Me.btnQuit.TabIndex = 2
+        Me.btnQuit.Text = "Quit"
+        Me.btnQuit.UseVisualStyleBackColor = True
+        '
+        'btnPlayGame
+        '
+        Me.btnPlayGame.Location = New System.Drawing.Point(309, 17)
+        Me.btnPlayGame.Name = "btnPlayGame"
+        Me.btnPlayGame.Size = New System.Drawing.Size(75, 23)
+        Me.btnPlayGame.TabIndex = 3
+        Me.btnPlayGame.Text = "Play"
+        Me.btnPlayGame.UseVisualStyleBackColor = True
+        '
+        'btnShowScores
+        '
+        Me.btnShowScores.Location = New System.Drawing.Point(309, 46)
+        Me.btnShowScores.Name = "btnShowScores"
+        Me.btnShowScores.Size = New System.Drawing.Size(75, 23)
+        Me.btnShowScores.TabIndex = 4
+        Me.btnShowScores.Text = "Scores"
+        Me.btnShowScores.UseVisualStyleBackColor = True
+        '
+        'FormHome
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(404, 143)
+        Me.Controls.Add(Me.btnShowScores)
+        Me.Controls.Add(Me.btnPlayGame)
+        Me.Controls.Add(Me.btnQuit)
+        Me.Controls.Add(Me.cbxName)
+        Me.Controls.Add(Me.lblNickname)
+        Me.Name = "FormHome"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Sudoku"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 

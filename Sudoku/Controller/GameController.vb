@@ -1,5 +1,32 @@
 ﻿Public Class GameController
 
+    ' We use the MVC (Model-View-Controller) pattern to separate the sudoku grid (=Model)
+    ' from the GUI (=View)
+    '
+    ' Separation is done via the controller which acts as a bridge.
+    ' It is called by the UI whenever user input related to the game is done.
+    ' The controller will translate these user inputs to call the appropriate function calls
+    ' to modify the grid. It will also communicate back with the UI in case of success/failures/loose/win
+    ' so that the UI can notify the user.
+    '
+    ' 
+    ' ____________    forward UI event    ___________________    modify Grid accordingly      _________
+    ' |          | ---------------------> |                 | ------------------------------> |       |
+    ' | FormGame |                        |  GameController |                                 |  Grid |
+    ' |__________| <--------------------- |_________________| <------------------------------ |_______|
+    '                  modifies UI                               Grid function's return values
+    '
+    '
+    ' Note that the Grid does not know anything about the controller.
+    '
+    ' + Prevents the FormGame and the Grid to interact between themselves as they shouldn't be aware of each other
+    ' + Separates each class' purpose, grid manipulation shouldn't be directly manipulated in the UI code, and the logic code
+    '   shouldn't manipulate the UI code.
+    ' + Prevents cyclic dependencies, as the 'Forms' package does not depend from the 'Logic' package, and the 'Logic' package does not
+    '   depend from the 'Forms' package.
+    ' + This pattern also makes it easier to test Grid as a standalone component.
+    ' 
+
     Private Const GAME_DURATION_SECONDS As Integer = 5 * 60
 
     Private _view As FormGame
@@ -16,13 +43,16 @@
         AddHandler _timer.Tick, AddressOf OnTimerTick
     End Sub
 
-    Public Sub LoadGrid()
+    ' Start the Sudoku game
+    ' 1. Generate the grid and update the UI
+    ' 2. Start the countdown
+    Public Sub StartGame()
         ' Update grid
         _model.Generate()
 
-        ' Update UI
-        For x = 0 To Grid.COLS - 1
-            For y = 0 To Grid.ROWS - 1
+        ' Create the UI's cells
+        For y = 0 To Grid.ROWS - 1
+            For x = 0 To Grid.COLS - 1
                 Dim num As Integer = _model.GetCell(x, y)
                 _view.AddCell(x, y, num)
             Next
@@ -32,16 +62,8 @@
         _timer.Start()
     End Sub
 
-    Public Sub LightUpInTheGroup(col As Integer, row As Integer)
-        _view.LightUpInTheGroup(col, row)
-    End Sub
-
-    Public Sub LightDownInTheGroup(col As Integer, row As Integer)
-        _view.LightDownInTheGroup(col, row)
-    End Sub
-
     Public Sub UpdateCell(sender As GridCell)
-        ' Try to update the cell and notify UI
+        ' Try to update the cell and notify UI in case of error
         If Not _model.SetCell(sender.Col(), sender.Row(), sender.Num()) Then
             _view.NotifyInputError()
         End If
@@ -53,6 +75,7 @@
         Dim minutes As Integer = _remainingSeconds \ 60
         Dim seconds As Integer = _remainingSeconds Mod 60
 
+        ' Notify the UI to update its timer
         _view.UpdateTimerText(minutes, seconds)
 
         If _remainingSeconds <= 0 Then
