@@ -30,13 +30,13 @@
     Private Const GAME_DURATION_SECONDS As Integer = 5 * 60
 
     Private _view As FormGame
-    Private _model As Grid
+    Private _grid As Grid
     Private _timer As Timer
     Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
 
     Public Sub New(view As FormGame)
         _view = view
-        _model = New Grid()
+        _grid = New Grid()
         _timer = New Timer()
         _timer.Interval = 1000
 
@@ -48,12 +48,12 @@
     ' 2. Start the countdown
     Public Sub StartGame()
         ' Update grid
-        _model.Generate()
+        _grid.Generate()
 
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
-                Dim num As Integer = _model.GetCell(x, y)
+                Dim num As Integer = _grid.GetValue(x, y)
                 _view.AddCell(x, y, num)
             Next
         Next
@@ -62,9 +62,9 @@
         _timer.Start()
     End Sub
 
-    Public Sub UpdateCell(sender As GridCell)
+    Public Sub UpdateCell(cell As GridCell)
         ' Try to update the cell and notify UI in case of error
-        If Not _model.SetCell(sender.Col(), sender.Row(), sender.Num()) Then
+        If Not _grid.SetValue(cell.Col(), cell.Row(), cell.Value()) Then
             _view.NotifyInputError()
         End If
     End Sub

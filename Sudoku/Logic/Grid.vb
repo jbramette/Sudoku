@@ -18,26 +18,27 @@
 
     ' Index of the square (ie: group) in which the coordinates are part of
     '
-    ' top left is 0, top right is 2
-    ' bottom right is 8....
+    ' Squares on the grid:
+    ' 0 1 2
+    ' 3 4 5
+    ' 6 7 8
     Public Shared Function SquareIndexFor(col As Integer, row As Integer)
         Return col \ 3 + (row \ 3) * 3
     End Function
 
-    ' Sets the number at given coordinates
-    Public Function SetCell(col As Integer, row As Integer, num As Integer)
+    ' Sets the number at given coordinates, return value indicates if the operation was successful or not
+    Public Function SetValue(col As Integer, row As Integer, value As Integer) As Boolean
         ' Assert the value and coordinates are correct
-        If num <= 0 Or num >= 10 Or col < 0 Or col >= COLS Or row < 0 Or row >= ROWS Then
+        If value <= 0 Or value >= 10 Or col < 0 Or col >= COLS Or row < 0 Or row >= ROWS Then
             Return False
         End If
 
-        _grid(row, col) = num
+        _grid(row, col) = value
         Return True
-
     End Function
 
     ' Gets the number at given coordinates
-    Public Function GetCell(col As Integer, row As Integer)
+    Public Function GetValue(col As Integer, row As Integer) As Integer
         Return _grid(row, col)
     End Function
 

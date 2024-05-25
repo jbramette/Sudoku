@@ -9,11 +9,11 @@
         lblNickname.Text = FormHome.GetNickname()
     End Sub
 
-    Public Sub AddCell(col As Integer, row As Integer, num As Integer)
+    Public Sub AddCell(col As Integer, row As Integer, value As Integer)
         Dim cellSize As Size = New Size(pnlGrid.Width \ Grid.COLS,
                                         pnlGrid.Height \ Grid.ROWS)
 
-        Dim cell As GridCell = New GridCell(col, row, num, cellSize)
+        Dim cell As GridCell = New GridCell(col, row, value, cellSize)
 
         ' Assign the handlers
         AddHandler cell.GotFocus, AddressOf OnFocusChanged
@@ -49,8 +49,8 @@
         End If
     End Sub
 
-    Private Sub OnButtonGiveupClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
-        If ConfirmQuit() = True Then
+    Private Sub OnButtonGiveUpClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
+        If ConfirmQuit() Then
             Die()
         End If
     End Sub
@@ -60,17 +60,15 @@
         Return r = MsgBoxResult.Ok
     End Function
 
-
     ' Event handling for the GridCells is done in FormGame so that 
     ' the GridCell don't need to carry a reference to the game controller.
     ' We could also make GameController a shared class, we feel like all three
     ' solutions are okay.
-
     Private Sub OnCellInput(cell As GridCell, e As EventArgs)
         If Not IsNumeric(cell.Text) Then
             cell.Text = ""
         Else
-            cell.SetNum(Convert.ToInt32(cell.Text))
+            cell.SetValue(Convert.ToInt32(cell.Text))
             _controller.UpdateCell(cell)
         End If
     End Sub
@@ -106,7 +104,6 @@
             Dim cell As GridCell = pnlGrid.Controls(col + i * Grid.COLS)
             If lightUp Then cell.LightUp() Else cell.LightDown()
         Next
-
     End Sub
 
 End Class

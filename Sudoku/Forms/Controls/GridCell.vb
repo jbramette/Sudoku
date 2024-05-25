@@ -4,7 +4,8 @@
     ' Zero based indices
     Private _row As Integer
     Private _col As Integer
-    Private _num As Integer
+
+    Private _value As Integer
 
     ' Default state of the cell
     Private CellForeColorUnfocused As Color = Color.Black
@@ -17,21 +18,14 @@
     Private CellBackColorGroupLight As Color = Color.White
     Private CellBackColorGroupDark As Color = Color.LightGray
 
-
-    Public Sub New(col As Integer, row As Integer, num As Integer, size As Size)
+    Public Sub New(col As Integer, row As Integer, value As Integer, size As Size)
         _col = col
         _row = row
 
-        SetNum(num)
-
-        If _num = 0 Then
-            Me.Text = ""
-        Else
-            Me.Text = _num.ToString()
-        End If
+        SetValue(value)
 
         ' Only groups with a pair index should be white
-        Me.BackColor = GetSquareColor()
+        Me.BackColor = GetBackgroundColor()
 
         ' Allow height resize
         Me.MinimumSize = size
@@ -59,29 +53,36 @@
         Return _row
     End Function
 
-    Public Function Num()
-        Return _num
+    Public Function Value()
+        Return _value
     End Function
 
-    Public Function SetNum(num As Integer)
-        _num = num
-    End Function
+    Public Sub SetValue(value As Integer)
+        _value = value
 
-    ' Lights up the cell when it is focused
+        If _value = 0 Then
+            Me.Text = ""
+        Else
+            Me.Text = _value.ToString()
+        End If
+    End Sub
+
+    ' Highlights the cell when it is focused
     Public Sub LightUp()
         Me.BackColor = CellBackColorFocused
         Me.ForeColor = CellForeColorFocused
     End Sub
 
-    ' Lights down the cell when it is unfocused
+    ' Removes the highlighting the cell when it is unfocused
     Public Sub LightDown()
-        Me.BackColor = GetSquareColor()
+        Me.BackColor = GetBackgroundColor()
         Me.ForeColor = CellForeColorUnfocused
     End Sub
 
-    ' Return the color of the square in which the cell is part of
-    Private Function GetSquareColor()
-        ' One square out of two is light
+    ' The background color of the cell is going to be determined by the square
+    ' in which the cell is located
+    ' One square out of two is light
+    Private Function GetBackgroundColor() As Color
         If Grid.SquareIndexFor(_col, _row) Mod 2 = 0 Then
             Return CellBackColorGroupLight
         Else
