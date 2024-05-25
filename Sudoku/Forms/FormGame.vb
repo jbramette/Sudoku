@@ -16,8 +16,8 @@
         Dim cell As GridCell = New GridCell(col, row, value, cellSize)
 
         ' Assign the handlers
-        AddHandler cell.GotFocus, AddressOf OnFocusChanged
-        AddHandler cell.LostFocus, AddressOf OnFocusChanged
+        AddHandler cell.GotFocus, AddressOf OnFocusChange
+        AddHandler cell.LostFocus, AddressOf OnFocusChange
 
         ' TextChanged rather than KeyPress to enable text pasting filtering, so that only numerics can be pasted
         AddHandler cell.TextChanged, AddressOf OnCellInput
@@ -73,7 +73,7 @@
         End If
     End Sub
 
-    Private Sub OnFocusChanged(cell As GridCell, e As EventArgs)
+    Private Sub OnFocusChange(cell As GridCell, e As EventArgs)
         SwitchLightInTheGroup(cell.Col, cell.Row, cell.Focused)
     End Sub
 
