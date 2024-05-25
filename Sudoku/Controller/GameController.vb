@@ -1,6 +1,6 @@
 ﻿Public Class GameController
 
-    Private Const GAME_DURATION_SECONDS As Integer = 1 * 60
+    Private Const GAME_DURATION_SECONDS As Integer = 5 * 60
 
     Private _view As FormGame
     Private _model As Grid
