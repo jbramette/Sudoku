@@ -89,10 +89,6 @@
         Return True
     End Function
 
-    Private Sub gameTimer_Tick(sender As Object, e As EventArgs) Handles gameTimer.Tick
-        remainingSeconds -= 1
-        UpdateTimerText()
-
     ' Event handling for the GridCells is done in FormGame so that 
     ' the GridCell don't need to carry a reference to the game controller.
     ' We could also make GameController a shared class, we feel like all three
