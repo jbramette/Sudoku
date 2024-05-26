@@ -62,10 +62,13 @@
         _timer.Start()
     End Sub
 
-    Public Sub UpdateCell(cell As GridCell)
-        ' Try to update the cell and notify UI in case of error
+    Public Sub UpdateCell(cell As GridCell, value As Integer)
+        cell.TrySetValue(value)
+
+        ' Try to update the grid and notify UI in case of error
         If Not _grid.SetValue(cell.Col(), cell.Row(), cell.Value()) Then
             _view.NotifyInputError()
+            cell.Text = ""
         End If
     End Sub
 

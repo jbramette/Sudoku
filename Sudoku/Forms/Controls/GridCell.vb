@@ -22,7 +22,7 @@ Partial Public Class GridCell
         _col = col
         _row = row
 
-        SetValue(value)
+        TrySetValue(value)
 
         ' Only groups with a pair index should be white
         Me.BackColor = GetBackgroundColor()
@@ -57,13 +57,14 @@ Partial Public Class GridCell
         Return _value
     End Function
 
-    Public Sub SetValue(value As Integer)
+    ' Updates the held value and the text handling case value is 0
+    Public Sub TrySetValue(value As Integer)
         _value = value
 
-        If _value = 0 Then
-            Me.Text = ""
-        Else
+        If _value Then
             Me.Text = _value.ToString()
+        Else
+            Me.Text = ""
         End If
     End Sub
 
