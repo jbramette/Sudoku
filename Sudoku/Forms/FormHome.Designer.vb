@@ -26,7 +26,7 @@ Partial Class FormHome
         Me.cbxName = New System.Windows.Forms.ComboBox()
         Me.btnQuit = New System.Windows.Forms.Button()
         Me.btnPlayGame = New System.Windows.Forms.Button()
-        Me.btnShowScores = New System.Windows.Forms.Button()
+        Me.btnOpenStats = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblNickname
@@ -64,14 +64,14 @@ Partial Class FormHome
         Me.btnPlayGame.Text = "Play"
         Me.btnPlayGame.UseVisualStyleBackColor = True
         '
-        'btnShowScores
+        'btnOpenStats
         '
-        Me.btnShowScores.Location = New System.Drawing.Point(309, 46)
-        Me.btnShowScores.Name = "btnShowScores"
-        Me.btnShowScores.Size = New System.Drawing.Size(75, 23)
-        Me.btnShowScores.TabIndex = 4
-        Me.btnShowScores.Text = "Scores"
-        Me.btnShowScores.UseVisualStyleBackColor = True
+        Me.btnOpenStats.Location = New System.Drawing.Point(309, 46)
+        Me.btnOpenStats.Name = "btnOpenStats"
+        Me.btnOpenStats.Size = New System.Drawing.Size(75, 23)
+        Me.btnOpenStats.TabIndex = 4
+        Me.btnOpenStats.Text = "Stats"
+        Me.btnOpenStats.UseVisualStyleBackColor = True
         '
         'FormHome
         '
@@ -80,7 +80,7 @@ Partial Class FormHome
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(404, 143)
-        Me.Controls.Add(Me.btnShowScores)
+        Me.Controls.Add(Me.btnOpenStats)
         Me.Controls.Add(Me.btnPlayGame)
         Me.Controls.Add(Me.btnQuit)
         Me.Controls.Add(Me.cbxName)
@@ -97,5 +97,5 @@ Partial Class FormHome
     Friend WithEvents cbxName As ComboBox
     Friend WithEvents btnQuit As Button
     Friend WithEvents btnPlayGame As Button
-    Friend WithEvents btnShowScores As Button
+    Friend WithEvents btnOpenStats As Button
 End Class
