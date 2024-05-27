@@ -5,8 +5,6 @@ Partial Public Class GridCell
     Private _row As Integer
     Private _col As Integer
 
-    Private _value As Integer
-
     ' Default state of the cell
     Private CellForeColorUnfocused As Color = Color.Black
 
@@ -45,24 +43,28 @@ Partial Public Class GridCell
         Me.Font = New Font("Segoe UI", 24, FontStyle.Regular)
     End Sub
 
-    Public Function Col()
+    Public Function Col() As Integer
         Return _col
     End Function
 
-    Public Function Row()
+    Public Function Row() As Integer
         Return _row
     End Function
 
-    Public Function Value()
-        Return _value
+    Public Function Value() As Integer
+        Dim v As Integer
+
+        If Integer.TryParse(Me.Text, v) Then
+            Return v
+        Else
+            Return 0
+        End If
     End Function
 
     ' Updates the held value and the text handling case value is 0
     Public Sub TrySetValue(value As Integer)
-        _value = value
-
-        If _value Then
-            Me.Text = _value.ToString()
+        If value <> 0 Then
+            Me.Text = value.ToString()
         Else
             Me.Text = ""
         End If
