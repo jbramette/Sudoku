@@ -30,6 +30,18 @@ Module StatsManager
         '...
     End Structure
 
+    ' Retourne une liste de tous les joueurs qui ont joué au jeu
+    Public Function ListNicknames() As String()
+        ' Retrieve the paths of all stats file
+        Dim paths As String() = Directory.GetFiles(STATS_DIR, "*" & STATS_EXT)
+
+        For i = 0 To paths.Length - 1
+            paths(i) = Path.GetFileNameWithoutExtension(paths(i))
+        Next
+
+        Return paths
+    End Function
+
     ' Charge les statistiques du joueur selon son pseudo
     Public Function LoadStatsForPlayer(nickname As String) As PlayerStats
         ' Deserialize()

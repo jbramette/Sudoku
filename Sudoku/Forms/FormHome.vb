@@ -1,10 +1,14 @@
 ﻿Public Class FormHome
 
+    Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+        cbxName.Items.AddRange(StatsManager.ListNicknames())
+    End Sub
+
     Public Function GetNickname()
         Return cbxName.Text
     End Function
 
-    Private Sub OnQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click
+    Private Sub OnButtonQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click
 
         Dim r As MsgBoxResult = MsgBox("Do you really want to leave ?", vbOKCancel Or vbQuestion, "Confirmation")
 
@@ -14,7 +18,7 @@
 
     End Sub
 
-    Private Sub OnPlayClick(sender As Object, e As EventArgs) Handles btnPlayGame.Click
+    Private Sub OnButtonPlayClick(sender As Object, e As EventArgs) Handles btnPlayGame.Click
         Dim nickname As String = GetNickname()
 
         If nickname.Length <= 0 Then
@@ -24,5 +28,9 @@
 
         Me.Hide()
         FormGame.Show()
+    End Sub
+
+    Private Sub OnButtonStatsClick(sender As Object, e As EventArgs) Handles btnOpenStats.Click
+        FormStats.Show()
     End Sub
 End Class
