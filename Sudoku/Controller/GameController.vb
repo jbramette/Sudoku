@@ -27,7 +27,7 @@
     ' + This pattern also makes it easier to test Grid as a standalone component.
     ' 
 
-    Private Const GAME_DURATION_SECONDS As Integer = 5 * 60
+    Private Const GAME_DURATION_SECONDS As Integer = 1 * 40
 
     Private _view As FormGame
     Private _grid As Grid
@@ -71,8 +71,8 @@
             cell.Text = ""
         ElseIf _grid.IsCompleted() Then
             _view.NotifyWin()
+            _timer.Stop()
         End If
-
     End Sub
 
     Private Sub OnTimerTick(sender As Object, e As EventArgs)
@@ -86,7 +86,12 @@
 
         If _remainingSeconds <= 0 Then
             _timer.Stop()
+            OnGameLost()
         End If
+    End Sub
+
+    Private Sub OnGameLost()
+        _view.NotifyGameOver()
     End Sub
 
 End Class

@@ -41,6 +41,11 @@
         MsgBox("Win")
     End Sub
 
+    Public Sub NotifyGameOver()
+        pnlGrid.Enabled = False
+        MsgBox("You lost")
+    End Sub
+
     Private Sub Die()
         FormHome.Close()
     End Sub
