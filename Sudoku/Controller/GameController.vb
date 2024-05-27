@@ -70,8 +70,7 @@
             _view.NotifyInputError()
             cell.Text = ""
         ElseIf _grid.IsCompleted() Then
-            _view.NotifyWin()
-            _timer.Stop()
+            OnGameEnded(won:=True)
         End If
     End Sub
 
@@ -85,13 +84,29 @@
         _view.UpdateTimerText(minutes, seconds)
 
         If _remainingSeconds <= 0 Then
-            _timer.Stop()
-            OnGameLost()
+            OnGameEnded(won:=False)
         End If
     End Sub
 
-    Private Sub OnGameLost()
-        _view.NotifyGameOver()
-    End Sub
+    ' This function is called when the game has ended
+    ' It can be triggered by completing the grid or the timer
+    ' ran out, indicated by the parameter
+    Private Sub OnGameEnded(won As Boolean)
+        _timer.Stop()
 
+        ' Update UI
+        If won Then
+            _view.NotifyWin()
+        Else
+            _view.NotifyGameOver()
+        End If
+
+        ' Save game stats for player
+        Dim gameStats As StatsManager.GameStats
+
+        gameStats.won = won
+        gameStats.timePlayed = GAME_DURATION_SECONDS - _remainingSeconds
+
+        StatsManager.AddGameStatsForPlayer(gameStats, FormHome.GetNickname())
+    End Sub
 End Class

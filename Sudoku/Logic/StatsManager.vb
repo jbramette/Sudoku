@@ -26,32 +26,62 @@ Module StatsManager
     Structure GameStats
         Public timePlayed As Integer
         Public won As Boolean
+
+        '...
     End Structure
 
     ' Charge les statistiques du joueur selon son pseudo
     Public Function LoadStatsForPlayer(nickname As String) As PlayerStats
-
+        ' Deserialize()
     End Function
 
     ' Met à jour ou créer la sauvegarde des statistiques
     ' pour un joueur
     Public Sub AddGameStatsForPlayer(stats As GameStats, nickname As String)
+        ' Créé ou ignore
         Directory.CreateDirectory(STATS_DIR)
+        Environment.CurrentDirectory = STATS_DIR
 
         Dim fileName As String = nickname & STATS_EXT
         Dim contents As String = Serialize(stats)
 
+        ' Créé ou ajoute
         File.AppendAllText(fileName, contents)
     End Sub
 
+    ' Convert a GameStats structure to a string
     Private Function Serialize(stats As GameStats) As String
-        Return stats.timePlayed & STATS_SEP & stats.won
+        Return stats.timePlayed & STATS_SEP & STATS_SEP & stats.won & Environment.NewLine
     End Function
 
-    Private Function Deserialize(content As String) As GameStats
-        Dim stats As GameStats
+    ' Convert line from save file to a GameStats structure
+    Private Function Deserialize(content As String, ByRef stats As GameStats) As Boolean
+        Try
+            Dim varCount As Integer = 2
+            Dim vars As String() = Split(content, STATS_SEP, varCount)
 
-        Dim split As String() = content.Split(STATS_SEP, 2)
+            ' Validate the split result
+            If vars.Length <> varCount Then
+                Return False
+            End If
+
+            ' Parse the timePlayed value
+            If Not Integer.TryParse(vars(0), stats.timePlayed) Then
+                Return False
+            End If
+
+            ' Parse the won value
+            Dim wonValue As Integer
+            If Not Integer.TryParse(vars(1), wonValue) Then
+                Return False
+            End If
+
+            stats.won = (wonValue = 1)
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
 
     End Function
 
