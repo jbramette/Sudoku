@@ -69,7 +69,10 @@
         If Not _grid.SetValue(cell.Col(), cell.Row(), cell.Value()) Then
             _view.NotifyInputError()
             cell.Text = ""
+        ElseIf _grid.IsCompleted() Then
+            _view.NotifyWin()
         End If
+
     End Sub
 
     Private Sub OnTimerTick(sender As Object, e As EventArgs)

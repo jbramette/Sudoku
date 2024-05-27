@@ -37,6 +37,10 @@
         MsgBox("Invalid input")
     End Sub
 
+    Public Sub NotifyWin()
+        MsgBox("Win")
+    End Sub
+
     Private Sub Die()
         FormHome.Close()
     End Sub

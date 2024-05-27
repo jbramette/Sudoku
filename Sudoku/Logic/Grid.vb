@@ -9,11 +9,13 @@
     ' Algorithm to generate a random Sudoku grid
     Public Sub Generate()
         ' Dummy values ATM
-        _grid(0, 0) = 1
-        _grid(1, 1) = 2
-        _grid(2, 2) = 3
-        _grid(3, 3) = 4
-        _grid(4, 4) = 5
+        For i = 0 To ROWS - 1
+            For j = 0 To COLS - 1
+                If j + ROWS * i <> 0 Then
+                    _grid(i, j) = 1
+                End If
+            Next
+        Next
     End Sub
 
     ' Index of the square (ie: group) in which the coordinates are part of
@@ -36,6 +38,18 @@
 
     Public Function GetValue(col As Integer, row As Integer) As Integer
         Return _grid(row, col)
+    End Function
+
+    Public Function IsCompleted() As Boolean
+        For row = 0 To ROWS - 1
+            For col = 0 To COLS - 1
+                If _grid(row, col) = 0 Then
+                    Return False
+                End If
+            Next
+        Next
+
+        Return True
     End Function
 
     Private Function IsInputCorrect(col As Integer, row As Integer, value As Integer) As Boolean
