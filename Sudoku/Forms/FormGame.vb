@@ -89,28 +89,8 @@
     ' Lights up or down the cells that are in the same square,
     ' column or row of the focused cell
     Private Sub SwitchLightInTheGroup(col As Integer, row As Integer, lightUp As Boolean)
-        Dim squareIndex As Integer = Grid.SquareIndexFor(col, row)
-
-        Dim startRow As Integer = (squareIndex \ 3) * 3
-        Dim startCol As Integer = (squareIndex Mod 3) * 3
-
-        ' Square
-        For r = startRow To startRow + 3 - 1
-            For c = startCol To startCol + 3 - 1
-                Dim cell As GridCell = pnlGrid.Controls(c + r * Grid.COLS)
-                If lightUp Then cell.LightUp() Else cell.LightDown()
-            Next
-        Next
-
-        ' Columns
-        For i = 0 To Grid.COLS - 1
-            Dim cell As GridCell = pnlGrid.Controls(i + row * Grid.COLS)
-            If lightUp Then cell.LightUp() Else cell.LightDown()
-        Next
-
-        ' Rows
-        For i = 0 To Grid.ROWS - 1
-            Dim cell As GridCell = pnlGrid.Controls(col + i * Grid.COLS)
+        For Each coord As (Integer, Integer) In Grid.GetGroup(row, col)
+            Dim cell As GridCell = pnlGrid.Controls(coord.Item1 * Grid.COLS + coord.Item2)
             If lightUp Then cell.LightUp() Else cell.LightDown()
         Next
     End Sub
