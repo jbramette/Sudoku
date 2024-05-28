@@ -47,9 +47,6 @@
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
     Public Sub StartGame()
-        ' Update grid
-        _grid.Generate()
-
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
@@ -58,8 +55,31 @@
             Next
         Next
 
+        ' Generate puzzle
+        GenerateSudoku(17)
+
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
+    End Sub
+
+    ' Algorithm to generate a random Sudoku grid
+    ' Accepts the number of cells to be filled, that determines the difficulty of the puzzle
+    Public Sub GenerateSudoku(filled As Integer)
+        For i = 0 To filled
+            Dim coord As (Integer, Integer)
+
+            ' Gets random position, if it lands on a filled one, it will loop
+            Do
+                coord = Grid.GetRandomCoordinate()
+            Loop While _grid.GetValue(coord.Item2, coord.Item1) <> 0
+
+            Dim possibleValues = _grid.GetAvaivableValues(coord.Item2, coord.Item1)
+
+            Dim rnd As New Random()
+            Dim randomPossibleValue As Integer = possibleValues(rnd.Next(0, possibleValues.Count))
+
+            UpdateCell(_view.GetCell(coord.Item2, coord.Item1), randomPossibleValue)
+        Next
     End Sub
 
     Public Sub UpdateCell(cell As GridCell, value As Integer)
