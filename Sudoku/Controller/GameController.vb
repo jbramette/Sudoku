@@ -107,6 +107,6 @@
         gameStats.won = won
         gameStats.timePlayed = GAME_DURATION_SECONDS - _remainingSeconds
 
-        StatsManager.AddGameStatsForPlayer(gameStats, FormHome.GetNickname())
+        StatsManager.SaveGameStatsForPlayer(gameStats, FormHome.GetNickname())
     End Sub
 End Class

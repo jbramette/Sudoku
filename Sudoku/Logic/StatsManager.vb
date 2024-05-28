@@ -42,26 +42,59 @@ Module StatsManager
         Return paths
     End Function
 
-    ' Charge les statistiques du joueur selon son pseudo
-    Public Function LoadStatsForPlayer(nickname As String) As PlayerStats
-        Dim playerStats As PlayerStats
+    ' Charge les statistiques globales pour un certain joueur
+    Public Function LoadStatsForPlayer(nickname As String, ByRef stats As PlayerStats) As Boolean
+        Dim filePath As String = StatsFilePath(nickname)
 
+        Try
+            Using reader As New StreamReader(filePath)
+                Dim line As String = reader.ReadLine()
 
+                If line Is Nothing Then
+                    Return False
+                End If
 
-        Return playerStats
+                stats.recordTime = Integer.MaxValue
+
+                While line IsNot Nothing
+                    Dim gameStats As GameStats
+
+                    If Not Deserialize(line, gameStats) Then
+                        Return False
+                    End If
+
+                    stats.gamesPlayed += 1
+                    stats.totalPlayTime += gameStats.timePlayed
+
+                    If gameStats.won Then
+                        stats.totalWin += 1
+                    End If
+
+                    If gameStats.timePlayed < stats.recordTime Then
+                        stats.recordTime = gameStats.timePlayed
+                    End If
+
+                    line = reader.ReadLine()
+                End While
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+
+        Return True
     End Function
 
     ' Met à jour ou créer la sauvegarde des statistiques
     ' pour un joueur
-    Public Sub AddGameStatsForPlayer(stats As GameStats, nickname As String)
+    Public Sub SaveGameStatsForPlayer(stats As GameStats, nickname As String)
         ' Créé ou ignore
         Directory.CreateDirectory(STATS_DIR)
 
-        Dim fileName As String = StatsFilePath(nickname)
+        Dim filePath As String = StatsFilePath(nickname)
         Dim contents As String = Serialize(stats)
 
         ' Créé ou ajoute
-        File.AppendAllText(fileName, contents)
+        File.AppendAllText(filePath, contents)
     End Sub
 
     Private Function StatsFilePath(nickname As String) As String
@@ -90,18 +123,17 @@ Module StatsManager
             End If
 
             ' Parse the won value
-            Dim wonValue As Integer
-            If Not Integer.TryParse(vars(1), wonValue) Then
+            Dim wonValue As Boolean
+            If Not Boolean.TryParse(vars(1), wonValue) Then
                 Return False
             End If
 
-            stats.won = (wonValue = 1)
-
-            Return True
+            stats.won = wonValue
         Catch ex As Exception
             Return False
         End Try
 
+        Return True
     End Function
 
 End Module
