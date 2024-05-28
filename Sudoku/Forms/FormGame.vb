@@ -30,7 +30,7 @@
             lblRemainingTime.ForeColor = Color.Red
         End If
 
-        lblRemainingTime.Text = minutes & ":" & seconds
+        lblRemainingTime.Text = String.Format("{0:00}:{1:00}", minutes, seconds)
     End Sub
 
     Public Sub NotifyInputError()
