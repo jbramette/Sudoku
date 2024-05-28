@@ -6,14 +6,6 @@
     ' Internal grid
     Private _grid(COLS - 1, ROWS - 1) As Integer
 
-    Friend Shared Function GetRandomCoordinate() As (Integer, Integer)
-        Dim GetRandomNumber = Function(lowerbound As Integer, upperbound As Integer) As Integer
-                                  Return Int((upperbound - lowerbound + 1) * Rnd() + lowerbound)
-                              End Function
-
-        Return (GetRandomNumber(0, ROWS - 1), GetRandomNumber(0, COLS - 1))
-    End Function
-
     ' Index of the square (ie: group) in which the coordinates are part of
     '
     ' Squares on the grid:
