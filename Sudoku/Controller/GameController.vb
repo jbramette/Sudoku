@@ -66,19 +66,24 @@
     ' Accepts the number of cells to be filled, that determines the difficulty of the puzzle
     Public Sub GenerateSudoku(filled As Integer)
         For i = 0 To filled
-            Dim coord As (Integer, Integer)
+            Dim seed As New Random()
+            Dim getRandomUpTo = Function(upperbound As Integer) As Integer
+                                    Return seed.Next(0, upperbound)
+                                End Function
+
+            Dim randomCol = getRandomUpTo(Grid.COLS)
+            Dim randomRow = getRandomUpTo(Grid.ROWS)
 
             ' Gets random position, if it lands on a filled one, it will loop
-            Do
-                coord = Grid.GetRandomCoordinate()
-            Loop While _grid.GetValue(coord.Item2, coord.Item1) <> 0
+            While _grid.GetValue(randomCol, randomRow) <> 0
+                randomCol = getRandomUpTo(Grid.COLS)
+                randomRow = getRandomUpTo(Grid.ROWS)
+            End While
 
-            Dim possibleValues = _grid.GetAvaivableValues(coord.Item2, coord.Item1)
+            Dim possibleValues = _grid.GetAvaivableValues(randomCol, randomRow)
+            Dim randomPossibleValue As Integer = possibleValues(getRandomUpTo(possibleValues.Count))
 
-            Dim rnd As New Random()
-            Dim randomPossibleValue As Integer = possibleValues(rnd.Next(0, possibleValues.Count))
-
-            UpdateCell(_view.GetCell(coord.Item2, coord.Item1), randomPossibleValue)
+            UpdateCell(_view.GetCell(randomCol, randomRow), randomPossibleValue)
         Next
     End Sub
 
