@@ -14,6 +14,14 @@
 
     End Sub
 
+    Private Sub OnEnterPress(sender As Object, e As KeyPressEventArgs) Handles cbxName.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            OnPlayClick(sender, e)
+        End If
+    End Sub
+
+
     Private Sub OnPlayClick(sender As Object, e As EventArgs) Handles btnPlayGame.Click
         Dim nickname As String = GetNickname()
 
@@ -25,4 +33,5 @@
         Me.Hide()
         FormGame.Show()
     End Sub
+
 End Class
