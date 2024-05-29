@@ -47,9 +47,6 @@
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
     Public Sub StartGame()
-        ' Update grid
-        _grid.Generate()
-
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
