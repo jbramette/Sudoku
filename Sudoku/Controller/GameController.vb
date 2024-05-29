@@ -55,6 +55,8 @@
             Next
         Next
 
+        ApiFetcher.FetchPuzzle()
+
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
     End Sub
