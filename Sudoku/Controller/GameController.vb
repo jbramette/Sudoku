@@ -65,7 +65,14 @@
     Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
         For r = 0 To Grid.ROWS - 1
             For c = 0 To Grid.COLS - 1
-                PutIntoCellUnchecked(_view.GetCell(c, r), puzzle(r)(c))
+                Dim cell As GridCell = _view.GetCell(c, r)
+                Dim value As Integer = puzzle(r)(c)
+
+                PutIntoCellUnchecked(cell, value)
+
+                If value <> 0 Then
+                    cell.Enabled = False ' The data cannot be changed inside the cell
+                End If
             Next
         Next
     End Sub
