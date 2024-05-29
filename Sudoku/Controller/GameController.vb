@@ -65,7 +65,7 @@
     Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
         For r = 0 To Grid.ROWS - 1
             For c = 0 To Grid.COLS - 1
-                UpdateCell(_view.GetCell(c, r), puzzle(r)(c))
+                PutIntoCellUnchecked(_view.GetCell(c, r), puzzle(r)(c))
             Next
         Next
     End Sub
