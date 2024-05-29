@@ -70,6 +70,11 @@
         Next
     End Sub
 
+    Private Sub PutIntoCellUnchecked(cell As GridCell, value As Integer)
+        cell.TrySetValue(value)
+        _grid.PutValueUnchecked(cell.Col(), cell.Row(), value)
+    End Sub
+
     Public Sub UpdateCell(cell As GridCell, value As Integer)
         cell.TrySetValue(value)
 
