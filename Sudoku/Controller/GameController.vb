@@ -55,10 +55,19 @@
             Next
         Next
 
-        ApiFetcher.FetchPuzzle()
+        Dim puzzle = ApiFetcher.FetchPuzzle()
+        LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
+    End Sub
+
+    Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
+        For r = 0 To Grid.ROWS - 1
+            For c = 0 To Grid.COLS - 1
+                UpdateCell(_view.GetCell(c, r), puzzle(r)(c))
+            Next
+        Next
     End Sub
 
     Public Sub UpdateCell(cell As GridCell, value As Integer)
