@@ -14,7 +14,7 @@
 
     End Sub
 
-    Private Sub OnEnterPress(sender As Object, e As KeyPressEventArgs) Handles cbxName.KeyPress
+    Private Sub OnKeyPress(sender As Object, e As KeyPressEventArgs) Handles cbxName.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
             OnPlayClick(sender, e)
