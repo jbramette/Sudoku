@@ -47,9 +47,6 @@
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
     Public Sub StartGame()
-        ' Update grid
-        _grid.Generate()
-
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
@@ -58,8 +55,31 @@
             Next
         Next
 
+        Dim puzzle = ApiFetcher.FetchPuzzle()
+        LoadPuzzle(puzzle)
+
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
+    End Sub
+
+    Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
+        For r = 0 To Grid.ROWS - 1
+            For c = 0 To Grid.COLS - 1
+                Dim cell As GridCell = _view.GetCell(c, r)
+                Dim value As Integer = puzzle(r)(c)
+
+                PutIntoCellUnchecked(cell, value)
+
+                If value <> 0 Then
+                    cell.Enabled = False ' The data cannot be changed inside the cell
+                End If
+            Next
+        Next
+    End Sub
+
+    Private Sub PutIntoCellUnchecked(cell As GridCell, value As Integer)
+        cell.TrySetValue(value)
+        _grid.PutValueUnchecked(cell.Col(), cell.Row(), value)
     End Sub
 
     Public Sub UpdateCell(cell As GridCell, value As Integer)
