@@ -1,12 +1,11 @@
 ﻿Imports System.Text.Json
 
-Partial Public Class BackupPuzzles
+Public Module BackupPuzzles
+    Public Function GetPuzzle(difficulty As PuzzleDifficulty) As List(Of List(Of Integer))
+        Dim _easyPuzzles As List(Of String)
+        Dim _mediumPuzzles As List(Of String)
+        Dim _hardPuzzles As List(Of String)
 
-    Private _easyPuzzles As List(Of String)
-    Private _mediumPuzzles As List(Of String)
-    Private _hardPuzzles As List(Of String)
-
-    Public Sub New()
         _easyPuzzles = New List(Of String) From {
             "{""board"": [[0,0,0,0,0,0,1,0,0],[0,0,5,0,0,0,6,0,0],[0,8,0,1,0,6,2,0,0],[2,0,3,0,6,0,7,9,8],[0,4,7,0,0,9,0,0,6],[6,9,0,7,1,0,0,5,0],[3,0,0,6,0,0,0,0,0],[0,6,0,0,7,1,0,2,0],[9,0,2,8,0,4,0,6,0]]}",
             "{""board"":[[0,0,4,0,0,7,0,0,0],[1,0,5,0,4,8,6,0,0],[0,7,8,0,5,0,0,0,0],[2,0,3,0,0,5,0,0,0],[4,0,7,8,9,1,0,0,0],[8,6,0,7,0,3,0,1,5],[0,3,0,9,0,4,0,6,2],[0,0,0,5,0,6,0,8,1],[0,0,0,1,7,2,0,0,3]]}",
@@ -24,9 +23,7 @@ Partial Public Class BackupPuzzles
             "{""board"":[[0,7,0,0,0,0,8,0,0],[1,0,0,0,0,0,0,0,9],[0,0,9,0,0,0,0,2,0],[0,0,0,0,0,0,7,0,0],[3,5,6,0,0,9,0,0,1],[0,0,8,0,0,0,0,0,0],[0,0,2,0,4,0,0,8,0],[0,4,0,0,0,0,0,1,0],[9,0,0,8,0,3,4,0,2]]}",
             "{""board"":[[0,0,0,0,0,0,0,0,0],[0,0,0,2,0,7,5,0,0],[0,0,0,4,8,0,0,0,0],[2,0,0,0,0,0,0,0,0],[0,0,0,0,9,0,2,0,0],[7,0,8,1,2,0,0,0,6],[0,0,1,0,0,0,0,0,0],[0,7,0,0,3,0,8,0,2],[8,0,9,0,0,2,3,1,5]]}"
         }
-    End Sub
 
-    Public Function GetPuzzle(difficulty As PuzzleDifficulty) As List(Of List(Of Integer))
         Dim rng As New Random()
         Dim getRandomUpTo = Function(upperbound As Integer) As Integer
                                 Return rng.Next(0, upperbound)
@@ -47,4 +44,4 @@ Partial Public Class BackupPuzzles
         Return json.board
     End Function
 
-End Class
+End Module

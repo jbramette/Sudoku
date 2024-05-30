@@ -65,7 +65,7 @@ Public Class GameController
         Try
             puzzle = ApiFetcher.GetPuzzle(difficulty)
         Catch ex As Exception ' No internet connection
-            puzzle = New BackupPuzzles().GetPuzzle(difficulty)
+            puzzle = BackupPuzzles.GetPuzzle(difficulty)
         End Try
 
         LoadPuzzle(puzzle)
