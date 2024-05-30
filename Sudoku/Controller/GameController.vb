@@ -52,7 +52,7 @@ Public Class GameController
     ' Start the Sudoku game
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
-    Public Sub StartGame(difficulty As Generator.PuzzleDifficulty)
+    Public Sub StartGame(difficulty As PuzzleDifficulty)
         _gameDifficulty = difficulty
 
         ' Create the UI's cells
@@ -63,7 +63,14 @@ Public Class GameController
             Next
         Next
 
-        Dim puzzle = Generator.QueryPuzzle(_gameDifficulty)
+        Dim puzzle As List(Of List(Of Integer))
+
+        Try
+            puzzle = ApiFetcher.GetPuzzle(difficulty)
+        Catch ex As Exception ' No internet connection
+            puzzle = BackupPuzzles.GetPuzzle(difficulty)
+        End Try
+
         LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded

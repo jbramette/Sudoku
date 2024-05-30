@@ -9,7 +9,7 @@
     End Function
 
     Public Function GetSelectedDifficulty() As PuzzleDifficulty
-        If rbModeSimple.Checked Then Return PuzzleDifficulty.Simple
+        If rbModeSimple.Checked Then Return PuzzleDifficulty.Easy
         If rbModeMedium.Checked Then Return PuzzleDifficulty.Medium
         If rbModeHard.Checked Then Return PuzzleDifficulty.Hard
     End Function
