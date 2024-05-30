@@ -11,9 +11,10 @@
         Dim rng As New Random()
 
         Dim removedCells As New HashSet(Of (Integer, Integer))
+        Dim nbCellsToRemove = GetRemoveCountFor(difficulty)
 
         ' Remove a certain amount of cells based on difficulty
-        While removedCells.Count < GetRemoveCountFor(difficulty)
+        While removedCells.Count < nbCellsToRemove
             Dim randomCol As Integer = rng.Next(0, Grid.COLS)
             Dim randomRow As Integer = rng.Next(0, Grid.ROWS)
 
