@@ -102,6 +102,10 @@ Module StatsManager
         File.AppendAllText(filePath, contents)
     End Sub
 
+    Public Sub RemoveStatsFileForPlayer(nickname As String)
+        File.Delete(StatsFilePath(nickname))
+    End Sub
+
     Private Function StatsFilePath(nickname As String) As String
         Return $"{STATS_DIR}/{nickname}.{STATS_EXT}"
     End Function

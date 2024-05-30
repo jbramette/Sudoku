@@ -14,6 +14,12 @@
                 Dim totalTimeStr As String = TimeSpan.FromSeconds(stats.totalPlayTime).ToString()
 
                 dgvGames.Rows.Add(playerName, recordTimeStr, stats.gamesPlayed, stats.totalWin, totalTimeStr)
+            Else
+                Dim deleteFile = MsgBox($"Error loading stats for player {playerName}, remove stats file ?", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo)
+
+                If deleteFile = MsgBoxResult.Yes Then
+                    StatsManager.RemoveStatsFileForPlayer(playerName)
+                End If
             End If
         Next
     End Sub
