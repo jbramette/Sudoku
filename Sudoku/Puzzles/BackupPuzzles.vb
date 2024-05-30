@@ -35,7 +35,7 @@ Partial Public Class BackupPuzzles
         Dim puzzleJson As String
 
         Select Case difficulty
-            Case PuzzleDifficulty.Simple
+            Case PuzzleDifficulty.Easy
                 puzzleJson = easy_puzzles(getRandomUpTo(easy_puzzles.Count))
             Case PuzzleDifficulty.Medium
                 puzzleJson = easy_puzzles(getRandomUpTo(easy_puzzles.Count))

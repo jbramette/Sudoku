@@ -51,7 +51,7 @@ Public Class GameController
     ' Start the Sudoku game
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
-    Public Sub StartGame(difficulty As Generator.PuzzleDifficulty)
+    Public Sub StartGame(difficulty As PuzzleDifficulty)
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
@@ -63,7 +63,7 @@ Public Class GameController
         Dim puzzle As List(Of List(Of Integer))
 
         Try
-            puzzle = ApiFetcher.FetchPuzzle()
+            puzzle = ApiFetcher.GetPuzzle(difficulty)
         Catch ex As Exception ' No internet connection
             puzzle = New BackupPuzzles().GetPuzzle(difficulty)
         End Try
