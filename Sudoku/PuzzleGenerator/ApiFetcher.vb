@@ -21,7 +21,7 @@ Module ApiFetcher
     '     }
     ' }
     '
-    Private Class PuzzleResponse
+    Private Class PuzzleJson
         Public Property newboard As NewBoard
     End Class
 
@@ -41,7 +41,7 @@ Module ApiFetcher
 
     Public Function FetchPuzzle() As List(Of List(Of Integer))
         Dim response = HttpGet()
-        Dim json = JsonSerializer.Deserialize(Of PuzzleResponse)(response)
+        Dim json = JsonSerializer.Deserialize(Of PuzzleJson)(response)
         Return json.newboard.grids(0).solution
     End Function
 End Module
