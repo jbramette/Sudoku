@@ -4,7 +4,6 @@ Module StatsManager
 
     Private Const STATS_DIR As String = "stats/"
     Private Const STATS_EXT As String = "stats"
-    Private Const STATS_SEP As String = " "
 
     Structure PlayerStats
         ' Pseudo du joueur
@@ -45,23 +44,28 @@ Module StatsManager
     ' Charge les statistiques globales pour un certain joueur
     Public Function LoadStatsForPlayer(nickname As String, ByRef stats As PlayerStats) As Boolean
         Dim filePath As String = StatsFilePath(nickname)
+        Dim dataRead As Boolean = False
+
+        stats.recordTime = Integer.MaxValue
 
         Try
-            Using reader As New StreamReader(filePath)
-                Dim line As String = reader.ReadLine()
+            Using sr As New StreamReader(filePath)
+                Dim line As String
 
-                If line Is Nothing Then
-                    Return False
-                End If
+                Do While sr.Peek() >= 0
+                    line = sr.ReadLine().Trim()
 
-                stats.recordTime = Integer.MaxValue
+                    If String.IsNullOrWhiteSpace(line) Then
+                        Continue Do
+                    End If
 
-                While line IsNot Nothing
                     Dim gameStats As GameStats
 
                     If Not Deserialize(line, gameStats) Then
                         Return False
                     End If
+
+                    dataRead = True
 
                     stats.gamesPlayed += 1
                     stats.totalPlayTime += gameStats.timePlayed
@@ -73,15 +77,13 @@ Module StatsManager
                     If gameStats.timePlayed < stats.recordTime Then
                         stats.recordTime = gameStats.timePlayed
                     End If
-
-                    line = reader.ReadLine()
-                End While
+                Loop
             End Using
         Catch ex As Exception
             Return False
         End Try
 
-        Return True
+        Return dataRead
     End Function
 
     ' Met à jour ou créer la sauvegarde des statistiques

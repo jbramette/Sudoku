@@ -3,10 +3,10 @@
     Private _controller As GameController
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
-        _controller = New GameController(Me)
-        _controller.StartGame()
-
         lblNickname.Text = FormHome.GetNickname()
+
+        _controller = New GameController(view:=Me, nickname:=lblNickname.Text)
+        _controller.StartGame()
     End Sub
 
     Public Sub AddCell(col As Integer, row As Integer, value As Integer)

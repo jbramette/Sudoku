@@ -31,12 +31,16 @@
 
     Private _view As FormGame
     Private _grid As Grid
+
+    ' Game related data, maybe move to a GameManager class ?
+    Private _nickname As String
     Private _timer As Timer
     Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
 
-    Public Sub New(view As FormGame)
+    Public Sub New(view As FormGame, nickname As String)
         _view = view
         _grid = New Grid()
+        _nickname = nickname
         _timer = New Timer()
         _timer.Interval = 1000
 
@@ -107,6 +111,6 @@
         gameStats.won = won
         gameStats.timePlayed = GAME_DURATION_SECONDS - _remainingSeconds
 
-        StatsManager.SaveGameStatsForPlayer(gameStats, FormHome.GetNickname())
+        StatsManager.SaveGameStatsForPlayer(gameStats, _nickname)
     End Sub
 End Class
