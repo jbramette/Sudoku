@@ -1,15 +1,19 @@
 ﻿Public Class FormStats
 
+    ' On ne peut pas utiliser un dictionnaire car il ne permet pas de récupérer ses entrées facilement
+    Private _stats As New List(Of (String, PlayerStats))
+
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
-        PopulateDataGridView()
+        LoadPlayersStats()
+        PopulateStatsListBoxes()
     End Sub
 
-    Private Sub PopulateDataGridView()
+    Private Sub LoadPlayersStats()
         For Each playerName As String In StatsManager.ListNicknames()
-            Dim stats As New PlayerStats()
+            Dim playerStats As New PlayerStats()
 
-            If LoadStatsForPlayer(playerName, stats) Then
-                AddStatsRow(playerName, stats)
+            If LoadStatsForPlayer(playerName, playerStats) Then
+                _stats.Add((playerName, playerStats))
             Else
                 Dim deleteFile = MsgBox($"Error loading stats for player {playerName}, remove stats file ?", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo)
 
@@ -20,17 +24,33 @@
         Next
     End Sub
 
-    Private Sub AddStatsRow(playerName As String, stats As PlayerStats)
-        Dim recordTimeStr As String = TimeSpan.FromSeconds(stats.recordTime).ToString()
-        Dim totalTimeStr As String = TimeSpan.FromSeconds(stats.totalPlayTime).ToString()
+    Private Sub PopulateStatsListBoxes()
+        ' Reset
+        lbxNames.Items.Clear()
+        lbxBestTimes.Items.Clear()
 
-        dgvGames.Rows.Add(playerName,
-                          recordTimeStr,
-                          stats.gamesPlayed,
-                          stats.GetTotalWin(),
-                          stats.winsSimple,
-                          stats.winsMedium,
-                          stats.winsHard,
-                          totalTimeStr)
+        ' Sort based on players names or best times
+        If rbSortByNames.Checked Then
+            _stats.Sort(Function(x, y) x.Item1.CompareTo(y.Item1))
+        Else
+            _stats.Sort(Function(x, y) x.Item2.recordTime.CompareTo(y.Item2.recordTime))
+        End If
+
+        For Each pair In _stats
+            Dim nickname As String = pair.Item1
+            Dim recordTime As Integer = pair.Item2.recordTime
+
+            lbxNames.Items.Add(nickname)
+            lbxBestTimes.Items.Add(TimeSpan.FromSeconds(recordTime).ToString())
+        Next
+    End Sub
+
+    Private Sub OnSortModeCheckedChanged(sender As Object, e As EventArgs) Handles rbSortByNames.CheckedChanged
+        PopulateStatsListBoxes()
+    End Sub
+
+    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxNames.SelectedIndexChanged, lbxBestTimes.SelectedIndexChanged
+        lbxNames.SelectedIndex = sender.SelectedIndex
+        lbxBestTimes.SelectedIndex = sender.SelectedIndex
     End Sub
 End Class

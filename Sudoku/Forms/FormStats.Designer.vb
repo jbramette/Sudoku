@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStats
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,102 +20,87 @@ Partial Class FormStats
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.dgvGames = New System.Windows.Forms.DataGridView()
-        Me.ColumnPlayerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColumnBestTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColumnGamesPlayed = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColumnWins = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Simple = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Medium = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Hard = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColumnTotalTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.dgvGames, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lbxNames = New System.Windows.Forms.ListBox()
+        Me.lbxBestTimes = New System.Windows.Forms.ListBox()
+        Me.gbxRbSorting = New System.Windows.Forms.GroupBox()
+        Me.rbSortByBestTimes = New System.Windows.Forms.RadioButton()
+        Me.rbSortByNames = New System.Windows.Forms.RadioButton()
+        Me.gbxRbSorting.SuspendLayout()
         Me.SuspendLayout()
         '
-        'dgvGames
+        'lbxNames
         '
-        Me.dgvGames.AllowUserToAddRows = False
-        Me.dgvGames.AllowUserToOrderColumns = True
-        Me.dgvGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGames.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnPlayerName, Me.ColumnBestTime, Me.ColumnGamesPlayed, Me.ColumnWins, Me.Simple, Me.Medium, Me.Hard, Me.ColumnTotalTime})
-        Me.dgvGames.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvGames.Location = New System.Drawing.Point(0, 0)
-        Me.dgvGames.Name = "dgvGames"
-        Me.dgvGames.RowTemplate.Height = 25
-        Me.dgvGames.Size = New System.Drawing.Size(844, 388)
-        Me.dgvGames.TabIndex = 0
+        Me.lbxNames.FormattingEnabled = True
+        Me.lbxNames.ItemHeight = 15
+        Me.lbxNames.Location = New System.Drawing.Point(12, 57)
+        Me.lbxNames.Name = "lbxNames"
+        Me.lbxNames.Size = New System.Drawing.Size(147, 319)
+        Me.lbxNames.TabIndex = 0
         '
-        'ColumnPlayerName
+        'lbxBestTimes
         '
-        Me.ColumnPlayerName.Frozen = True
-        Me.ColumnPlayerName.HeaderText = "Player"
-        Me.ColumnPlayerName.Name = "ColumnPlayerName"
+        Me.lbxBestTimes.FormattingEnabled = True
+        Me.lbxBestTimes.ItemHeight = 15
+        Me.lbxBestTimes.Location = New System.Drawing.Point(165, 57)
+        Me.lbxBestTimes.Name = "lbxBestTimes"
+        Me.lbxBestTimes.Size = New System.Drawing.Size(153, 319)
+        Me.lbxBestTimes.TabIndex = 1
         '
-        'ColumnBestTime
+        'gbxRbSorting
         '
-        Me.ColumnBestTime.Frozen = True
-        Me.ColumnBestTime.HeaderText = "Best time"
-        Me.ColumnBestTime.Name = "ColumnBestTime"
+        Me.gbxRbSorting.Controls.Add(Me.rbSortByBestTimes)
+        Me.gbxRbSorting.Controls.Add(Me.rbSortByNames)
+        Me.gbxRbSorting.Location = New System.Drawing.Point(12, 4)
+        Me.gbxRbSorting.Name = "gbxRbSorting"
+        Me.gbxRbSorting.Size = New System.Drawing.Size(306, 47)
+        Me.gbxRbSorting.TabIndex = 2
+        Me.gbxRbSorting.TabStop = False
+        Me.gbxRbSorting.Text = "Order by"
         '
-        'ColumnGamesPlayed
+        'rbSortByBestTimes
         '
-        Me.ColumnGamesPlayed.Frozen = True
-        Me.ColumnGamesPlayed.HeaderText = "Games"
-        Me.ColumnGamesPlayed.Name = "ColumnGamesPlayed"
+        Me.rbSortByBestTimes.AutoSize = True
+        Me.rbSortByBestTimes.Location = New System.Drawing.Point(191, 19)
+        Me.rbSortByBestTimes.Name = "rbSortByBestTimes"
+        Me.rbSortByBestTimes.Size = New System.Drawing.Size(79, 19)
+        Me.rbSortByBestTimes.TabIndex = 1
+        Me.rbSortByBestTimes.Text = "Best times"
+        Me.rbSortByBestTimes.UseVisualStyleBackColor = True
         '
-        'ColumnWins
+        'rbSortByNames
         '
-        Me.ColumnWins.Frozen = True
-        Me.ColumnWins.HeaderText = "Wins"
-        Me.ColumnWins.Name = "ColumnWins"
-        '
-        'Simple
-        '
-        Me.Simple.Frozen = True
-        Me.Simple.HeaderText = "Simple"
-        Me.Simple.Name = "Simple"
-        '
-        'Medium
-        '
-        Me.Medium.Frozen = True
-        Me.Medium.HeaderText = "Medium"
-        Me.Medium.Name = "Medium"
-        '
-        'Hard
-        '
-        Me.Hard.Frozen = True
-        Me.Hard.HeaderText = "Hard"
-        Me.Hard.Name = "Hard"
-        '
-        'ColumnTotalTime
-        '
-        Me.ColumnTotalTime.Frozen = True
-        Me.ColumnTotalTime.HeaderText = "Total time"
-        Me.ColumnTotalTime.Name = "ColumnTotalTime"
+        Me.rbSortByNames.AutoSize = True
+        Me.rbSortByNames.Checked = True
+        Me.rbSortByNames.Location = New System.Drawing.Point(37, 19)
+        Me.rbSortByNames.Name = "rbSortByNames"
+        Me.rbSortByNames.Size = New System.Drawing.Size(62, 19)
+        Me.rbSortByNames.TabIndex = 0
+        Me.rbSortByNames.TabStop = True
+        Me.rbSortByNames.Text = "Names"
+        Me.rbSortByNames.UseVisualStyleBackColor = True
         '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(844, 388)
-        Me.Controls.Add(Me.dgvGames)
+        Me.ClientSize = New System.Drawing.Size(332, 388)
+        Me.Controls.Add(Me.gbxRbSorting)
+        Me.Controls.Add(Me.lbxBestTimes)
+        Me.Controls.Add(Me.lbxNames)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormStats"
         Me.Text = "Stats Menu"
-        CType(Me.dgvGames, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbxRbSorting.ResumeLayout(False)
+        Me.gbxRbSorting.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents dgvGames As DataGridView
-    Friend WithEvents ColumnPlayerName As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnBestTime As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnGamesPlayed As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnWins As DataGridViewTextBoxColumn
-    Friend WithEvents Simple As DataGridViewTextBoxColumn
-    Friend WithEvents Medium As DataGridViewTextBoxColumn
-    Friend WithEvents Hard As DataGridViewTextBoxColumn
-    Friend WithEvents ColumnTotalTime As DataGridViewTextBoxColumn
+    Friend WithEvents lbxNames As ListBox
+    Friend WithEvents lbxBestTimes As ListBox
+    Friend WithEvents gbxRbSorting As GroupBox
+    Friend WithEvents rbSortByBestTimes As RadioButton
+    Friend WithEvents rbSortByNames As RadioButton
 End Class
