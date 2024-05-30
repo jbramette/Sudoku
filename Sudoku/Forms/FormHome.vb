@@ -4,8 +4,14 @@
         cbxName.Items.AddRange(StatsManager.ListNicknames())
     End Sub
 
-    Public Function GetNickname()
+    Public Function GetNickname() As String
         Return cbxName.Text.Trim()
+    End Function
+
+    Public Function GetSelectedDifficulty() As PuzzleDifficulty
+        If rbModeSimple.Checked Then Return PuzzleDifficulty.Simple
+        If rbModeMedium.Checked Then Return PuzzleDifficulty.Medium
+        If rbModeHard.Checked Then Return PuzzleDifficulty.Hard
     End Function
 
     Private Sub OnButtonQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click

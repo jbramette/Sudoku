@@ -2,7 +2,7 @@
 
 Module ApiFetcher
 
-    Private Const DUSOKU_API_LINK As String = "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value}}}"
+    Private Const DUSOKU_API_LINK As String = "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{solution}}}"
 
     ' Example JSON response
     '
@@ -10,10 +10,10 @@ Module ApiFetcher
     '     "newboard": {
     '         "grids": [
     '             {
-    '                 "value": [
-    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
-    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
-    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
+    '                 "solution": [
+    '                     [1, 2, 3...],
+    '                     [...],
+    '                     [...],
     '                     ...
     '                 ]
     '             }         
@@ -26,11 +26,11 @@ Module ApiFetcher
     End Class
 
     Private Structure NewBoard
-        Public Property grids As List(Of Value)
+        Public Property grids As List(Of Solution)
     End Structure
 
-    Private Structure Value
-        Public Property value As List(Of List(Of Integer))
+    Private Structure Solution
+        Public Property solution As List(Of List(Of Integer))
     End Structure
 
     Private Function HttpGet() As String
@@ -42,8 +42,6 @@ Module ApiFetcher
     Public Function FetchPuzzle() As List(Of List(Of Integer))
         Dim response = HttpGet()
         Dim json = JsonSerializer.Deserialize(Of PuzzleResponse)(response)
-
-        Return json.newboard.grids(0).value
+        Return json.newboard.grids(0).solution
     End Function
-
 End Module

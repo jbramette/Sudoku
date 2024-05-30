@@ -6,7 +6,8 @@
         lblNickname.Text = FormHome.GetNickname()
 
         _controller = New GameController(view:=Me, nickname:=lblNickname.Text)
-        _controller.StartGame()
+
+        _controller.StartGame(FormHome.GetSelectedDifficulty())
     End Sub
 
     Public Sub AddCell(col As Integer, row As Integer, value As Integer)
@@ -24,6 +25,10 @@
 
         pnlGrid.Controls.Add(cell)
     End Sub
+
+    Public Function GetCell(col As Integer, row As Integer) As GridCell
+        Return pnlGrid.Controls(row * Grid.COLS + col)
+    End Function
 
     Public Sub UpdateTimerText(minutes As Integer, seconds As Integer)
         If minutes = 0 And seconds < 30 Then
@@ -90,9 +95,4 @@
             If lightUp Then cell.LightUp() Else cell.LightDown()
         Next
     End Sub
-
-    Public Function GetCell(col As Integer, row As Integer) As GridCell
-        Return pnlGrid.Controls(row * Grid.COLS + col)
-    End Function
-
 End Class
