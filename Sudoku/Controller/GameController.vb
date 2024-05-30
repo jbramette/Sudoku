@@ -1,4 +1,4 @@
-﻿Public Class GameController
+Public Class GameController
 
     ' We use the MVC (Model-View-Controller) pattern to separate the sudoku grid (=Model)
     ' from the GUI (=View)
@@ -55,8 +55,8 @@
             Next
         Next
 
-        ' Generate puzzle
-        GenerateSudoku(17)
+        Dim puzzle = ApiFetcher.FetchPuzzle()
+        LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
@@ -85,6 +85,26 @@
 
             UpdateCell(_view.GetCell(randomCol, randomRow), randomPossibleValue)
         Next
+    End Sub
+
+    Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
+        For r = 0 To Grid.ROWS - 1
+            For c = 0 To Grid.COLS - 1
+                Dim cell As GridCell = _view.GetCell(c, r)
+                Dim value As Integer = puzzle(r)(c)
+
+                PutIntoCellUnchecked(cell, value)
+
+                If value <> 0 Then
+                    cell.Enabled = False ' The data cannot be changed inside the cell
+                End If
+            Next
+        Next
+    End Sub
+
+    Private Sub PutIntoCellUnchecked(cell As GridCell, value As Integer)
+        cell.TrySetValue(value)
+        _grid.PutValueUnchecked(cell.Col(), cell.Row(), value)
     End Sub
 
     Public Sub UpdateCell(cell As GridCell, value As Integer)
