@@ -27,19 +27,24 @@ Partial Class FormStats
         Me.ColumnBestTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColumnGamesPlayed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColumnWins = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Simple = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Medium = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Hard = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColumnTotalTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvGames, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvGames
         '
+        Me.dgvGames.AllowUserToAddRows = False
+        Me.dgvGames.AllowUserToOrderColumns = True
         Me.dgvGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGames.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnPlayerName, Me.ColumnBestTime, Me.ColumnGamesPlayed, Me.ColumnWins, Me.ColumnTotalTime})
+        Me.dgvGames.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnPlayerName, Me.ColumnBestTime, Me.ColumnGamesPlayed, Me.ColumnWins, Me.Simple, Me.Medium, Me.Hard, Me.ColumnTotalTime})
         Me.dgvGames.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvGames.Location = New System.Drawing.Point(0, 0)
         Me.dgvGames.Name = "dgvGames"
         Me.dgvGames.RowTemplate.Height = 25
-        Me.dgvGames.Size = New System.Drawing.Size(540, 362)
+        Me.dgvGames.Size = New System.Drawing.Size(844, 388)
         Me.dgvGames.TabIndex = 0
         '
         'ColumnPlayerName
@@ -47,41 +52,54 @@ Partial Class FormStats
         Me.ColumnPlayerName.Frozen = True
         Me.ColumnPlayerName.HeaderText = "Player"
         Me.ColumnPlayerName.Name = "ColumnPlayerName"
-        Me.ColumnPlayerName.ReadOnly = True
         '
         'ColumnBestTime
         '
         Me.ColumnBestTime.Frozen = True
         Me.ColumnBestTime.HeaderText = "Best time"
         Me.ColumnBestTime.Name = "ColumnBestTime"
-        Me.ColumnBestTime.ReadOnly = True
         '
         'ColumnGamesPlayed
         '
         Me.ColumnGamesPlayed.Frozen = True
         Me.ColumnGamesPlayed.HeaderText = "Games"
         Me.ColumnGamesPlayed.Name = "ColumnGamesPlayed"
-        Me.ColumnGamesPlayed.ReadOnly = True
         '
         'ColumnWins
         '
         Me.ColumnWins.Frozen = True
         Me.ColumnWins.HeaderText = "Wins"
         Me.ColumnWins.Name = "ColumnWins"
-        Me.ColumnWins.ReadOnly = True
+        '
+        'Simple
+        '
+        Me.Simple.Frozen = True
+        Me.Simple.HeaderText = "Simple"
+        Me.Simple.Name = "Simple"
+        '
+        'Medium
+        '
+        Me.Medium.Frozen = True
+        Me.Medium.HeaderText = "Medium"
+        Me.Medium.Name = "Medium"
+        '
+        'Hard
+        '
+        Me.Hard.Frozen = True
+        Me.Hard.HeaderText = "Hard"
+        Me.Hard.Name = "Hard"
         '
         'ColumnTotalTime
         '
         Me.ColumnTotalTime.Frozen = True
         Me.ColumnTotalTime.HeaderText = "Total time"
         Me.ColumnTotalTime.Name = "ColumnTotalTime"
-        Me.ColumnTotalTime.ReadOnly = True
         '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(540, 362)
+        Me.ClientSize = New System.Drawing.Size(844, 388)
         Me.Controls.Add(Me.dgvGames)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormStats"
@@ -96,5 +114,8 @@ Partial Class FormStats
     Friend WithEvents ColumnBestTime As DataGridViewTextBoxColumn
     Friend WithEvents ColumnGamesPlayed As DataGridViewTextBoxColumn
     Friend WithEvents ColumnWins As DataGridViewTextBoxColumn
+    Friend WithEvents Simple As DataGridViewTextBoxColumn
+    Friend WithEvents Medium As DataGridViewTextBoxColumn
+    Friend WithEvents Hard As DataGridViewTextBoxColumn
     Friend WithEvents ColumnTotalTime As DataGridViewTextBoxColumn
 End Class

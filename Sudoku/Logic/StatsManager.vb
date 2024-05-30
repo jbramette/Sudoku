@@ -18,15 +18,20 @@ Module StatsManager
         ' nombre de partie jouées
         Public gamesPlayed As Integer
 
-        ' nombre de partie gagnées
-        Public totalWin As Integer
+        ' nombre de partie gagnées par difficulté
+        Public winsSimple As Integer
+        Public winsMedium As Integer
+        Public winsHard As Integer
+
+        Public Function GetTotalWin() As Integer
+            Return winsSimple + winsMedium + winsHard
+        End Function
     End Structure
 
     Structure GameStats
         Public timePlayed As Integer
         Public won As Boolean
-
-        '...
+        Public difficulty As PuzzleDifficulty
     End Structure
 
     ' Retourne une liste de tous les joueurs qui ont joué au jeu
@@ -74,7 +79,14 @@ Module StatsManager
                     stats.totalPlayTime += gameStats.timePlayed
 
                     If gameStats.won Then
-                        stats.totalWin += 1
+                        Select Case gameStats.difficulty
+                            Case PuzzleDifficulty.Simple
+                                stats.winsSimple += 1
+                            Case PuzzleDifficulty.Medium
+                                stats.winsMedium += 1
+                            Case PuzzleDifficulty.Hard
+                                stats.winsHard += 1
+                        End Select
                     End If
 
                     If gameStats.timePlayed < stats.recordTime Then
@@ -102,19 +114,23 @@ Module StatsManager
         File.AppendAllText(filePath, contents)
     End Sub
 
+    Public Sub RemoveStatsFileForPlayer(nickname As String)
+        File.Delete(StatsFilePath(nickname))
+    End Sub
+
     Private Function StatsFilePath(nickname As String) As String
         Return $"{STATS_DIR}/{nickname}.{STATS_EXT}"
     End Function
 
     ' Convert a GameStats structure to a string
     Private Function Serialize(stats As GameStats) As String
-        Return $"{stats.timePlayed} {stats.won}{Environment.NewLine}"
+        Return $"{stats.timePlayed} {stats.won} {stats.difficulty}{Environment.NewLine}"
     End Function
 
     ' Convert line from save file to a GameStats structure
     Private Function Deserialize(content As String, ByRef stats As GameStats) As Boolean
         Try
-            Dim varCount As Integer = 2
+            Dim varCount As Integer = 3
             Dim vars As String() = Split(content, Limit:=varCount)
 
             ' Validate the split result
@@ -128,12 +144,14 @@ Module StatsManager
             End If
 
             ' Parse the won value
-            Dim wonValue As Boolean
-            If Not Boolean.TryParse(vars(1), wonValue) Then
+            If Not Boolean.TryParse(vars(1), stats.won) Then
                 Return False
             End If
 
-            stats.won = wonValue
+            ' Parse the difficulty value
+            If Not PuzzleDifficulty.TryParse(vars(2), stats.difficulty) Then
+                Return False
+            End If
         Catch ex As Exception
             Return False
         End Try
