@@ -60,7 +60,15 @@ Public Class GameController
             Next
         Next
 
-        Dim puzzle = Generator.QueryPuzzle(difficulty)
+        Dim puzzle As List(Of List(Of Integer))
+
+        Try
+            puzzle = Generator.QueryPuzzle(difficulty)
+        Catch ex As Exception ' No internet connection
+            MsgBox("Couldn't fetch puzzle, please check your internet connection.")
+            Application.Exit()
+        End Try
+
         LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded
