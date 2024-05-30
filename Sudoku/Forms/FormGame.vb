@@ -33,10 +33,6 @@
         lblRemainingTime.Text = String.Format("{0:00}:{1:00}", minutes, seconds)
     End Sub
 
-    Public Sub NotifyInputError()
-        MsgBox("Invalid input")
-    End Sub
-
     Public Sub NotifyWin()
         MsgBox("Win")
     End Sub

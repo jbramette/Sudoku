@@ -121,7 +121,6 @@ Public Class GameController
 
         ' Try to update the grid and notify UI in case of error
         If Not _grid.SetValue(cell.Col(), cell.Row(), cell.Value()) Then
-            _view.NotifyInputError()
             cell.Text = ""
         ElseIf _grid.IsCompleted() Then
             OnGameEnded(won:=True)
