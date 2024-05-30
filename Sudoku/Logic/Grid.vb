@@ -125,6 +125,21 @@
         Return True
     End Function
 
+    Friend Function GetAvaivableValues(col As Integer, row As Integer) As List(Of Integer)
+        Dim coordinates As List(Of (Integer, Integer)) = GetGroup(row, col)
+        Dim existingValues As List(Of Integer) = coordinates.Select(Function(coord) _grid(coord.Item1, coord.Item2)).ToList()
+
+        Dim possibleValues As New List(Of Integer)
+
+        For possibleValue = 1 To ROWS
+            If Not existingValues.Contains(possibleValue) Then
+                possibleValues.Add(possibleValue)
+            End If
+        Next
+
+        Return possibleValues
+    End Function
+
     Friend Sub PutValueUnchecked(col As Integer, row As Integer, value As Integer)
         _grid(row, col) = value
     End Sub

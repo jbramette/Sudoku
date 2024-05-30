@@ -1,4 +1,4 @@
-﻿Public Class GameController
+Public Class GameController
 
     ' We use the MVC (Model-View-Controller) pattern to separate the sudoku grid (=Model)
     ' from the GUI (=View)
@@ -60,6 +60,31 @@
 
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
+    End Sub
+
+    ' Algorithm to generate a random Sudoku grid
+    ' Accepts the number of cells to be filled, that determines the difficulty of the puzzle
+    Public Sub GenerateSudoku(filled As Integer)
+        For i = 0 To filled
+            Dim seed As New Random()
+            Dim getRandomUpTo = Function(upperbound As Integer) As Integer
+                                    Return seed.Next(0, upperbound)
+                                End Function
+
+            Dim randomCol = getRandomUpTo(Grid.COLS)
+            Dim randomRow = getRandomUpTo(Grid.ROWS)
+
+            ' Gets random position, if it lands on a filled one, it will loop
+            While _grid.GetValue(randomCol, randomRow) <> 0
+                randomCol = getRandomUpTo(Grid.COLS)
+                randomRow = getRandomUpTo(Grid.ROWS)
+            End While
+
+            Dim possibleValues = _grid.GetAvaivableValues(randomCol, randomRow)
+            Dim randomPossibleValue As Integer = possibleValues(getRandomUpTo(possibleValues.Count))
+
+            UpdateCell(_view.GetCell(randomCol, randomRow), randomPossibleValue)
+        Next
     End Sub
 
     Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
