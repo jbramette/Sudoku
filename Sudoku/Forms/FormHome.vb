@@ -5,7 +5,7 @@
     End Sub
 
     Public Function GetNickname()
-        Return cbxName.Text
+        Return cbxName.Text.Trim()
     End Function
 
     Private Sub OnButtonQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click

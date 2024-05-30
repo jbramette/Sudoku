@@ -4,6 +4,23 @@ Module ApiFetcher
 
     Private Const DUSOKU_API_LINK As String = "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value}}}"
 
+    ' Example JSON response
+    '
+    ' {
+    '     "newboard": {
+    '         "grids": [
+    '             {
+    '                 "value": [
+    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
+    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
+    '                     [0, 8, 9, 0, 0, 0, 0, 0, 0],
+    '                     ...
+    '                 ]
+    '             }         
+    '         ]
+    '     }
+    ' }
+    '
     Private Class PuzzleResponse
         Public Property newboard As NewBoard
     End Class

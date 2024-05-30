@@ -31,6 +31,9 @@ Module StatsManager
 
     ' Retourne une liste de tous les joueurs qui ont joué au jeu
     Public Function ListNicknames() As String()
+        ' Create directory if it does not exist yet
+        Directory.CreateDirectory(STATS_DIR)
+
         ' Retrieve the paths of all stats file
         Dim paths As String() = Directory.GetFiles(STATS_DIR, "*." & STATS_EXT)
 
