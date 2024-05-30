@@ -36,6 +36,7 @@ Public Class GameController
     Private _nickname As String
     Private _timer As Timer
     Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
+    Private _gameFinished As Boolean = False
 
     Public Sub New(view As FormGame, nickname As String)
         _view = view
@@ -65,6 +66,10 @@ Public Class GameController
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
     End Sub
+
+    Public Function IsGameFinished() As Boolean
+        Return _gameFinished
+    End Function
 
     ' Algorithm to generate a random Sudoku grid
     ' Accepts the number of cells to be filled, that determines the difficulty of the puzzle
@@ -142,6 +147,8 @@ Public Class GameController
     ' ran out, indicated by the parameter
     Private Sub OnGameEnded(won As Boolean)
         _timer.Stop()
+
+        _gameFinished = True
 
         ' Update UI
         If won Then

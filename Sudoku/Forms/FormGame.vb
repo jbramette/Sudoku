@@ -51,7 +51,7 @@
     End Sub
 
     Private Sub OnFormClosed(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If ConfirmQuit() = True Then
+        If _controller.IsGameFinished() OrElse ConfirmQuit() Then
             Die()
         Else
             e.Cancel = True ' Prevent the window from closing
@@ -59,13 +59,13 @@
     End Sub
 
     Private Sub OnButtonGiveUpClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
-        If ConfirmQuit() Then
+        If _controller.IsGameFinished() OrElse ConfirmQuit() Then
             Die()
         End If
     End Sub
 
     Private Function ConfirmQuit()
-        Dim r As MsgBoxResult = MsgBox("Do you really want to give up ?", vbOKCancel Or vbQuestion, "Confirmation")
+        Dim r As MsgBoxResult = MsgBox("Do you really want to give up ? Will not count as a lose", vbOKCancel Or vbQuestion, "Confirmation")
         Return r = MsgBoxResult.Ok
     End Function
 
