@@ -17,7 +17,7 @@ Module ApiFetcher
     '     ]
     ' }
     '
-    Private Class PuzzleJson
+    Friend Class PuzzleJson
         Public Property board As List(Of List(Of Integer))
     End Class
 
