@@ -1,4 +1,6 @@
-﻿Public Class FormStats
+﻿Imports System.ComponentModel
+
+Public Class FormStats
 
     ' On ne peut pas utiliser un dictionnaire car il ne permet pas de récupérer ses entrées facilement
     Private _stats As New List(Of (String, PlayerStats))
@@ -52,5 +54,9 @@
     Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxNames.SelectedIndexChanged, lbxBestTimes.SelectedIndexChanged
         lbxNames.SelectedIndex = sender.SelectedIndex
         lbxBestTimes.SelectedIndex = sender.SelectedIndex
+    End Sub
+
+    Private Sub FormStats_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        FormHome.Show()
     End Sub
 End Class
