@@ -37,6 +37,7 @@ Public Class GameController
     Private _timer As Timer
     Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
     Private _gameFinished As Boolean = False
+    Private _gameDifficulty As PuzzleDifficulty
 
     Public Sub New(view As FormGame, nickname As String)
         _view = view
@@ -52,6 +53,8 @@ Public Class GameController
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
     Public Sub StartGame(difficulty As Generator.PuzzleDifficulty)
+        _gameDifficulty = difficulty
+
         ' Create the UI's cells
         For y = 0 To Grid.ROWS - 1
             For x = 0 To Grid.COLS - 1
@@ -60,7 +63,7 @@ Public Class GameController
             Next
         Next
 
-        Dim puzzle = Generator.QueryPuzzle(difficulty)
+        Dim puzzle = Generator.QueryPuzzle(_gameDifficulty)
         LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded
@@ -161,6 +164,7 @@ Public Class GameController
 
         gameStats.won = won
         gameStats.timePlayed = GAME_DURATION_SECONDS - _remainingSeconds
+        gameStats.difficulty = _gameDifficulty
 
         StatsManager.SaveGameStatsForPlayer(gameStats, _nickname)
     End Sub
