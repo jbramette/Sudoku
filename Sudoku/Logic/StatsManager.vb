@@ -80,7 +80,7 @@ Module StatsManager
 
                     If gameStats.won Then
                         Select Case gameStats.difficulty
-                            Case PuzzleDifficulty.Simple
+                            Case PuzzleDifficulty.Easy
                                 stats.winsSimple += 1
                             Case PuzzleDifficulty.Medium
                                 stats.winsMedium += 1
