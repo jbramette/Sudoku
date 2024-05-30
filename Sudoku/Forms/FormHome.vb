@@ -21,7 +21,6 @@
         End If
     End Sub
 
-
     Private Sub OnPlayClick(sender As Object, e As EventArgs) Handles btnPlayGame.Click
         Dim nickname As String = GetNickname()
 
