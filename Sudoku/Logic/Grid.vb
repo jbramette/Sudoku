@@ -6,18 +6,6 @@
     ' Internal grid
     Private _grid(COLS - 1, ROWS - 1) As Integer
 
-    ' Algorithm to generate a random Sudoku grid
-    Public Sub Generate()
-        ' Dummy values ATM
-        For i = 0 To ROWS - 1
-            For j = 0 To COLS - 1
-                If j + ROWS * i <> 0 Then
-                    _grid(i, j) = 1
-                End If
-            Next
-        Next
-    End Sub
-
     ' Index of the square (ie: group) in which the coordinates are part of
     '
     ' Squares on the grid:
@@ -136,5 +124,24 @@
 
         Return True
     End Function
+
+    Friend Function GetAvaivableValues(col As Integer, row As Integer) As List(Of Integer)
+        Dim coordinates As List(Of (Integer, Integer)) = GetGroup(row, col)
+        Dim existingValues As List(Of Integer) = coordinates.Select(Function(coord) _grid(coord.Item1, coord.Item2)).ToList()
+
+        Dim possibleValues As New List(Of Integer)
+
+        For possibleValue = 1 To ROWS
+            If Not existingValues.Contains(possibleValue) Then
+                possibleValues.Add(possibleValue)
+            End If
+        Next
+
+        Return possibleValues
+    End Function
+
+    Friend Sub PutValueUnchecked(col As Integer, row As Integer, value As Integer)
+        _grid(row, col) = value
+    End Sub
 
 End Class

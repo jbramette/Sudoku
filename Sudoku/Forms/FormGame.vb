@@ -90,9 +90,13 @@
     ' column or row of the focused cell
     Private Sub SwitchLightInTheGroup(col As Integer, row As Integer, lightUp As Boolean)
         For Each coord As (Integer, Integer) In Grid.GetGroup(row, col)
-            Dim cell As GridCell = pnlGrid.Controls(coord.Item1 * Grid.COLS + coord.Item2)
+            Dim cell As GridCell = GetCell(coord.Item2, coord.Item1)
             If lightUp Then cell.LightUp() Else cell.LightDown()
         Next
     End Sub
+
+    Public Function GetCell(col As Integer, row As Integer) As GridCell
+        Return pnlGrid.Controls(row * Grid.COLS + col)
+    End Function
 
 End Class
