@@ -2,46 +2,34 @@
 
 Module ApiFetcher
 
-    Private Const DUSOKU_API_LINK As String = "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{solution}}}"
+    Private Const API_LINK As String = "https://sugoku.onrender.com/board?difficulty=easy"
 
     ' Example JSON response
     '
     ' {
-    '     "newboard": {
-    '         "grids": [
-    '             {
-    '                 "solution": [
-    '                     [1, 2, 3...],
-    '                     [...],
-    '                     [...],
-    '                     ...
-    '                 ]
-    '             }         
+    '     "board": [
+    '         [
+    '           [1, 2, 3...],
+    '           [...],
+    '           [...],
+    '           ...
     '         ]
-    '     }
+    '     ]
     ' }
     '
     Private Class PuzzleJson
-        Public Property newboard As NewBoard
+        Public Property board As List(Of List(Of Integer))
     End Class
-
-    Private Structure NewBoard
-        Public Property grids As List(Of Solution)
-    End Structure
-
-    Private Structure Solution
-        Public Property solution As List(Of List(Of Integer))
-    End Structure
 
     Private Function HttpGet() As String
         Using webClient As New Net.WebClient
-            Return webClient.DownloadString(DUSOKU_API_LINK)
+            Return webClient.DownloadString(API_LINK)
         End Using
     End Function
 
     Public Function FetchPuzzle() As List(Of List(Of Integer))
         Dim response = HttpGet()
         Dim json = JsonSerializer.Deserialize(Of PuzzleJson)(response)
-        Return json.newboard.grids(0).solution
+        Return json.board
     End Function
 End Module

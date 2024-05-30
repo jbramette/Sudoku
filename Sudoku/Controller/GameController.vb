@@ -63,7 +63,7 @@ Public Class GameController
         Dim puzzle As List(Of List(Of Integer))
 
         Try
-            puzzle = Generator.QueryPuzzle(difficulty)
+            puzzle = ApiFetcher.FetchPuzzle()
         Catch ex As Exception ' No internet connection
             MsgBox("Couldn't fetch puzzle, please check your internet connection.")
             Application.Exit()
