@@ -38,9 +38,9 @@ Partial Public Class BackupPuzzles
             Case PuzzleDifficulty.Easy
                 puzzleJson = easy_puzzles(getRandomUpTo(easy_puzzles.Count))
             Case PuzzleDifficulty.Medium
-                puzzleJson = easy_puzzles(getRandomUpTo(easy_puzzles.Count))
+                puzzleJson = medium_puzzles(getRandomUpTo(medium_puzzles.Count))
             Case PuzzleDifficulty.Hard
-                puzzleJson = easy_puzzles(getRandomUpTo(easy_puzzles.Count))
+                puzzleJson = hard_puzzles(getRandomUpTo(hard_puzzles.Count))
         End Select
 
         Dim json = JsonSerializer.Deserialize(Of PuzzleJson)(puzzleJson)
