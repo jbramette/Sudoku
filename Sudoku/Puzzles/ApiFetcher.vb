@@ -1,6 +1,6 @@
 ﻿Imports System.Text.Json
 
-Public Module ApiFetcher
+Module ApiFetcher
 
     Private Const BASE_API_LINK As String = "https://sugoku.onrender.com/board"
 
@@ -21,11 +21,10 @@ Public Module ApiFetcher
         Public Property board As List(Of List(Of Integer))
     End Class
 
-    Public Enum PuzzleDifficulty
-        Easy
-        Medium
-        Hard
-    End Enum
+    Public Function GetPuzzle(difficulty As PuzzleDifficulty) As List(Of List(Of Integer))
+        Dim url = BASE_API_LINK & GetDifficultySuffix(difficulty)
+        Return FetchPuzzle(url)
+    End Function
 
     Private Function HttpGet(url) As String
         Using webClient As New Net.WebClient
@@ -54,10 +53,4 @@ Public Module ApiFetcher
 
         Return prefix & difficultyName
     End Function
-
-    Public Function GetPuzzle(difficulty As PuzzleDifficulty) As List(Of List(Of Integer))
-        Dim url = BASE_API_LINK & GetDifficultySuffix(difficulty)
-        Return ApiFetcher.FetchPuzzle(url)
-    End Function
-
 End Module

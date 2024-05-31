@@ -66,13 +66,7 @@ Public Class GameController
             Next
         Next
 
-        Dim puzzle As List(Of List(Of Integer))
-
-        Try
-            puzzle = ApiFetcher.GetPuzzle(difficulty)
-        Catch ex As Exception ' No internet connection
-            puzzle = BackupPuzzles.GetPuzzle(difficulty)
-        End Try
+        Dim puzzle As List(Of List(Of Integer)) = PuzzleProvider.QueryPuzzle(difficulty)
 
         LoadPuzzle(puzzle)
 
