@@ -7,7 +7,9 @@ Public Class FormGame
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         lblNickname.Text = FormHome.GetNickname()
 
-        _controller = New GameController(view:=Me, nickname:=lblNickname.Text)
+        _controller = New GameController(view:=Me,
+                                         nickname:=lblNickname.Text,
+                                         gameDurationSeconds:=FormHome.GetSelectedSeconds())
 
         _controller.StartGame(FormHome.GetSelectedDifficulty())
     End Sub

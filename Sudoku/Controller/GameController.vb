@@ -27,24 +27,27 @@ Public Class GameController
     ' + This pattern also makes it easier to test Grid as a standalone component.
     ' 
 
-    Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
-
     Private _view As FormGame
     Private _grid As Grid
 
     ' Game related data, maybe move to a GameManager class ?
     Private _nickname As String
     Private _timer As Timer
-    Private _remainingSeconds As Integer = GAME_DURATION_SECONDS
+    Private _gameDuration As Integer
+    Private _remainingSeconds As Integer
     Private _gameFinished As Boolean = False
+
     Private _gameDifficulty As PuzzleDifficulty
 
-    Public Sub New(view As FormGame, nickname As String)
+    Public Sub New(view As FormGame, nickname As String, gameDurationSeconds As Integer)
         _view = view
         _grid = New Grid()
         _nickname = nickname
         _timer = New Timer()
         _timer.Interval = 1000
+
+        _gameDuration = gameDurationSeconds
+        _remainingSeconds = _gameDuration
 
         AddHandler _timer.Tick, AddressOf OnTimerTick
     End Sub
@@ -167,7 +170,7 @@ Public Class GameController
         Dim gameStats As StatsManager.GameStats
 
         gameStats.won = won
-        gameStats.timePlayed = GAME_DURATION_SECONDS - _remainingSeconds
+        gameStats.timePlayed = _gameDuration - _remainingSeconds
         gameStats.difficulty = _gameDifficulty
 
         StatsManager.SaveGameStatsForPlayer(gameStats, _nickname)

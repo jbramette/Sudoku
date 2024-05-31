@@ -1,11 +1,10 @@
-﻿Imports System.ComponentModel
-
-Public Class FormHome
+﻿Public Class FormHome
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         cbxName.Items.AddRange(StatsManager.ListNicknames())
     End Sub
 
+    ' Settings getters
     Public Function GetNickname() As String
         Return cbxName.Text.Trim()
     End Function
@@ -16,16 +15,26 @@ Public Class FormHome
         If rbModeHard.Checked Then Return PuzzleDifficulty.Hard
     End Function
 
-    Private Sub OnButtonQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click
-        Dim r As MsgBoxResult = MsgBox("Do you really want to leave ?", vbOKCancel Or vbQuestion, "Confirmation")
+    Public Function GetSelectedSeconds() As Integer
+        Return numMinutes.Value * 60 + numSeconds.Value
+    End Function
 
-        If r = MsgBoxResult.Ok Then
-            Me.Close()
+    Private Sub TryPlay()
+        If GetNickname().Length <= 0 Then
+            MsgBox("No nickname selected", vbInformation, "Missing information")
+            Exit Sub
         End If
 
+        If GetSelectedSeconds() = 0 Then
+            MsgBox("Invalid selected time", vbInformation, "Missing information")
+            Exit Sub
+        End If
+
+        Me.Hide()
+        FormGame.Show()
     End Sub
 
-    Private Sub OnKeyPress(sender As Object, e As KeyPressEventArgs) Handles cbxName.KeyPress
+    Private Sub OnKeyPressed(sender As Object, e As KeyPressEventArgs) Handles cbxName.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
             TryPlay()
@@ -36,25 +45,21 @@ Public Class FormHome
         TryPlay()
     End Sub
 
-    Private Sub TryPlay()
-        Dim nickname As String = GetNickname()
-
-        If nickname.Length <= 0 Then
-            MsgBox("No nickname selected", vbInformation, "Missing information")
-            Exit Sub
-        End If
-
-        Me.Hide()
-        FormGame.Show()
-    End Sub
-
     Private Sub OnButtonStatsClick(sender As Object, e As EventArgs) Handles btnOpenStats.Click
         Me.Hide()
         FormStats.Show()
     End Sub
 
-    Private Sub btnRules_Click(sender As Object, e As EventArgs) Handles btnRules.Click
+    Private Sub OnButtonRulesClick(sender As Object, e As EventArgs) Handles btnRules.Click
         Me.Hide()
         FormRules.Show()
+    End Sub
+
+    Private Sub OnButtonQuitClick(sender As Object, e As EventArgs) Handles btnQuit.Click
+        Dim r As MsgBoxResult = MsgBox("Do you really want to leave ?", vbOKCancel Or vbQuestion, "Confirmation")
+
+        If r = MsgBoxResult.Ok Then
+            Me.Close()
+        End If
     End Sub
 End Class
