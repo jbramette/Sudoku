@@ -1,4 +1,6 @@
-﻿Public Class FormGame
+﻿Imports System.Configuration
+
+Public Class FormGame
 
     Private _controller As GameController
 
@@ -30,12 +32,15 @@
         Return pnlGrid.Controls(row * Grid.COLS + col)
     End Function
 
-    Public Sub UpdateTimerText(seconds As Integer)
-        If seconds < 30 Then
+    Public Sub UpdateTimerText(remainingSeconds As Integer)
+        If remainingSeconds < 30 Then
             lblRemainingTime.ForeColor = Color.Red
         End If
 
-        lblRemainingTime.Text = TimeSpan.FromSeconds(seconds).ToString()
+        Dim minutes As Integer = remainingSeconds \ 60
+        Dim seconds As Integer = remainingSeconds Mod 60
+
+        lblRemainingTime.Text = String.Format("{0:00}:{1:00}", minutes, seconds)
     End Sub
 
     Public Sub NotifyWin()

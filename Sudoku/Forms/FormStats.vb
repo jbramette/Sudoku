@@ -79,7 +79,7 @@ Public Class FormStats
     End Sub
 
     Private Sub OnStatsDetailsClick(sender As Object, e As EventArgs) Handles btnDetailedStats.Click
-        If cbxNicknames.SelectedItem Then
+        If cbxNicknames.SelectedItem IsNot Nothing Then
             Dim stats As PlayerStats = _stats(cbxNicknames.SelectedIndex).Item2
 
             Dim info As String = $"Best Time: {TimeSpan.FromSeconds(stats.recordTime)}" & Environment.NewLine &
@@ -88,7 +88,7 @@ Public Class FormStats
                                  $"Easy wins: {stats.winsSimple}" & Environment.NewLine &
                                  $"Medium wins: {stats.winsMedium}" & Environment.NewLine &
                                  $"Hard wins: {stats.winsHard}" & Environment.NewLine &
-                                 $"Total wins: {stats.GetTotalWin()}"
+                                 $"Total wins: {stats.GetTotalWins()}"
 
 
             MsgBox(info, MsgBoxStyle.Information, $"Details for player {cbxNicknames.SelectedItem}")

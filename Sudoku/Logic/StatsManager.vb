@@ -23,7 +23,7 @@ Module StatsManager
         Public winsMedium As Integer
         Public winsHard As Integer
 
-        Public Function GetTotalWin() As Integer
+        Public Function GetTotalWins() As Integer
             Return winsSimple + winsMedium + winsHard
         End Function
     End Structure
