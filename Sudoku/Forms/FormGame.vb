@@ -30,12 +30,12 @@
         Return pnlGrid.Controls(row * Grid.COLS + col)
     End Function
 
-    Public Sub UpdateTimerText(minutes As Integer, seconds As Integer)
-        If minutes = 0 And seconds < 30 Then
+    Public Sub UpdateTimerText(seconds As Integer)
+        If seconds < 30 Then
             lblRemainingTime.ForeColor = Color.Red
         End If
 
-        lblRemainingTime.Text = String.Format("{0:00}:{1:00}", minutes, seconds)
+        lblRemainingTime.Text = TimeSpan.FromSeconds(seconds).ToString()
     End Sub
 
     Public Sub NotifyWin()

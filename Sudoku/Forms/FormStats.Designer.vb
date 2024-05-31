@@ -28,6 +28,7 @@ Partial Class FormStats
         Me.rbSortByBestTimes = New System.Windows.Forms.RadioButton()
         Me.rbSortByNames = New System.Windows.Forms.RadioButton()
         Me.cbxNicknames = New System.Windows.Forms.ComboBox()
+        Me.btnDetailedStats = New System.Windows.Forms.Button()
         Me.gbxRbSorting.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -90,11 +91,21 @@ Partial Class FormStats
         Me.cbxNicknames.Size = New System.Drawing.Size(147, 23)
         Me.cbxNicknames.TabIndex = 3
         '
+        'btnDetailedStats
+        '
+        Me.btnDetailedStats.Location = New System.Drawing.Point(167, 57)
+        Me.btnDetailedStats.Name = "btnDetailedStats"
+        Me.btnDetailedStats.Size = New System.Drawing.Size(151, 23)
+        Me.btnDetailedStats.TabIndex = 4
+        Me.btnDetailedStats.Text = "Player's details"
+        Me.btnDetailedStats.UseVisualStyleBackColor = True
+        '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(332, 453)
+        Me.Controls.Add(Me.btnDetailedStats)
         Me.Controls.Add(Me.cbxNicknames)
         Me.Controls.Add(Me.gbxRbSorting)
         Me.Controls.Add(Me.lbxBestTimes)
@@ -114,4 +125,5 @@ Partial Class FormStats
     Friend WithEvents rbSortByBestTimes As RadioButton
     Friend WithEvents rbSortByNames As RadioButton
     Friend WithEvents cbxNicknames As ComboBox
+    Friend WithEvents btnDetailedStats As Button
 End Class

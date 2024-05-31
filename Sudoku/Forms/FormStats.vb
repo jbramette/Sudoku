@@ -77,4 +77,12 @@ Public Class FormStats
             lbxBestTimes.SelectedIndex = i
         End If
     End Sub
+
+    Private Sub OnStatsDetailsClick(sender As Object, e As EventArgs) Handles btnDetailedStats.Click
+        If cbxNicknames.SelectedItem Then
+            ' TODO: transformer _stats en hashtable et formatter info avec les stats du joueur
+            Dim info As String = $"{} {} {}"
+            MsgBox(info, MsgBoxStyle.Information, $"Details for player {cbxNicknames.SelectedItem}")
+        End If
+    End Sub
 End Class
