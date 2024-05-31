@@ -54,22 +54,16 @@ Public Class FormGame
         MsgBox("You lost")
     End Sub
 
-    Private Sub Die()
-        FormHome.Close()
-    End Sub
-
     Private Sub OnFormClose(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If _controller.IsGameFinished() OrElse ConfirmQuit() Then
-            Die()
+            FormHome.Show()
         Else
             e.Cancel = True ' Prevent the window from closing
         End If
     End Sub
 
     Private Sub OnButtonGiveUpClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
-        If _controller.IsGameFinished() OrElse ConfirmQuit() Then
-            Die()
-        End If
+        Me.Close()
     End Sub
 
     Private Function ConfirmQuit()
