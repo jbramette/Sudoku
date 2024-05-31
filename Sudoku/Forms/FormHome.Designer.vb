@@ -29,13 +29,13 @@ Partial Class FormHome
         Me.btnOpenStats = New System.Windows.Forms.Button()
         Me.rbModeSimple = New System.Windows.Forms.RadioButton()
         Me.gbxDifficulty = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.numMinutes = New System.Windows.Forms.NumericUpDown()
+        Me.numSeconds = New System.Windows.Forms.NumericUpDown()
         Me.rbModeHard = New System.Windows.Forms.RadioButton()
         Me.rbModeMedium = New System.Windows.Forms.RadioButton()
         Me.btnRules = New System.Windows.Forms.Button()
-        Me.numMinutes = New System.Windows.Forms.NumericUpDown()
-        Me.numSeconds = New System.Windows.Forms.NumericUpDown()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.gbxDifficulty.SuspendLayout()
         CType(Me.numMinutes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numSeconds, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,32 +55,32 @@ Partial Class FormHome
         Me.cbxName.FormattingEnabled = True
         Me.cbxName.Location = New System.Drawing.Point(82, 18)
         Me.cbxName.Name = "cbxName"
-        Me.cbxName.Size = New System.Drawing.Size(195, 23)
+        Me.cbxName.Size = New System.Drawing.Size(211, 23)
         Me.cbxName.TabIndex = 1
         '
         'btnQuit
         '
-        Me.btnQuit.Location = New System.Drawing.Point(298, 113)
+        Me.btnQuit.Location = New System.Drawing.Point(299, 172)
         Me.btnQuit.Name = "btnQuit"
-        Me.btnQuit.Size = New System.Drawing.Size(75, 23)
+        Me.btnQuit.Size = New System.Drawing.Size(75, 32)
         Me.btnQuit.TabIndex = 2
         Me.btnQuit.Text = "Quit"
         Me.btnQuit.UseVisualStyleBackColor = True
         '
         'btnPlayGame
         '
-        Me.btnPlayGame.Location = New System.Drawing.Point(298, 51)
+        Me.btnPlayGame.Location = New System.Drawing.Point(299, 96)
         Me.btnPlayGame.Name = "btnPlayGame"
-        Me.btnPlayGame.Size = New System.Drawing.Size(75, 23)
+        Me.btnPlayGame.Size = New System.Drawing.Size(75, 32)
         Me.btnPlayGame.TabIndex = 3
         Me.btnPlayGame.Text = "Play"
         Me.btnPlayGame.UseVisualStyleBackColor = True
         '
         'btnOpenStats
         '
-        Me.btnOpenStats.Location = New System.Drawing.Point(298, 84)
+        Me.btnOpenStats.Location = New System.Drawing.Point(299, 134)
         Me.btnOpenStats.Name = "btnOpenStats"
-        Me.btnOpenStats.Size = New System.Drawing.Size(75, 23)
+        Me.btnOpenStats.Size = New System.Drawing.Size(75, 32)
         Me.btnOpenStats.TabIndex = 4
         Me.btnOpenStats.Text = "Stats"
         Me.btnOpenStats.UseVisualStyleBackColor = True
@@ -108,10 +108,46 @@ Partial Class FormHome
         Me.gbxDifficulty.Controls.Add(Me.rbModeSimple)
         Me.gbxDifficulty.Location = New System.Drawing.Point(12, 51)
         Me.gbxDifficulty.Name = "gbxDifficulty"
-        Me.gbxDifficulty.Size = New System.Drawing.Size(281, 134)
+        Me.gbxDifficulty.Size = New System.Drawing.Size(281, 155)
         Me.gbxDifficulty.TabIndex = 6
         Me.gbxDifficulty.TabStop = False
         Me.gbxDifficulty.Text = "Difficulty"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(138, 90)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(12, 15)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "s"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(67, 90)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(18, 15)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "m"
+        '
+        'numMinutes
+        '
+        Me.numMinutes.Location = New System.Drawing.Point(14, 88)
+        Me.numMinutes.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.numMinutes.Name = "numMinutes"
+        Me.numMinutes.Size = New System.Drawing.Size(47, 23)
+        Me.numMinutes.TabIndex = 8
+        Me.numMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'numSeconds
+        '
+        Me.numSeconds.Location = New System.Drawing.Point(91, 88)
+        Me.numSeconds.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.numSeconds.Name = "numSeconds"
+        Me.numSeconds.Size = New System.Drawing.Size(41, 23)
+        Me.numSeconds.TabIndex = 9
+        Me.numSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'rbModeHard
         '
@@ -136,48 +172,12 @@ Partial Class FormHome
         '
         'btnRules
         '
-        Me.btnRules.Location = New System.Drawing.Point(298, 18)
+        Me.btnRules.Location = New System.Drawing.Point(299, 59)
         Me.btnRules.Name = "btnRules"
-        Me.btnRules.Size = New System.Drawing.Size(75, 23)
+        Me.btnRules.Size = New System.Drawing.Size(75, 31)
         Me.btnRules.TabIndex = 7
         Me.btnRules.Text = "Rules"
         Me.btnRules.UseVisualStyleBackColor = True
-        '
-        'numMinutes
-        '
-        Me.numMinutes.Location = New System.Drawing.Point(14, 88)
-        Me.numMinutes.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
-        Me.numMinutes.Name = "numMinutes"
-        Me.numMinutes.Size = New System.Drawing.Size(47, 23)
-        Me.numMinutes.TabIndex = 8
-        Me.numMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'numSeconds
-        '
-        Me.numSeconds.Location = New System.Drawing.Point(91, 88)
-        Me.numSeconds.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
-        Me.numSeconds.Name = "numSeconds"
-        Me.numSeconds.Size = New System.Drawing.Size(41, 23)
-        Me.numSeconds.TabIndex = 9
-        Me.numSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(67, 90)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 15)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "m"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(138, 90)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(12, 15)
-        Me.Label2.TabIndex = 11
-        Me.Label2.Text = "s"
         '
         'FormHome
         '
@@ -185,7 +185,7 @@ Partial Class FormHome
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(384, 197)
+        Me.ClientSize = New System.Drawing.Size(382, 213)
         Me.Controls.Add(Me.btnRules)
         Me.Controls.Add(Me.gbxDifficulty)
         Me.Controls.Add(Me.btnOpenStats)
