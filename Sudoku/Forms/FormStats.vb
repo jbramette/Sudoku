@@ -52,7 +52,7 @@ Public Class FormStats
         PopulateStatsControls()
     End Sub
 
-    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs)
+    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxBestTimes.SelectedIndexChanged, lbxNames.SelectedIndexChanged
         SyncSelectedIndices(sender.SelectedIndex)
 
         cbxNicknames.SelectedItem = lbxNames.SelectedItem
