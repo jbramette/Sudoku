@@ -52,4 +52,9 @@ Public Class FormHome
         Me.Hide()
         FormStats.Show()
     End Sub
+
+    Private Sub btnRules_Click(sender As Object, e As EventArgs) Handles btnRules.Click
+        Me.Hide()
+        FormRules.Show()
+    End Sub
 End Class

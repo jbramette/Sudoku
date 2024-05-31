@@ -22,128 +22,138 @@ Partial Class FormHome
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblNickname = New System.Windows.Forms.Label()
-        Me.cbxName = New System.Windows.Forms.ComboBox()
-        Me.btnQuit = New System.Windows.Forms.Button()
-        Me.btnPlayGame = New System.Windows.Forms.Button()
-        Me.btnOpenStats = New System.Windows.Forms.Button()
-        Me.rbModeSimple = New System.Windows.Forms.RadioButton()
-        Me.gbxDifficulty = New System.Windows.Forms.GroupBox()
-        Me.rbModeMedium = New System.Windows.Forms.RadioButton()
-        Me.rbModeHard = New System.Windows.Forms.RadioButton()
-        Me.gbxDifficulty.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'lblNickname
-        '
-        Me.lblNickname.AutoSize = True
-        Me.lblNickname.Location = New System.Drawing.Point(12, 21)
-        Me.lblNickname.Name = "lblNickname"
-        Me.lblNickname.Size = New System.Drawing.Size(64, 15)
-        Me.lblNickname.TabIndex = 0
-        Me.lblNickname.Text = "Nickname:"
-        '
-        'cbxName
-        '
-        Me.cbxName.FormattingEnabled = True
-        Me.cbxName.Location = New System.Drawing.Point(82, 18)
-        Me.cbxName.Name = "cbxName"
-        Me.cbxName.Size = New System.Drawing.Size(195, 23)
-        Me.cbxName.TabIndex = 1
-        '
-        'btnQuit
-        '
-        Me.btnQuit.Location = New System.Drawing.Point(12, 157)
-        Me.btnQuit.Name = "btnQuit"
-        Me.btnQuit.Size = New System.Drawing.Size(75, 23)
-        Me.btnQuit.TabIndex = 2
-        Me.btnQuit.Text = "Quit"
-        Me.btnQuit.UseVisualStyleBackColor = True
-        '
-        'btnPlayGame
-        '
-        Me.btnPlayGame.Location = New System.Drawing.Point(353, 157)
-        Me.btnPlayGame.Name = "btnPlayGame"
-        Me.btnPlayGame.Size = New System.Drawing.Size(75, 23)
-        Me.btnPlayGame.TabIndex = 3
-        Me.btnPlayGame.Text = "Play"
-        Me.btnPlayGame.UseVisualStyleBackColor = True
-        '
-        'btnOpenStats
-        '
-        Me.btnOpenStats.Location = New System.Drawing.Point(353, 128)
-        Me.btnOpenStats.Name = "btnOpenStats"
-        Me.btnOpenStats.Size = New System.Drawing.Size(75, 23)
-        Me.btnOpenStats.TabIndex = 4
-        Me.btnOpenStats.Text = "Stats"
-        Me.btnOpenStats.UseVisualStyleBackColor = True
-        '
-        'rbModeSimple
-        '
-        Me.rbModeSimple.AutoSize = True
-        Me.rbModeSimple.Checked = True
-        Me.rbModeSimple.Location = New System.Drawing.Point(14, 33)
-        Me.rbModeSimple.Name = "rbModeSimple"
-        Me.rbModeSimple.Size = New System.Drawing.Size(61, 19)
-        Me.rbModeSimple.TabIndex = 5
-        Me.rbModeSimple.TabStop = True
-        Me.rbModeSimple.Text = "Simple"
-        Me.rbModeSimple.UseVisualStyleBackColor = True
-        '
-        'gbxDifficulty
-        '
-        Me.gbxDifficulty.Controls.Add(Me.rbModeHard)
-        Me.gbxDifficulty.Controls.Add(Me.rbModeMedium)
-        Me.gbxDifficulty.Controls.Add(Me.rbModeSimple)
-        Me.gbxDifficulty.Location = New System.Drawing.Point(12, 51)
-        Me.gbxDifficulty.Name = "gbxDifficulty"
-        Me.gbxDifficulty.Size = New System.Drawing.Size(265, 75)
-        Me.gbxDifficulty.TabIndex = 6
-        Me.gbxDifficulty.TabStop = False
-        Me.gbxDifficulty.Text = "Difficulty"
-        '
-        'rbModeMedium
-        '
-        Me.rbModeMedium.AutoSize = True
-        Me.rbModeMedium.Location = New System.Drawing.Point(97, 33)
-        Me.rbModeMedium.Name = "rbModeMedium"
-        Me.rbModeMedium.Size = New System.Drawing.Size(70, 19)
-        Me.rbModeMedium.TabIndex = 6
-        Me.rbModeMedium.Text = "Medium"
-        Me.rbModeMedium.UseVisualStyleBackColor = True
-        '
-        'rbModeHard
-        '
-        Me.rbModeHard.AutoSize = True
-        Me.rbModeHard.Location = New System.Drawing.Point(196, 33)
-        Me.rbModeHard.Name = "rbModeHard"
-        Me.rbModeHard.Size = New System.Drawing.Size(51, 19)
-        Me.rbModeHard.TabIndex = 7
-        Me.rbModeHard.TabStop = True
-        Me.rbModeHard.Text = "Hard"
-        Me.rbModeHard.UseVisualStyleBackColor = True
-        '
-        'FormHome
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(440, 192)
-        Me.Controls.Add(Me.gbxDifficulty)
-        Me.Controls.Add(Me.btnOpenStats)
-        Me.Controls.Add(Me.btnPlayGame)
-        Me.Controls.Add(Me.btnQuit)
-        Me.Controls.Add(Me.cbxName)
-        Me.Controls.Add(Me.lblNickname)
-        Me.Name = "FormHome"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sudoku"
-        Me.gbxDifficulty.ResumeLayout(False)
-        Me.gbxDifficulty.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
-
+        lblNickname = New Label()
+        cbxName = New ComboBox()
+        btnQuit = New Button()
+        btnPlayGame = New Button()
+        btnOpenStats = New Button()
+        rbModeSimple = New RadioButton()
+        gbxDifficulty = New GroupBox()
+        rbModeHard = New RadioButton()
+        rbModeMedium = New RadioButton()
+        btnRules = New Button()
+        gbxDifficulty.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' lblNickname
+        ' 
+        lblNickname.AutoSize = True
+        lblNickname.Location = New Point(12, 21)
+        lblNickname.Name = "lblNickname"
+        lblNickname.Size = New Size(64, 15)
+        lblNickname.TabIndex = 0
+        lblNickname.Text = "Nickname:"
+        ' 
+        ' cbxName
+        ' 
+        cbxName.FormattingEnabled = True
+        cbxName.Location = New Point(82, 18)
+        cbxName.Name = "cbxName"
+        cbxName.Size = New Size(195, 23)
+        cbxName.TabIndex = 1
+        ' 
+        ' btnQuit
+        ' 
+        btnQuit.Location = New Point(12, 157)
+        btnQuit.Name = "btnQuit"
+        btnQuit.Size = New Size(75, 23)
+        btnQuit.TabIndex = 2
+        btnQuit.Text = "Quit"
+        btnQuit.UseVisualStyleBackColor = True
+        ' 
+        ' btnPlayGame
+        ' 
+        btnPlayGame.Location = New Point(353, 157)
+        btnPlayGame.Name = "btnPlayGame"
+        btnPlayGame.Size = New Size(75, 23)
+        btnPlayGame.TabIndex = 3
+        btnPlayGame.Text = "Play"
+        btnPlayGame.UseVisualStyleBackColor = True
+        ' 
+        ' btnOpenStats
+        ' 
+        btnOpenStats.Location = New Point(353, 128)
+        btnOpenStats.Name = "btnOpenStats"
+        btnOpenStats.Size = New Size(75, 23)
+        btnOpenStats.TabIndex = 4
+        btnOpenStats.Text = "Stats"
+        btnOpenStats.UseVisualStyleBackColor = True
+        ' 
+        ' rbModeSimple
+        ' 
+        rbModeSimple.AutoSize = True
+        rbModeSimple.Checked = True
+        rbModeSimple.Location = New Point(14, 33)
+        rbModeSimple.Name = "rbModeSimple"
+        rbModeSimple.Size = New Size(61, 19)
+        rbModeSimple.TabIndex = 5
+        rbModeSimple.TabStop = True
+        rbModeSimple.Text = "Simple"
+        rbModeSimple.UseVisualStyleBackColor = True
+        ' 
+        ' gbxDifficulty
+        ' 
+        gbxDifficulty.Controls.Add(rbModeHard)
+        gbxDifficulty.Controls.Add(rbModeMedium)
+        gbxDifficulty.Controls.Add(rbModeSimple)
+        gbxDifficulty.Location = New Point(12, 51)
+        gbxDifficulty.Name = "gbxDifficulty"
+        gbxDifficulty.Size = New Size(265, 75)
+        gbxDifficulty.TabIndex = 6
+        gbxDifficulty.TabStop = False
+        gbxDifficulty.Text = "Difficulty"
+        ' 
+        ' rbModeHard
+        ' 
+        rbModeHard.AutoSize = True
+        rbModeHard.Location = New Point(196, 33)
+        rbModeHard.Name = "rbModeHard"
+        rbModeHard.Size = New Size(51, 19)
+        rbModeHard.TabIndex = 7
+        rbModeHard.TabStop = True
+        rbModeHard.Text = "Hard"
+        rbModeHard.UseVisualStyleBackColor = True
+        ' 
+        ' rbModeMedium
+        ' 
+        rbModeMedium.AutoSize = True
+        rbModeMedium.Location = New Point(97, 33)
+        rbModeMedium.Name = "rbModeMedium"
+        rbModeMedium.Size = New Size(70, 19)
+        rbModeMedium.TabIndex = 6
+        rbModeMedium.Text = "Medium"
+        rbModeMedium.UseVisualStyleBackColor = True
+        ' 
+        ' btnRules
+        ' 
+        btnRules.Location = New Point(353, 18)
+        btnRules.Name = "btnRules"
+        btnRules.Size = New Size(75, 23)
+        btnRules.TabIndex = 7
+        btnRules.Text = "Rules"
+        btnRules.UseVisualStyleBackColor = True
+        ' 
+        ' FormHome
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
+        ClientSize = New Size(440, 192)
+        Controls.Add(btnRules)
+        Controls.Add(gbxDifficulty)
+        Controls.Add(btnOpenStats)
+        Controls.Add(btnPlayGame)
+        Controls.Add(btnQuit)
+        Controls.Add(cbxName)
+        Controls.Add(lblNickname)
+        Name = "FormHome"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Sudoku"
+        gbxDifficulty.ResumeLayout(False)
+        gbxDifficulty.PerformLayout()
+        ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents lblNickname As Label
@@ -155,4 +165,5 @@ Partial Class FormHome
     Friend WithEvents gbxDifficulty As GroupBox
     Friend WithEvents rbModeHard As RadioButton
     Friend WithEvents rbModeMedium As RadioButton
+    Friend WithEvents btnRules As Button
 End Class
