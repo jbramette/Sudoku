@@ -45,13 +45,14 @@ Public Class FormGame
         lblRemainingTime.Text = String.Format("{0:00}:{1:00}", minutes, seconds)
     End Sub
 
-    Public Sub NotifyWin()
-        MsgBox("Win")
-    End Sub
-
-    Public Sub NotifyGameOver()
+    Public Sub NotifyGameEnded(won As Boolean)
         pnlGrid.Enabled = False
-        MsgBox("You lost")
+
+        If won Then
+            MsgBox("You won")
+        Else
+            MsgBox("You lost")
+        End If
     End Sub
 
     Private Sub OnFormClose(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

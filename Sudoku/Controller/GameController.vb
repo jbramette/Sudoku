@@ -129,11 +129,7 @@ Public Class GameController
         _gameFinished = True
 
         ' Update UI
-        If won Then
-            _view.NotifyWin()
-        Else
-            _view.NotifyGameOver()
-        End If
+        _view.NotifyGameEnded(won)
 
         ' Save game stats for player
         Dim gameStats As StatsManager.GameStats
