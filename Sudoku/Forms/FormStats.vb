@@ -80,8 +80,17 @@ Public Class FormStats
 
     Private Sub OnStatsDetailsClick(sender As Object, e As EventArgs) Handles btnDetailedStats.Click
         If cbxNicknames.SelectedItem Then
-            ' TODO: transformer _stats en hashtable et formatter info avec les stats du joueur
-            Dim info As String = $"{} {} {}"
+            Dim stats As PlayerStats = _stats(cbxNicknames.SelectedIndex).Item2
+
+            Dim info As String = $"Best Time: {TimeSpan.FromSeconds(stats.recordTime)}" & Environment.NewLine &
+                                 $"Total playtime: {TimeSpan.FromSeconds(stats.totalPlayTime)}" & Environment.NewLine &
+                                 $"Games played: {stats.gamesPlayed}" & Environment.NewLine &
+                                 $"Easy wins: {stats.winsSimple}" & Environment.NewLine &
+                                 $"Medium wins: {stats.winsMedium}" & Environment.NewLine &
+                                 $"Hard wins: {stats.winsHard}" & Environment.NewLine &
+                                 $"Total wins: {stats.GetTotalWin()}"
+
+
             MsgBox(info, MsgBoxStyle.Information, $"Details for player {cbxNicknames.SelectedItem}")
         End If
     End Sub
