@@ -3,11 +3,11 @@
 Public Class FormRules
 
     Private _rules As List(Of String) = New List(Of String) From {
-        "Rules 1",
-        "Rules 2",
-        "Rules 3",
-        "Rules 4",
-        "Rules 5"
+        "Sudoku is a logic-based number placement puzzle played on a 9x9 grid. The objective is to fill the grid so that each row, each column, and each of the nine 3x3 subgrids, contains all the digits from 1 to 9.",
+        "The puzzle begins with a partially completed grid, which provides clues to help deduce the remaining numbers",
+        "The primary rule of Sudoku is that each row must contain all the digits from 1 to 9 without reperition. This means no number can be repeated in any on the nine rows. Ensuring that each row follows this rules is essential for solving the puzzle correctly, as it forms the basis of the puzzle's logical structure.",
+        "Similarly, each column in the grid must also contain all the digits from 1 to 9 without any repetition. This rule is analogous to the rule for rows and is equally important. Cross-reference digits in both rows and columns, player can eliminate possibilities and find the correct placement for each number",
+        "In addition, each of the nine 3x3 subgrids must also contain all the digits from 1 to 9, with no repeated numbers. This rules ensure that the puzzle's solution is unique and adheres to the logical constraints."
     }
 
     Private _currRuleIndex As Integer = 0
@@ -25,11 +25,11 @@ Public Class FormRules
             UpdatePage()
         End If
     End Sub
-    Private Sub FormRules_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub FormRules_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdatePage()
     End Sub
 
-    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
         FormHome.Show()
     End Sub
 

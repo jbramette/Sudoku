@@ -52,13 +52,13 @@ Public Class FormStats
         PopulateStatsControls()
     End Sub
 
-    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxNames.SelectedIndexChanged, lbxBestTimes.SelectedIndexChanged
+    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs)
         SyncSelectedIndices(sender.SelectedIndex)
 
         cbxNicknames.SelectedItem = lbxNames.SelectedItem
     End Sub
 
-    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
         FormHome.Show()
     End Sub
 

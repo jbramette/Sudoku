@@ -62,6 +62,7 @@ Partial Class FormRules
         Controls.Add(lblPageText)
         Controls.Add(btnPreviousPage)
         Controls.Add(btnNextPage)
+        MaximizeBox = False
         Name = "FormRules"
         Text = "Rules"
         ResumeLayout(False)

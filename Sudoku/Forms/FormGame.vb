@@ -56,7 +56,7 @@ Public Class FormGame
         FormHome.Close()
     End Sub
 
-    Private Sub OnFormClose(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub OnFormClose(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If _controller.IsGameFinished() OrElse ConfirmQuit() Then
             Die()
         Else

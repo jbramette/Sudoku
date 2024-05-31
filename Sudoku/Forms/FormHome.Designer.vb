@@ -147,6 +147,7 @@ Partial Class FormHome
         Controls.Add(btnQuit)
         Controls.Add(cbxName)
         Controls.Add(lblNickname)
+        MaximizeBox = False
         Name = "FormHome"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Sudoku"

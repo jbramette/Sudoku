@@ -22,63 +22,63 @@ Partial Class FormGame
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.btnGiveup = New System.Windows.Forms.Button()
-        Me.lblNickname = New System.Windows.Forms.Label()
-        Me.lblRemainingTime = New System.Windows.Forms.Label()
-        Me.pnlGrid = New System.Windows.Forms.Panel()
-        Me.SuspendLayout()
-        '
-        'btnGiveup
-        '
-        Me.btnGiveup.Location = New System.Drawing.Point(642, 514)
-        Me.btnGiveup.Name = "btnGiveup"
-        Me.btnGiveup.Size = New System.Drawing.Size(75, 23)
-        Me.btnGiveup.TabIndex = 0
-        Me.btnGiveup.Text = "Give up"
-        Me.btnGiveup.UseVisualStyleBackColor = True
-        '
-        'lblNickname
-        '
-        Me.lblNickname.AutoSize = True
-        Me.lblNickname.Location = New System.Drawing.Point(642, 10)
-        Me.lblNickname.Name = "lblNickname"
-        Me.lblNickname.Size = New System.Drawing.Size(61, 15)
-        Me.lblNickname.TabIndex = 1
-        Me.lblNickname.Text = "Nickname"
-        '
-        'lblRemainingTime
-        '
-        Me.lblRemainingTime.AutoSize = True
-        Me.lblRemainingTime.Location = New System.Drawing.Point(642, 44)
-        Me.lblRemainingTime.Name = "lblRemainingTime"
-        Me.lblRemainingTime.Size = New System.Drawing.Size(0, 15)
-        Me.lblRemainingTime.TabIndex = 2
-        '
-        'pnlGrid
-        '
-        Me.pnlGrid.Location = New System.Drawing.Point(12, 12)
-        Me.pnlGrid.Name = "pnlGrid"
-        Me.pnlGrid.Size = New System.Drawing.Size(612, 525)
-        Me.pnlGrid.TabIndex = 3
-        '
-        'FormGame
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = True
-        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(728, 550)
-        Me.Controls.Add(Me.pnlGrid)
-        Me.Controls.Add(Me.lblRemainingTime)
-        Me.Controls.Add(Me.lblNickname)
-        Me.Controls.Add(Me.btnGiveup)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "FormGame"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Sudoku"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
-
+        btnGiveup = New Button()
+        lblNickname = New Label()
+        lblRemainingTime = New Label()
+        pnlGrid = New Panel()
+        SuspendLayout()
+        ' 
+        ' btnGiveup
+        ' 
+        btnGiveup.Location = New Point(642, 514)
+        btnGiveup.Name = "btnGiveup"
+        btnGiveup.Size = New Size(75, 23)
+        btnGiveup.TabIndex = 0
+        btnGiveup.Text = "Give up"
+        btnGiveup.UseVisualStyleBackColor = True
+        ' 
+        ' lblNickname
+        ' 
+        lblNickname.AutoSize = True
+        lblNickname.Location = New Point(642, 10)
+        lblNickname.Name = "lblNickname"
+        lblNickname.Size = New Size(61, 15)
+        lblNickname.TabIndex = 1
+        lblNickname.Text = "Nickname"
+        ' 
+        ' lblRemainingTime
+        ' 
+        lblRemainingTime.AutoSize = True
+        lblRemainingTime.Location = New Point(642, 44)
+        lblRemainingTime.Name = "lblRemainingTime"
+        lblRemainingTime.Size = New Size(0, 15)
+        lblRemainingTime.TabIndex = 2
+        ' 
+        ' pnlGrid
+        ' 
+        pnlGrid.Location = New Point(12, 12)
+        pnlGrid.Name = "pnlGrid"
+        pnlGrid.Size = New Size(612, 525)
+        pnlGrid.TabIndex = 3
+        ' 
+        ' FormGame
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
+        ClientSize = New Size(728, 550)
+        Controls.Add(pnlGrid)
+        Controls.Add(lblRemainingTime)
+        Controls.Add(lblNickname)
+        Controls.Add(btnGiveup)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
+        Name = "FormGame"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Sudoku"
+        ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents btnGiveup As Button

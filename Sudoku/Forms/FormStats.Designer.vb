@@ -22,101 +22,101 @@ Partial Class FormStats
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lbxNames = New System.Windows.Forms.ListBox()
-        Me.lbxBestTimes = New System.Windows.Forms.ListBox()
-        Me.gbxRbSorting = New System.Windows.Forms.GroupBox()
-        Me.rbSortByBestTimes = New System.Windows.Forms.RadioButton()
-        Me.rbSortByNames = New System.Windows.Forms.RadioButton()
-        Me.cbxNicknames = New System.Windows.Forms.ComboBox()
-        Me.btnDetailedStats = New System.Windows.Forms.Button()
-        Me.gbxRbSorting.SuspendLayout()
-        Me.SuspendLayout()
-        '
-        'lbxNames
-        '
-        Me.lbxNames.FormattingEnabled = True
-        Me.lbxNames.ItemHeight = 15
-        Me.lbxNames.Location = New System.Drawing.Point(12, 92)
-        Me.lbxNames.Name = "lbxNames"
-        Me.lbxNames.Size = New System.Drawing.Size(147, 349)
-        Me.lbxNames.TabIndex = 0
-        '
-        'lbxBestTimes
-        '
-        Me.lbxBestTimes.FormattingEnabled = True
-        Me.lbxBestTimes.ItemHeight = 15
-        Me.lbxBestTimes.Location = New System.Drawing.Point(167, 92)
-        Me.lbxBestTimes.Name = "lbxBestTimes"
-        Me.lbxBestTimes.Size = New System.Drawing.Size(153, 349)
-        Me.lbxBestTimes.TabIndex = 1
-        '
-        'gbxRbSorting
-        '
-        Me.gbxRbSorting.Controls.Add(Me.rbSortByBestTimes)
-        Me.gbxRbSorting.Controls.Add(Me.rbSortByNames)
-        Me.gbxRbSorting.Location = New System.Drawing.Point(12, 4)
-        Me.gbxRbSorting.Name = "gbxRbSorting"
-        Me.gbxRbSorting.Size = New System.Drawing.Size(306, 47)
-        Me.gbxRbSorting.TabIndex = 2
-        Me.gbxRbSorting.TabStop = False
-        Me.gbxRbSorting.Text = "Order by"
-        '
-        'rbSortByBestTimes
-        '
-        Me.rbSortByBestTimes.AutoSize = True
-        Me.rbSortByBestTimes.Location = New System.Drawing.Point(191, 19)
-        Me.rbSortByBestTimes.Name = "rbSortByBestTimes"
-        Me.rbSortByBestTimes.Size = New System.Drawing.Size(79, 19)
-        Me.rbSortByBestTimes.TabIndex = 1
-        Me.rbSortByBestTimes.Text = "Best times"
-        Me.rbSortByBestTimes.UseVisualStyleBackColor = True
-        '
-        'rbSortByNames
-        '
-        Me.rbSortByNames.AutoSize = True
-        Me.rbSortByNames.Checked = True
-        Me.rbSortByNames.Location = New System.Drawing.Point(37, 19)
-        Me.rbSortByNames.Name = "rbSortByNames"
-        Me.rbSortByNames.Size = New System.Drawing.Size(62, 19)
-        Me.rbSortByNames.TabIndex = 0
-        Me.rbSortByNames.TabStop = True
-        Me.rbSortByNames.Text = "Names"
-        Me.rbSortByNames.UseVisualStyleBackColor = True
-        '
-        'cbxNicknames
-        '
-        Me.cbxNicknames.FormattingEnabled = True
-        Me.cbxNicknames.Location = New System.Drawing.Point(12, 57)
-        Me.cbxNicknames.Name = "cbxNicknames"
-        Me.cbxNicknames.Size = New System.Drawing.Size(147, 23)
-        Me.cbxNicknames.TabIndex = 3
-        '
-        'btnDetailedStats
-        '
-        Me.btnDetailedStats.Location = New System.Drawing.Point(167, 57)
-        Me.btnDetailedStats.Name = "btnDetailedStats"
-        Me.btnDetailedStats.Size = New System.Drawing.Size(151, 23)
-        Me.btnDetailedStats.TabIndex = 4
-        Me.btnDetailedStats.Text = "Player's details"
-        Me.btnDetailedStats.UseVisualStyleBackColor = True
-        '
-        'FormStats
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(332, 453)
-        Me.Controls.Add(Me.btnDetailedStats)
-        Me.Controls.Add(Me.cbxNicknames)
-        Me.Controls.Add(Me.gbxRbSorting)
-        Me.Controls.Add(Me.lbxBestTimes)
-        Me.Controls.Add(Me.lbxNames)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Name = "FormStats"
-        Me.Text = "Stats Menu"
-        Me.gbxRbSorting.ResumeLayout(False)
-        Me.gbxRbSorting.PerformLayout()
-        Me.ResumeLayout(False)
-
+        lbxNames = New ListBox()
+        lbxBestTimes = New ListBox()
+        gbxRbSorting = New GroupBox()
+        rbSortByBestTimes = New RadioButton()
+        rbSortByNames = New RadioButton()
+        cbxNicknames = New ComboBox()
+        btnDetailedStats = New Button()
+        gbxRbSorting.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' lbxNames
+        ' 
+        lbxNames.FormattingEnabled = True
+        lbxNames.ItemHeight = 15
+        lbxNames.Location = New Point(12, 92)
+        lbxNames.Name = "lbxNames"
+        lbxNames.Size = New Size(147, 349)
+        lbxNames.TabIndex = 0
+        ' 
+        ' lbxBestTimes
+        ' 
+        lbxBestTimes.FormattingEnabled = True
+        lbxBestTimes.ItemHeight = 15
+        lbxBestTimes.Location = New Point(167, 92)
+        lbxBestTimes.Name = "lbxBestTimes"
+        lbxBestTimes.Size = New Size(153, 349)
+        lbxBestTimes.TabIndex = 1
+        ' 
+        ' gbxRbSorting
+        ' 
+        gbxRbSorting.Controls.Add(rbSortByBestTimes)
+        gbxRbSorting.Controls.Add(rbSortByNames)
+        gbxRbSorting.Location = New Point(12, 4)
+        gbxRbSorting.Name = "gbxRbSorting"
+        gbxRbSorting.Size = New Size(306, 47)
+        gbxRbSorting.TabIndex = 2
+        gbxRbSorting.TabStop = False
+        gbxRbSorting.Text = "Order by"
+        ' 
+        ' rbSortByBestTimes
+        ' 
+        rbSortByBestTimes.AutoSize = True
+        rbSortByBestTimes.Location = New Point(191, 19)
+        rbSortByBestTimes.Name = "rbSortByBestTimes"
+        rbSortByBestTimes.Size = New Size(79, 19)
+        rbSortByBestTimes.TabIndex = 1
+        rbSortByBestTimes.Text = "Best times"
+        rbSortByBestTimes.UseVisualStyleBackColor = True
+        ' 
+        ' rbSortByNames
+        ' 
+        rbSortByNames.AutoSize = True
+        rbSortByNames.Checked = True
+        rbSortByNames.Location = New Point(37, 19)
+        rbSortByNames.Name = "rbSortByNames"
+        rbSortByNames.Size = New Size(62, 19)
+        rbSortByNames.TabIndex = 0
+        rbSortByNames.TabStop = True
+        rbSortByNames.Text = "Names"
+        rbSortByNames.UseVisualStyleBackColor = True
+        ' 
+        ' cbxNicknames
+        ' 
+        cbxNicknames.FormattingEnabled = True
+        cbxNicknames.Location = New Point(12, 57)
+        cbxNicknames.Name = "cbxNicknames"
+        cbxNicknames.Size = New Size(147, 23)
+        cbxNicknames.TabIndex = 3
+        ' 
+        ' btnDetailedStats
+        ' 
+        btnDetailedStats.Location = New Point(167, 57)
+        btnDetailedStats.Name = "btnDetailedStats"
+        btnDetailedStats.Size = New Size(151, 23)
+        btnDetailedStats.TabIndex = 4
+        btnDetailedStats.Text = "Player's details"
+        btnDetailedStats.UseVisualStyleBackColor = True
+        ' 
+        ' FormStats
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(332, 453)
+        Controls.Add(btnDetailedStats)
+        Controls.Add(cbxNicknames)
+        Controls.Add(gbxRbSorting)
+        Controls.Add(lbxBestTimes)
+        Controls.Add(lbxNames)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        MaximizeBox = False
+        Name = "FormStats"
+        Text = "Stats Menu"
+        gbxRbSorting.ResumeLayout(False)
+        gbxRbSorting.PerformLayout()
+        ResumeLayout(False)
     End Sub
 
     Friend WithEvents lbxNames As ListBox
