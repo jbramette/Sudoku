@@ -51,7 +51,7 @@
         FormHome.Close()
     End Sub
 
-    Private Sub OnFormClosed(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub OnFormClose(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If _controller.IsGameFinished() OrElse ConfirmQuit() Then
             Die()
         Else

@@ -27,6 +27,7 @@ Partial Class FormStats
         Me.gbxRbSorting = New System.Windows.Forms.GroupBox()
         Me.rbSortByBestTimes = New System.Windows.Forms.RadioButton()
         Me.rbSortByNames = New System.Windows.Forms.RadioButton()
+        Me.cbxNicknames = New System.Windows.Forms.ComboBox()
         Me.gbxRbSorting.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -34,18 +35,18 @@ Partial Class FormStats
         '
         Me.lbxNames.FormattingEnabled = True
         Me.lbxNames.ItemHeight = 15
-        Me.lbxNames.Location = New System.Drawing.Point(12, 57)
+        Me.lbxNames.Location = New System.Drawing.Point(12, 92)
         Me.lbxNames.Name = "lbxNames"
-        Me.lbxNames.Size = New System.Drawing.Size(147, 319)
+        Me.lbxNames.Size = New System.Drawing.Size(147, 349)
         Me.lbxNames.TabIndex = 0
         '
         'lbxBestTimes
         '
         Me.lbxBestTimes.FormattingEnabled = True
         Me.lbxBestTimes.ItemHeight = 15
-        Me.lbxBestTimes.Location = New System.Drawing.Point(165, 57)
+        Me.lbxBestTimes.Location = New System.Drawing.Point(167, 92)
         Me.lbxBestTimes.Name = "lbxBestTimes"
-        Me.lbxBestTimes.Size = New System.Drawing.Size(153, 319)
+        Me.lbxBestTimes.Size = New System.Drawing.Size(153, 349)
         Me.lbxBestTimes.TabIndex = 1
         '
         'gbxRbSorting
@@ -81,11 +82,20 @@ Partial Class FormStats
         Me.rbSortByNames.Text = "Names"
         Me.rbSortByNames.UseVisualStyleBackColor = True
         '
+        'cbxNicknames
+        '
+        Me.cbxNicknames.FormattingEnabled = True
+        Me.cbxNicknames.Location = New System.Drawing.Point(12, 57)
+        Me.cbxNicknames.Name = "cbxNicknames"
+        Me.cbxNicknames.Size = New System.Drawing.Size(147, 23)
+        Me.cbxNicknames.TabIndex = 3
+        '
         'FormStats
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(332, 388)
+        Me.ClientSize = New System.Drawing.Size(332, 453)
+        Me.Controls.Add(Me.cbxNicknames)
         Me.Controls.Add(Me.gbxRbSorting)
         Me.Controls.Add(Me.lbxBestTimes)
         Me.Controls.Add(Me.lbxNames)
@@ -103,4 +113,5 @@ Partial Class FormStats
     Friend WithEvents gbxRbSorting As GroupBox
     Friend WithEvents rbSortByBestTimes As RadioButton
     Friend WithEvents rbSortByNames As RadioButton
+    Friend WithEvents cbxNicknames As ComboBox
 End Class

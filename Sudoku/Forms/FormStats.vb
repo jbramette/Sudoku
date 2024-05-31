@@ -7,7 +7,7 @@ Public Class FormStats
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadPlayersStats()
-        PopulateStatsListBoxes()
+        PopulateStatsControls()
     End Sub
 
     Private Sub LoadPlayersStats()
@@ -16,6 +16,7 @@ Public Class FormStats
 
             If LoadStatsForPlayer(playerName, playerStats) Then
                 _stats.Add((playerName, playerStats))
+                cbxNicknames.Items.Add(playerName)
             Else
                 Dim deleteFile = MsgBox($"Error loading stats for player {playerName}, remove stats file ?", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo)
 
@@ -26,11 +27,7 @@ Public Class FormStats
         Next
     End Sub
 
-    Private Sub PopulateStatsListBoxes()
-        ' Reset
-        lbxNames.Items.Clear()
-        lbxBestTimes.Items.Clear()
-
+    Private Sub PopulateStatsControls()
         ' Sort based on players names or best times
         If rbSortByNames.Checked Then
             _stats.Sort(Function(x, y) x.Item1.CompareTo(y.Item1))
@@ -48,15 +45,36 @@ Public Class FormStats
     End Sub
 
     Private Sub OnSortModeCheckedChanged(sender As Object, e As EventArgs) Handles rbSortByNames.CheckedChanged
-        PopulateStatsListBoxes()
+        ' Reset
+        lbxNames.Items.Clear()
+        lbxBestTimes.Items.Clear()
+
+        PopulateStatsControls()
     End Sub
 
     Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxNames.SelectedIndexChanged, lbxBestTimes.SelectedIndexChanged
-        lbxNames.SelectedIndex = sender.SelectedIndex
-        lbxBestTimes.SelectedIndex = sender.SelectedIndex
+        SyncSelectedIndices(sender.SelectedIndex)
+
+        cbxNicknames.SelectedItem = lbxNames.SelectedItem
     End Sub
 
-    Private Sub FormStats_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles Me.Closing
         FormHome.Show()
+    End Sub
+
+    Private Sub NicknamesSelectedValueChanged(sender As Object, e As EventArgs) Handles cbxNicknames.SelectedValueChanged
+        For i = 0 To lbxNames.Items.Count - 1
+            If lbxNames.Items(i) = cbxNicknames.SelectedItem Then
+                SyncSelectedIndices(i)
+                Exit For
+            End If
+        Next
+    End Sub
+
+    Private Sub SyncSelectedIndices(i As Integer)
+        If i < _stats.Count Then
+            lbxNames.SelectedIndex = i
+            lbxBestTimes.SelectedIndex = i
+        End If
     End Sub
 End Class
