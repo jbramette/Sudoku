@@ -1,15 +1,22 @@
-﻿Public Class FormStats
+﻿Imports System.ComponentModel
+
+Public Class FormStats
+
+    ' On ne peut pas utiliser un dictionnaire car il ne permet pas de récupérer ses entrées facilement
+    Private _stats As New List(Of (String, PlayerStats))
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
-        PopulateDataGridView()
+        LoadPlayersStats()
+        PopulateStatsControls()
     End Sub
 
-    Private Sub PopulateDataGridView()
+    Private Sub LoadPlayersStats()
         For Each playerName As String In StatsManager.ListNicknames()
-            Dim stats As New PlayerStats()
+            Dim playerStats As New PlayerStats()
 
-            If LoadStatsForPlayer(playerName, stats) Then
-                AddStatsRow(playerName, stats)
+            If LoadStatsForPlayer(playerName, playerStats) Then
+                _stats.Add((playerName, playerStats))
+                cbxNicknames.Items.Add(playerName)
             Else
                 Dim deleteFile = MsgBox($"Error loading stats for player {playerName}, remove stats file ?", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo)
 
@@ -20,17 +27,71 @@
         Next
     End Sub
 
-    Private Sub AddStatsRow(playerName As String, stats As PlayerStats)
-        Dim recordTimeStr As String = TimeSpan.FromSeconds(stats.recordTime).ToString()
-        Dim totalTimeStr As String = TimeSpan.FromSeconds(stats.totalPlayTime).ToString()
+    Private Sub PopulateStatsControls()
+        ' Sort based on players names or best times
+        If rbSortByNames.Checked Then
+            _stats.Sort(Function(x, y) x.Item1.CompareTo(y.Item1))
+        Else
+            _stats.Sort(Function(x, y) x.Item2.recordTime.CompareTo(y.Item2.recordTime))
+        End If
 
-        dgvGames.Rows.Add(playerName,
-                          recordTimeStr,
-                          stats.gamesPlayed,
-                          stats.GetTotalWin(),
-                          stats.winsSimple,
-                          stats.winsMedium,
-                          stats.winsHard,
-                          totalTimeStr)
+        For Each pair In _stats
+            Dim nickname As String = pair.Item1
+            Dim recordTime As Integer = pair.Item2.recordTime
+
+            lbxNames.Items.Add(nickname)
+            lbxBestTimes.Items.Add(TimeSpan.FromSeconds(recordTime).ToString())
+        Next
+    End Sub
+
+    Private Sub OnSortModeCheckedChanged(sender As Object, e As EventArgs) Handles rbSortByNames.CheckedChanged
+        ' Reset
+        lbxNames.Items.Clear()
+        lbxBestTimes.Items.Clear()
+
+        PopulateStatsControls()
+    End Sub
+
+    Private Sub ListBoxesSelectedIndexChanged(sender As ListBox, e As EventArgs) Handles lbxNames.SelectedIndexChanged, lbxBestTimes.SelectedIndexChanged
+        SyncSelectedIndices(sender.SelectedIndex)
+
+        cbxNicknames.SelectedItem = lbxNames.SelectedItem
+    End Sub
+
+    Private Sub OnFormClose(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        FormHome.Show()
+    End Sub
+
+    Private Sub NicknamesSelectedValueChanged(sender As Object, e As EventArgs) Handles cbxNicknames.SelectedValueChanged
+        For i = 0 To lbxNames.Items.Count - 1
+            If lbxNames.Items(i) = cbxNicknames.SelectedItem Then
+                SyncSelectedIndices(i)
+                Exit For
+            End If
+        Next
+    End Sub
+
+    Private Sub SyncSelectedIndices(i As Integer)
+        If i < _stats.Count Then
+            lbxNames.SelectedIndex = i
+            lbxBestTimes.SelectedIndex = i
+        End If
+    End Sub
+
+    Private Sub OnStatsDetailsClick(sender As Object, e As EventArgs) Handles btnDetailedStats.Click
+        If cbxNicknames.SelectedItem Then
+            Dim stats As PlayerStats = _stats(cbxNicknames.SelectedIndex).Item2
+
+            Dim info As String = $"Best Time: {TimeSpan.FromSeconds(stats.recordTime)}" & Environment.NewLine &
+                                 $"Total playtime: {TimeSpan.FromSeconds(stats.totalPlayTime)}" & Environment.NewLine &
+                                 $"Games played: {stats.gamesPlayed}" & Environment.NewLine &
+                                 $"Easy wins: {stats.winsSimple}" & Environment.NewLine &
+                                 $"Medium wins: {stats.winsMedium}" & Environment.NewLine &
+                                 $"Hard wins: {stats.winsHard}" & Environment.NewLine &
+                                 $"Total wins: {stats.GetTotalWin()}"
+
+
+            MsgBox(info, MsgBoxStyle.Information, $"Details for player {cbxNicknames.SelectedItem}")
+        End If
     End Sub
 End Class

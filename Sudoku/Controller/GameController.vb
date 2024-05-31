@@ -140,11 +140,8 @@ Public Class GameController
     Private Sub OnTimerTick(sender As Object, e As EventArgs)
         _remainingSeconds -= 1
 
-        Dim minutes As Integer = _remainingSeconds \ 60
-        Dim seconds As Integer = _remainingSeconds Mod 60
-
         ' Notify the UI to update its timer
-        _view.UpdateTimerText(minutes, seconds)
+        _view.UpdateTimerText(_remainingSeconds)
 
         If _remainingSeconds <= 0 Then
             OnGameEnded(won:=False)

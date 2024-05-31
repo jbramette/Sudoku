@@ -1,4 +1,6 @@
-﻿Public Class FormHome
+﻿Imports System.ComponentModel
+
+Public Class FormHome
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         cbxName.Items.AddRange(StatsManager.ListNicknames())
@@ -47,6 +49,7 @@
     End Sub
 
     Private Sub OnButtonStatsClick(sender As Object, e As EventArgs) Handles btnOpenStats.Click
+        Me.Hide()
         FormStats.Show()
     End Sub
 End Class
