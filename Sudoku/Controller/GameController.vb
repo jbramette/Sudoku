@@ -27,7 +27,7 @@ Public Class GameController
     ' + This pattern also makes it easier to test Grid as a standalone component.
     ' 
 
-    Private Const GAME_DURATION_SECONDS As Integer = 1 * 40
+    Private Const GAME_DURATION_SECONDS As Integer = 7 * 60
 
     Private _view As FormGame
     Private _grid As Grid

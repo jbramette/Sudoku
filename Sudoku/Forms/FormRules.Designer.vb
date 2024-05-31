@@ -24,7 +24,9 @@ Partial Class FormRules
     Private Sub InitializeComponent()
         btnNextPage = New Button()
         btnPreviousPage = New Button()
+        gbxPage = New GroupBox()
         lblPageText = New Label()
+        gbxPage.SuspendLayout()
         SuspendLayout()
         ' 
         ' btnNextPage
@@ -45,13 +47,25 @@ Partial Class FormRules
         btnPreviousPage.Text = "Previous"
         btnPreviousPage.UseVisualStyleBackColor = True
         ' 
+        ' gbxPage
+        ' 
+        gbxPage.Controls.Add(lblPageText)
+        gbxPage.Location = New Point(12, 137)
+        gbxPage.Name = "gbxPage"
+        gbxPage.Size = New Size(353, 157)
+        gbxPage.TabIndex = 3
+        gbxPage.TabStop = False
+        ' 
         ' lblPageText
         ' 
         lblPageText.AutoSize = True
-        lblPageText.Location = New Point(118, 165)
+        lblPageText.Dock = DockStyle.Fill
+        lblPageText.Location = New Point(3, 19)
+        lblPageText.MaximumSize = New Size(300, 0)
         lblPageText.Name = "lblPageText"
-        lblPageText.Size = New Size(0, 15)
-        lblPageText.TabIndex = 2
+        lblPageText.Size = New Size(41, 15)
+        lblPageText.TabIndex = 0
+        lblPageText.Text = "Label1"
         lblPageText.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' FormRules
@@ -59,17 +73,19 @@ Partial Class FormRules
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(377, 354)
-        Controls.Add(lblPageText)
+        Controls.Add(gbxPage)
         Controls.Add(btnPreviousPage)
         Controls.Add(btnNextPage)
         MaximizeBox = False
         Name = "FormRules"
         Text = "Rules"
+        gbxPage.ResumeLayout(False)
+        gbxPage.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents btnNextPage As Button
     Friend WithEvents btnPreviousPage As Button
+    Friend WithEvents gbxPage As GroupBox
     Friend WithEvents lblPageText As Label
 End Class
