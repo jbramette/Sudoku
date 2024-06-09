@@ -143,5 +143,4 @@
     Friend Sub PutValueUnchecked(col As Integer, row As Integer, value As Integer)
         _grid(row, col) = value
     End Sub
-
 End Class

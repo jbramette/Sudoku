@@ -22,69 +22,67 @@ Partial Class FormGame
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        btnGiveup = New Button()
-        lblNickname = New Label()
-        lblRemainingTime = New Label()
-        pnlGrid = New Panel()
-        SuspendLayout()
-        ' 
-        ' btnGiveup
-        ' 
-        btnGiveup.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point)
-        btnGiveup.Location = New Point(582, 8)
-        btnGiveup.Margin = New Padding(3, 4, 3, 4)
-        btnGiveup.Name = "btnGiveup"
-        btnGiveup.Size = New Size(128, 43)
-        btnGiveup.TabIndex = 0
-        btnGiveup.Text = "Give up"
-        btnGiveup.UseVisualStyleBackColor = True
-        ' 
-        ' lblNickname
-        ' 
-        lblNickname.AutoSize = True
-        lblNickname.Font = New Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point)
-        lblNickname.Location = New Point(12, 13)
-        lblNickname.Name = "lblNickname"
-        lblNickname.Size = New Size(126, 35)
-        lblNickname.TabIndex = 1
-        lblNickname.Text = "Nickname"
-        ' 
-        ' lblRemainingTime
-        ' 
-        lblRemainingTime.AutoSize = True
-        lblRemainingTime.Font = New Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point)
-        lblRemainingTime.Location = New Point(314, 16)
-        lblRemainingTime.Name = "lblRemainingTime"
-        lblRemainingTime.Size = New Size(0, 35)
-        lblRemainingTime.TabIndex = 2
-        ' 
-        ' pnlGrid
-        ' 
-        pnlGrid.Location = New Point(12, 59)
-        pnlGrid.Margin = New Padding(3, 4, 3, 4)
-        pnlGrid.Name = "pnlGrid"
-        pnlGrid.Size = New Size(699, 700)
-        pnlGrid.TabIndex = 3
-        ' 
-        ' FormGame
-        ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
-        AutoScaleMode = AutoScaleMode.Font
-        AutoSize = True
-        AutoSizeMode = AutoSizeMode.GrowAndShrink
-        ClientSize = New Size(722, 771)
-        Controls.Add(pnlGrid)
-        Controls.Add(lblRemainingTime)
-        Controls.Add(lblNickname)
-        Controls.Add(btnGiveup)
-        FormBorderStyle = FormBorderStyle.FixedSingle
-        Margin = New Padding(3, 4, 3, 4)
-        MaximizeBox = False
-        Name = "FormGame"
-        StartPosition = FormStartPosition.CenterScreen
-        Text = "Sudoku"
-        ResumeLayout(False)
-        PerformLayout()
+        Me.btnGiveup = New System.Windows.Forms.Button()
+        Me.lblNickname = New System.Windows.Forms.Label()
+        Me.lblRemainingTime = New System.Windows.Forms.Label()
+        Me.pnlGrid = New System.Windows.Forms.Panel()
+        Me.SuspendLayout()
+        '
+        'btnGiveup
+        '
+        Me.btnGiveup.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.btnGiveup.Location = New System.Drawing.Point(509, 6)
+        Me.btnGiveup.Name = "btnGiveup"
+        Me.btnGiveup.Size = New System.Drawing.Size(112, 32)
+        Me.btnGiveup.TabIndex = 0
+        Me.btnGiveup.Text = "Give up"
+        Me.btnGiveup.UseVisualStyleBackColor = True
+        '
+        'lblNickname
+        '
+        Me.lblNickname.AutoSize = True
+        Me.lblNickname.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblNickname.Location = New System.Drawing.Point(10, 10)
+        Me.lblNickname.Name = "lblNickname"
+        Me.lblNickname.Size = New System.Drawing.Size(99, 28)
+        Me.lblNickname.TabIndex = 1
+        Me.lblNickname.Text = "Nickname"
+        '
+        'lblRemainingTime
+        '
+        Me.lblRemainingTime.AutoSize = True
+        Me.lblRemainingTime.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblRemainingTime.Location = New System.Drawing.Point(275, 12)
+        Me.lblRemainingTime.Name = "lblRemainingTime"
+        Me.lblRemainingTime.Size = New System.Drawing.Size(0, 28)
+        Me.lblRemainingTime.TabIndex = 2
+        '
+        'pnlGrid
+        '
+        Me.pnlGrid.Location = New System.Drawing.Point(10, 44)
+        Me.pnlGrid.Name = "pnlGrid"
+        Me.pnlGrid.Size = New System.Drawing.Size(612, 525)
+        Me.pnlGrid.TabIndex = 3
+        '
+        'FormGame
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(632, 578)
+        Me.Controls.Add(Me.pnlGrid)
+        Me.Controls.Add(Me.lblRemainingTime)
+        Me.Controls.Add(Me.lblNickname)
+        Me.Controls.Add(Me.btnGiveup)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.Name = "FormGame"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Sudoku"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
     End Sub
 
     Friend WithEvents btnGiveup As Button

@@ -37,7 +37,7 @@ Public Class GameController
     Private _remainingSeconds As Integer
     Private _gameFinished As Boolean = False
 
-    Private _gameDifficulty As PuzzleDifficulty
+    Private _puzzle As Puzzle
 
     Public Sub New(view As FormGame, nickname As String, gameDurationSeconds As Integer)
         _view = view
@@ -56,19 +56,15 @@ Public Class GameController
     ' 1. Generate the grid and update the UI
     ' 2. Start the countdown
     Public Sub StartGame(difficulty As PuzzleDifficulty)
-        _gameDifficulty = difficulty
+        _puzzle = PuzzleProvider.QueryPuzzle(difficulty)
 
-        ' Create the UI's cells
-        For y = 0 To Grid.ROWS - 1
-            For x = 0 To Grid.COLS - 1
-                Dim num As Integer = _grid.GetValue(x, y)
-                _view.AddCell(x, y, num)
+        For r = 0 To Grid.ROWS - 1
+            For c = 0 To Grid.COLS - 1
+                Dim value As Integer = _puzzle.puzzle(r)(c)
+                _view.AddCell(c, r, value)
+                _grid.PutValueUnchecked(c, r, value)
             Next
         Next
-
-        Dim puzzle As List(Of List(Of Integer)) = PuzzleProvider.QueryPuzzle(difficulty)
-
-        LoadPuzzle(puzzle)
 
         ' Start the countdown only once the grid has been fully loaded
         _timer.Start()
@@ -78,33 +74,13 @@ Public Class GameController
         Return _gameFinished
     End Function
 
-    Private Sub LoadPuzzle(puzzle As List(Of List(Of Integer)))
-        For r = 0 To Grid.ROWS - 1
-            For c = 0 To Grid.COLS - 1
-                Dim cell As GridCell = _view.GetCell(c, r)
-                Dim value As Integer = puzzle(r)(c)
-
-                PutIntoCellUnchecked(cell, value)
-
-                If value <> 0 Then
-                    cell.Enabled = False ' The data cannot be changed inside the cell
-                End If
-            Next
-        Next
-    End Sub
-
-    Private Sub PutIntoCellUnchecked(cell As GridCell, value As Integer)
-        cell.TrySetValue(value)
-        _grid.PutValueUnchecked(cell.Col(), cell.Row(), value)
-    End Sub
-
     Public Sub UpdateCell(cell As GridCell, value As Integer)
         cell.TrySetValue(value)
 
         ' Try to update the grid and notify UI in case of error
         If Not _grid.SetValue(cell.Col(), cell.Row(), cell.Value()) Then
             cell.Text = ""
-        ElseIf _grid.IsCompleted() Then
+        ElseIf Not _gameFinished AndAlso _grid.IsCompleted() Then
             OnGameEnded(won:=True)
         End If
     End Sub
@@ -120,6 +96,18 @@ Public Class GameController
         End If
     End Sub
 
+    Public Sub OnGiveUp()
+        OnGameEnded(won:=False)
+
+        For r = 0 To Grid.ROWS - 1
+            For c = 0 To Grid.COLS - 1
+                Dim expected = _puzzle.solution(r)(c)
+                If _grid.GetValue(c, r) <> expected Then
+                    _view.GetCell(c, r).TrySetValue(expected)
+                End If
+            Next
+        Next
+    End Sub
     ' This function is called when the game has ended
     ' It can be triggered by completing the grid or the timer
     ' ran out, indicated by the parameter
@@ -136,7 +124,7 @@ Public Class GameController
 
         gameStats.won = won
         gameStats.timePlayed = _gameDuration - _remainingSeconds
-        gameStats.difficulty = _gameDifficulty
+        gameStats.difficulty = _puzzle.difficulty
 
         StatsManager.SaveGameStatsForPlayer(gameStats, _nickname)
     End Sub

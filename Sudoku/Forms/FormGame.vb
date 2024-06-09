@@ -1,7 +1,6 @@
 ﻿Imports System.Configuration
 
 Public Class FormGame
-
     Private _controller As GameController
 
     Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -64,7 +63,9 @@ Public Class FormGame
     End Sub
 
     Private Sub OnButtonGiveUpClick(sender As Object, e As EventArgs) Handles btnGiveup.Click
-        Me.Close()
+        If Not _controller.IsGameFinished() Then
+            _controller.OnGiveUp()
+        End If
     End Sub
 
     Private Function ConfirmQuit()
@@ -73,7 +74,7 @@ Public Class FormGame
     End Function
 
     ' Event handling for the GridCells is done in FormGame so that 
-    ' the GridCell don't need to carry a reference to the game controller.
+    ' the GridCells don't need to carry a reference to the game controller.
     ' We could also make GameController a shared class, we feel like all three
     ' solutions are okay.
     Private Sub OnCellInput(cell As GridCell, e As EventArgs)

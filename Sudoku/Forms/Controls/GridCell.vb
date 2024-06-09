@@ -22,6 +22,10 @@ Partial Public Class GridCell
 
         TrySetValue(value)
 
+        If value <> 0 Then
+            Me.Enabled = False
+        End If
+
         ' Only groups with a pair index should be white
         Me.BackColor = GetBackgroundColor()
 
