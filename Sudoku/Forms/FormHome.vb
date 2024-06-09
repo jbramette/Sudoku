@@ -62,4 +62,18 @@
             Me.Close()
         End If
     End Sub
+
+    Private Sub OnModeCheckedChanged(sender As Object, e As EventArgs) Handles rbModeSimple.CheckedChanged, rbModeMedium.CheckedChanged, rbModeHard.CheckedChanged
+        Select Case GetSelectedDifficulty()
+            Case PuzzleDifficulty.Easy
+                numMinutes.Value = 15
+                numSeconds.Value = 0
+            Case PuzzleDifficulty.Medium
+                numMinutes.Value = 10
+                numSeconds.Value = 0
+            Case PuzzleDifficulty.Hard
+                numMinutes.Value = 7
+                numSeconds.Value = 0
+        End Select
+    End Sub
 End Class

@@ -27,7 +27,7 @@ Module ApiFetcher
     End Function
 
     Private Function HttpGet(url) As String
-        Using webClient As New Net.WebClient
+        Using webClient As New Net.WebClient()
             Return webClient.DownloadString(url)
         End Using
     End Function
