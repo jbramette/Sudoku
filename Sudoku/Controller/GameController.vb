@@ -98,7 +98,9 @@ Public Class GameController
 
     Public Sub OnGiveUp()
         OnGameEnded(won:=False)
+    End Sub
 
+    Private Sub ShowSolution()
         For r = 0 To Grid.ROWS - 1
             For c = 0 To Grid.COLS - 1
                 Dim expected = _puzzle.solution(r)(c)
@@ -108,6 +110,7 @@ Public Class GameController
             Next
         Next
     End Sub
+
     ' This function is called when the game has ended
     ' It can be triggered by completing the grid or the timer
     ' ran out, indicated by the parameter
@@ -118,6 +121,8 @@ Public Class GameController
 
         ' Update UI
         _view.NotifyGameEnded(won)
+
+        If Not won Then ShowSolution()
 
         ' Save game stats for player
         Dim gameStats As StatsManager.GameStats
